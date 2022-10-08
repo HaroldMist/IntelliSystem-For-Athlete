@@ -1,5 +1,5 @@
-#ifndef CONNECTION_H
-#define CONNECTION_H
+#ifndef CONNECT_DB_H
+#define CONNECT_DB_H
 #include <QMessageBox>
 #include <QSqlDatabase>
 #include <QSqlQuery>
