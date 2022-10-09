@@ -20,8 +20,8 @@ set(PROJECT_SOURCES
         mainwindow.cpp
         mainwindow.h
         mainwindow.ui
-        connect_db.cpp
-        connect_db.h
+        show_db.cpp
+        show_db.h
         img.qrc
 )
 
