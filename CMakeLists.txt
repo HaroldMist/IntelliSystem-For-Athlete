@@ -14,6 +14,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 find_package(Qt6 REQUIRED COMPONENTS Sql)
+find_package(Qt6 COMPONENTS MultimediaWidgets REQUIRED)
 
 set(PROJECT_SOURCES
         main.cpp
@@ -23,6 +24,7 @@ set(PROJECT_SOURCES
         show_db.cpp
         show_db.h
         img.qrc
+        video.qrc
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -50,6 +52,7 @@ endif()
 
 target_link_libraries(DC_1 PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 target_link_libraries(DC_1 PRIVATE Qt6::Sql)
+target_link_libraries(DC_1 PRIVATE Qt6::MultimediaWidgets)
 
 set_target_properties(DC_1 PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
