@@ -17,14 +17,23 @@ MainWindow::MainWindow(QWidget *parent)
     showCombo();
 
     showbody();
-    playvideo();
 
     connect(ui->query, &QPushButton::clicked, this, &MainWindow::showtab);
 //    connect(ui->pushButton_2, &QPushButton::clicked, this, &MainWindow::select);
 //    connect(ui->pushButton_2, &QPushButton::clicked, this, &MainWindow::isEquals);
 
-    //show advice
+    connect(ui->tableView, &QAbstractItemView::doubleClicked, this, [=](const QModelIndex& idx)->void{
+        int RowIdx = idx.row();
+        int ColIdx = idx.column();
+        //移动到指定行
+        this->sql_table.first();
+        for(int i=0;i<RowIdx;i++){
+            this->sql_table.next();
+        }
 
+        QString video = this->sql_table.value(2).toString();
+        playvideo(video);
+    });
 
 }
 
@@ -42,7 +51,7 @@ bool MainWindow::createConnection(){
     db.setPort(3306);
     db.setDatabaseName("dc_db");
     db.setUserName("root");
-    db.setPassword("17312767927");
+    db.setPassword("15897933683");
     if (!db.open()) {
         QMessageBox::critical(0, QObject::tr("无法打开数据库"),"无法创建数据库连接！ ", QMessageBox::Cancel);
         return false;
@@ -67,10 +76,9 @@ void MainWindow::showtab(){
     int index = ui->combo_p->currentIndex();
     QString ComboN = nameList[index];
 
-    sql = "select * from nonstd where (angle = 'right') and (name = '" + ComboN + "') order by video asc";
-    QSqlQuery result = db.exec(sql);
-    //setTable(ui->tableView);
-    showTable(ui->tableView, result, trainResult, name);
+    sql = "select * from nonstd where (angle = 'right') and (name = '" + ComboN + "') order by video desc";
+    this->sql_table = db.exec(sql);
+    showTable(ui->tableView, this->sql_table, trainResult, name);
 }
 
 void MainWindow::showtab2(){
@@ -101,18 +109,20 @@ void MainWindow::showtab3(){
 
 
 
-void MainWindow::playvideo(){
+void MainWindow::playvideo(QString path){
     //play video
     QMediaPlayer *player = new QMediaPlayer;
     QVideoWidget *videoWidget = ui->video_ns;
 
     videoWidget->show();
 
-    player->setSource(QUrl::fromLocalFile("E:\\DBVideo\\1_NS_R\\1_1_NS_R\\1_1_NS_R_result.mp4"));
-    QFile file("E:\\DBVideo\\NonStd\\Left\\1\\1_1_NS_L.mp4");
-        if(!file.open(QIODevice::ReadOnly))
+    QFile file(path);
+        if(!file.open(QIODevice::ReadOnly)){
             qDebug() << "Could not open file";
+            return;
+        }
 
+    player->setSource(QUrl::fromLocalFile(path));
     player->setVideoOutput(videoWidget);
     player->play();
 

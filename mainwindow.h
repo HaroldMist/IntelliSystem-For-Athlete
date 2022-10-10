@@ -19,6 +19,8 @@
 #include <QSqlTableModel>
 #include <QSqlRecord>
 
+#include<QFileInfo>
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -39,7 +41,7 @@ public:
     void showCombo();
 
     void showbody();
-    void playvideo();
+    void playvideo(QString path);
     void createMenu();
     void createActions();
     void createToolBar();
@@ -56,7 +58,7 @@ private:
     QSqlDatabase db = QSqlDatabase::addDatabase("QODBC");
 
     QStringList nameList;
-
+    QSqlQuery sql_table;   //表中显示内容对应的sql
      //文本框
     QPlainTextEdit *textEdit;
     //file菜单
