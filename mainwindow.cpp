@@ -1,10 +1,7 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 
-#include <QVideoWidget>
-#include <QMediaPlayer>
-#include <QImage>
-#include <QFile>
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow)
@@ -13,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     createConnection();
 
+    nameList<<"person1"<<"person2"<<"冀"<<"李"<<"张";
     createActions();
     createMenu();
 
@@ -56,10 +54,8 @@ bool MainWindow::createConnection(){
 };
 
 void MainWindow::showCombo(){
-    QStringList strList;
-    strList<<"A1"<<"A2"<<"A3"<<"A4";
-    ui->combo_p->addItems(strList);
-    ui->combo_p->setCurrentIndex(2);
+    ui->combo_p->addItems(nameList);
+    ui->combo_p->setCurrentIndex(0);
 }
 
 void MainWindow::showtab(){
@@ -68,7 +64,10 @@ void MainWindow::showtab(){
     trainResult << "记录视频" << "动作标准度" << "训练日期" <<"桨最后"<<"桨最前";
     QString name[5] = {"video", "std", "date", "p_back", "p_front"};
 
-    sql = "select * from nonstd where (angle = 'right') order by date asc";
+    int index = ui->combo_p->currentIndex();
+    QString ComboN = nameList[index];
+
+    sql = "select * from nonstd where (angle = 'right') and (name = '" + ComboN + "') order by video asc";
     QSqlQuery result = db.exec(sql);
     //setTable(ui->tableView);
     showTable(ui->tableView, result, trainResult, name);
@@ -234,3 +233,16 @@ void MainWindow::showTable(QTableWidget *table, QSqlQuery result, QStringList ta
     table->resizeRowsToContents();
 }
 
+QString MainWindow::getSql()
+{
+    //index from 0 to 5
+    int index = ui->combo_p->currentIndex();
+    QString ComboN=QString::number(index);
+
+    QString sql = "";
+    sql = "where no = " + ComboN + " and subject = '";
+
+//    no->clear();
+//    subject->clear();
+    return sql;
+}

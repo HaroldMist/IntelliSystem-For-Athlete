@@ -8,6 +8,11 @@
 #include <QMenu>
 #include <QPlainTextEdit>
 
+#include <QVideoWidget>
+#include <QMediaPlayer>
+#include <QImage>
+#include <QFile>
+
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QSqlQueryModel>
@@ -39,14 +44,18 @@ public:
     void createActions();
     void createToolBar();
 
-    void test();
+    void test(); //empty function
 
     void setTable(QTableWidget *table);
     void showTable(QTableWidget *table, QSqlQuery result, QStringList tableHead, QString tableName[]);
 
+    QString getSql();
+
 private:
     Ui::MainWindow *ui;
     QSqlDatabase db = QSqlDatabase::addDatabase("QODBC");
+
+    QStringList nameList;
 
      //文本框
     QPlainTextEdit *textEdit;
