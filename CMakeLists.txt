@@ -21,8 +21,6 @@ set(PROJECT_SOURCES
         mainwindow.cpp
         mainwindow.h
         mainwindow.ui
-        show_db.cpp
-        show_db.h
         img.qrc
         video.qrc
 )

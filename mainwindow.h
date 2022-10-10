@@ -1,9 +1,10 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "qdialog.h"
 #include <QMainWindow>
 #include <QMessageBox>
+#include <QTableWidget>
+
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QSqlQueryModel>
@@ -22,9 +23,21 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    void showtab();
+    void showtab2();
+    void showtab3();
+    void showbody();
+
+    bool createConnection();
+    void playvideo();
+
+    void setTable(QTableWidget *table);
+    void showTable(QTableWidget *table, QSqlQuery result, QStringList tableHead, QString tableName[]);
+
 private:
     Ui::MainWindow *ui;
-    void setTitle();
+    QSqlDatabase db = QSqlDatabase::addDatabase("QODBC");
+
 };
 
 #endif // MAINWINDOW_H
