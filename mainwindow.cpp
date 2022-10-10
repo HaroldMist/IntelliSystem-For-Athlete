@@ -7,14 +7,17 @@
 #include <QFile>
 
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+    : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
 
     createConnection();
 
-    //showtab2();
+    createActions();
+    createMenu();
+
+    showCombo();
+
     showbody();
     playvideo();
 
@@ -32,6 +35,10 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::test(){
+
+}
+
 bool MainWindow::createConnection(){
     db.setHostName("127.0.0.1");
     db.setPort(3306);
@@ -47,6 +54,13 @@ bool MainWindow::createConnection(){
         return true;
     }
 };
+
+void MainWindow::showCombo(){
+    QStringList strList;
+    strList<<"A1"<<"A2"<<"A3"<<"A4";
+    ui->combo_p->addItems(strList);
+    ui->combo_p->setCurrentIndex(2);
+}
 
 void MainWindow::showtab(){
     QStringList trainResult;
@@ -86,6 +100,8 @@ void MainWindow::showtab3(){
 };
 
 
+
+
 void MainWindow::playvideo(){
     //play video
     QMediaPlayer *player = new QMediaPlayer;
@@ -112,14 +128,78 @@ void MainWindow::showbody(){
         delete img;
         return;
     }
-    int Fwidth,Fheight;
-
-    Fwidth=170;
-    Fheight=340;
+    int Fwidth=170;
+    int Fheight=340;
     *scaledimg=img->scaled(Fwidth,Fheight,Qt::KeepAspectRatio);
     ui->image_body->setPixmap(QPixmap::fromImage(*scaledimg));
-
 }
+
+
+
+
+void MainWindow::createActions(){
+    newAthlete = new QAction(tr("&New"), this);
+    newAthlete->setShortcuts(QKeySequence::New);
+    newAthlete->setStatusTip(tr("Create a new file"));
+    connect(newAthlete, SIGNAL(triggered()), this, SLOT(test()));
+    
+    open = new QAction(tr("&Open"), this);
+    open->setShortcuts(QKeySequence::Open);
+    open->setStatusTip(tr("open a new file"));
+    connect(open, SIGNAL(triggered()), this, SLOT(test()));
+    
+    Save = new QAction(tr("&Save"), this);
+    Save->setShortcuts(QKeySequence::Save);
+    Save->setStatusTip(tr("Save a new file"));
+    connect(Save, SIGNAL(triggered()), this, SLOT(test()));
+    
+    saveAs = new QAction( tr("&SaveAs"), this);
+    saveAs->setShortcuts(QKeySequence::SaveAs);
+    saveAs->setStatusTip(tr("SaveAs a new file"));
+    connect(saveAs, SIGNAL(triggered()), this, SLOT(test()));
+    
+    exit = new QAction( tr("&exit"), this);
+    exit->setShortcuts(QKeySequence::Close);
+    exit->setStatusTip(tr("exit system"));
+    connect(exit, SIGNAL(triggered()), this, SLOT(close()));
+    
+    
+    about = new QAction(tr("&about"), this);
+    about->setStatusTip(tr("SaveAs a new file"));
+    connect(about, SIGNAL(triggered()), this, SLOT(test()));
+
+    aboutQt = new QAction(tr("&aboutQt"),this);
+    aboutQt->setStatusTip(tr("exit a new file"));
+    connect(aboutQt, SIGNAL(triggered()), this, SLOT(close()));
+}
+
+void MainWindow::createMenu()
+{
+    //创建一个name为file的菜单栏
+    fileMenu = menuBar()->addMenu(tr("&File"));
+    //在这个菜单栏添加action即下拉菜单
+    fileMenu->addAction(newAthlete);
+    fileMenu->addAction(open);
+    fileMenu->addAction(Save);
+    fileMenu->addAction(saveAs);
+    //添加一个分割器
+    fileMenu->addSeparator();
+    //推出下拉菜单
+    fileMenu->addAction(exit);
+
+    //创建一个name为help的菜单栏
+    helpMenu = menuBar()->addMenu(tr("&帮助"));
+    //在这个菜单栏添加action即下拉菜单
+    helpMenu->addAction(about);
+    helpMenu->addAction(aboutQt);
+}
+
+
+
+
+
+
+
 
 
 
