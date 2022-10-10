@@ -14,14 +14,15 @@ MainWindow::MainWindow(QWidget *parent)
     createActions();
     createMenu();
 
+    ui->label->setText("未选择");
     showCombo();
 
     showbody();
     playvideo();
 
     connect(ui->query, &QPushButton::clicked, this, &MainWindow::showtab);
-//    connect(ui->pushButton_2, &QPushButton::clicked, this, &MainWindow::select);
-//    connect(ui->pushButton_2, &QPushButton::clicked, this, &MainWindow::isEquals);
+    connect(ui->query, &QPushButton::clicked, this, &MainWindow::showtab2);
+    connect(ui->query, &QPushButton::clicked, this, &MainWindow::showtab3);
 
     //show advice
 
@@ -65,7 +66,8 @@ void MainWindow::showtab(){
     QString name[5] = {"video", "std", "date", "p_back", "p_front"};
 
     int index = ui->combo_p->currentIndex();
-    QString ComboN = nameList[index];
+    ComboN = nameList[index];
+    ui->label->setText(ComboN);
 
     sql = "select * from nonstd where (angle = 'right') and (name = '" + ComboN + "') order by video asc";
     QSqlQuery result = db.exec(sql);
@@ -79,8 +81,11 @@ void MainWindow::showtab2(){
     trainResult << "记录视频" << "动作标准度" << "训练日期" <<"桨最后"<<"桨最前";
     QString name[5] = {"video", "std", "date", "p_back", "p_front"};
 
+    int index = ui->combo_p->currentIndex();
+    ComboN = nameList[index];
+    ui->label->setText(ComboN);
 
-    sql = "select * from nonstd where (angle = 'left') order by date asc";
+    sql = "select * from nonstd where (angle = 'left') and (name = '" + ComboN + "') order by video asc";
     QSqlQuery result = db.exec(sql);
     //setTable(ui->tableView2);
     showTable(ui->tableView2, result, trainResult, name);
@@ -92,7 +97,11 @@ void MainWindow::showtab3(){
     trainResult << "记录视频" << "动作标准度" << "训练日期" <<"桨最后"<<"桨最前";
     QString name[5] = {"video", "std", "date", "p_back", "p_front"};
 
-    sql = "select * from nonstd where (angle = 'front')";
+    int index = ui->combo_p->currentIndex();
+    ComboN = nameList[index];
+    ui->label->setText(ComboN);
+
+    sql = "select * from nonstd where (angle = 'front') and (name = '" + ComboN + "') order by video asc";
     QSqlQuery result = db.exec(sql);
     //setTable(ui->tableView3);
     showTable(ui->tableView3, result, trainResult, name);
@@ -175,7 +184,7 @@ void MainWindow::createActions(){
 void MainWindow::createMenu()
 {
     //创建一个name为file的菜单栏
-    fileMenu = menuBar()->addMenu(tr("&File"));
+    fileMenu = menuBar()->addMenu(tr("&管理"));
     //在这个菜单栏添加action即下拉菜单
     fileMenu->addAction(newAthlete);
     fileMenu->addAction(open);

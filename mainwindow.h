@@ -56,6 +56,7 @@ private:
     QSqlDatabase db = QSqlDatabase::addDatabase("QODBC");
 
     QStringList nameList;
+    QString ComboN;
 
      //文本框
     QPlainTextEdit *textEdit;
