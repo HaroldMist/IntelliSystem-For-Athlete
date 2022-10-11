@@ -64,8 +64,10 @@ private:
 
     QStringList nameList;
     QString ComboN;
-    QSqlQuery sql_table; //表中显示内容对应的sql
-                         //文本
+    QSqlQuery sql_table;
+    QSqlQuery sql_table2;
+    QSqlQuery sql_table3;
+
     QPlainTextEdit *textEdit;
     // file菜单
     QMenu *fileMenu;

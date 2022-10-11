@@ -22,18 +22,78 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->query, &QPushButton::clicked, this, &MainWindow::showtab2);
     connect(ui->query, &QPushButton::clicked, this, &MainWindow::showtab3);
 
-    connect(ui->tableView, &QAbstractItemView::doubleClicked, this, [=](const QModelIndex &idx) -> void
+    connect(ui->tableView, &QAbstractItemView::doubleClicked, this
+            , [=](const QModelIndex &idx) -> void
             {
-        int RowIdx = idx.row();
-        int ColIdx = idx.column();
-        //移动到指定行
-        this->sql_table.first();
-        for(int i=0;i<RowIdx;i++){
-            this->sql_table.next();
-        }
+                int RowIdx = idx.row();
+                int ColIdx = idx.column();
+                //移动到指定行
+                this->sql_table.first();
+                for(int i=0;i<RowIdx;i++){this->sql_table.next();}
 
-        QString video = this->sql_table.value(2).toString();
-        playvideo(video); });
+                QString video = this->sql_table.value(2).toString();
+                playvideo(video); 
+                
+                QString j_ru = this->sql_table.value(8).toString();
+                ui->label_ru->setText(j_ru);
+                
+                QString j_chu = this->sql_table.value(9).toString();
+                ui->label_chu->setText(j_chu);
+                
+                QString j_high = this->sql_table.value(10).toString();
+                ui->label_high->setText(j_high);
+                    
+            });
+
+    connect(ui->tableView2, &QAbstractItemView::doubleClicked, this
+            , [=](const QModelIndex &idx) -> void
+            {
+                int RowIdx = idx.row();
+                int ColIdx = idx.column();
+                //移动到指定行
+                this->sql_table2.first();
+                for(int i=0;i<RowIdx;i++){this->sql_table2.next();}
+
+                QString video = this->sql_table2.value(2).toString();
+                playvideo(video); 
+                
+                QString j_ru = this->sql_table2.value(8).toString();
+                ui->label_ru->setText(j_ru);
+                
+                QString j_chu = this->sql_table2.value(9).toString();
+                ui->label_chu->setText(j_chu);
+                
+                QString j_high = this->sql_table2.value(10).toString();
+                ui->label_high->setText(j_high);
+                    
+            });
+
+    connect(ui->tableView3, &QAbstractItemView::doubleClicked, this
+            , [=](const QModelIndex &idx) -> void
+            {
+                int RowIdx = idx.row();
+                int ColIdx = idx.column();
+                //移动到指定行
+                this->sql_table3.first();
+                for(int i=0;i<RowIdx;i++){this->sql_table3.next();}
+
+                QString video = this->sql_table3.value(2).toString();
+                playvideo(video); 
+                
+                QString j_ru = this->sql_table3.value(8).toString();
+                ui->label_ru->setText(j_ru);
+                
+                QString j_chu = this->sql_table3.value(9).toString();
+                ui->label_chu->setText(j_chu);
+                
+                QString j_high = this->sql_table3.value(10).toString();
+                ui->label_high->setText(j_high);
+                    
+            });
+
+
+
+            
 }
 
 MainWindow::~MainWindow()
@@ -140,9 +200,9 @@ void MainWindow::showtab2()
     QString name[5] = {"video", "std", "date", "p_back", "p_front"};
 
     sql = "select * from nonstd where (angle = 'left') and (name = '" + ComboN + "') order by video asc";
-    QSqlQuery result = db.exec(sql);
+    this->sql_table2 = db.exec(sql);
     // setTable(ui->tableView2);
-    showTable(ui->tableView2, result, trainResult, name);
+    showTable(ui->tableView2, this->sql_table2, trainResult, name);
 };
 
 void MainWindow::showtab3()
@@ -172,9 +232,9 @@ void MainWindow::showtab3()
     QString name[5] = {"video", "std", "date", "p_back", "p_front"};
 
     sql = "select * from nonstd where (angle = 'front') and (name = '" + ComboN + "') order by video asc";
-    QSqlQuery result = db.exec(sql);
-    // setTable(ui->tableView3);
-    showTable(ui->tableView3, result, trainResult, name);
+    this->sql_table3 = db.exec(sql);
+    // setTable(ui->tableView2);
+    showTable(ui->tableView3, this->sql_table3, trainResult, name);
 };
 
 void MainWindow::playvideo(QString path)
@@ -211,7 +271,7 @@ void MainWindow::showImages()
     *img = img->scaled(599, 153, Qt::KeepAspectRatio);
     ui->image_body->setPixmap(QPixmap::fromImage(*img));
 
-    QString testText = "aaaaaaaa\naaaaaa\naaaaa\naaaaaaa\naaaaaaaaa\naaaaaaaaaa";
+    QString testText = "选择单次数据进行分析";
     ui->label_high->setText(testText);
     ui->label_chu->setText(testText);
     ui->label_ru->setText(testText);
