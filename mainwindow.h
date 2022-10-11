@@ -44,9 +44,10 @@ public:
     void showtab3();
     void showCombo();
     void showImages();
+    void showImage_y(QString filename);
 
     void showbody();
-    void playvideo(QString path);
+    void playvideo(QString path, QVideoWidget *videoWidget);
     void createMenu();
     void createActions();
     void createToolBar();

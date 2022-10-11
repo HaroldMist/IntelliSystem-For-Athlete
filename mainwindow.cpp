@@ -32,7 +32,10 @@ MainWindow::MainWindow(QWidget *parent)
                 for(int i=0;i<RowIdx;i++){this->sql_table.next();}
 
                 QString video = this->sql_table.value(2).toString();
-                playvideo(video); 
+                playvideo(video, ui->video_ns);
+
+                QString video2 = this->sql_table.value(3).toString();
+                playvideo(video2, ui->video_o);
                 
                 QString j_ru = this->sql_table.value(8).toString();
                 ui->label_ru->setText(j_ru);
@@ -42,6 +45,9 @@ MainWindow::MainWindow(QWidget *parent)
                 
                 QString j_high = this->sql_table.value(10).toString();
                 ui->label_high->setText(j_high);
+
+                QString p_y = this->sql_table.value(11).toString();
+                showImage_y(p_y);
                     
             });
 
@@ -55,7 +61,10 @@ MainWindow::MainWindow(QWidget *parent)
                 for(int i=0;i<RowIdx;i++){this->sql_table2.next();}
 
                 QString video = this->sql_table2.value(2).toString();
-                playvideo(video); 
+                playvideo(video, ui->video_ns);
+
+                QString video2 = this->sql_table2.value(3).toString();
+                playvideo(video2, ui->video_o);
                 
                 QString j_ru = this->sql_table2.value(8).toString();
                 ui->label_ru->setText(j_ru);
@@ -65,6 +74,9 @@ MainWindow::MainWindow(QWidget *parent)
                 
                 QString j_high = this->sql_table2.value(10).toString();
                 ui->label_high->setText(j_high);
+
+                QString p_y = this->sql_table2.value(11).toString();
+                showImage_y(p_y);
                     
             });
 
@@ -78,7 +90,10 @@ MainWindow::MainWindow(QWidget *parent)
                 for(int i=0;i<RowIdx;i++){this->sql_table3.next();}
 
                 QString video = this->sql_table3.value(2).toString();
-                playvideo(video); 
+                playvideo(video, ui->video_ns);
+
+                QString video2 = this->sql_table3.value(3).toString();
+                playvideo(video2, ui->video_o);
                 
                 QString j_ru = this->sql_table3.value(8).toString();
                 ui->label_ru->setText(j_ru);
@@ -88,6 +103,9 @@ MainWindow::MainWindow(QWidget *parent)
                 
                 QString j_high = this->sql_table3.value(10).toString();
                 ui->label_high->setText(j_high);
+
+                QString p_y = this->sql_table3.value(11).toString();
+                showImage_y(p_y);
                     
             });
 
@@ -152,7 +170,7 @@ void MainWindow::showtab()
     QImage *img = new QImage;
     if (!(img->load(filename)))
     {
-        QMessageBox::information(this, tr("打开图像失败"), tr("打开图像失败!"));
+        QMessageBox::information(this, tr("加载图像失败"), tr("加载图像失败!"));
         delete img;
         return;
     }
@@ -183,7 +201,7 @@ void MainWindow::showtab2()
     QImage *img = new QImage;
     if (!(img->load(filename)))
     {
-        QMessageBox::information(this, tr("打开图像失败"), tr("打开图像失败!"));
+        QMessageBox::information(this, tr("加载图像失败"), tr("加载图像失败!"));
         delete img;
         return;
     }
@@ -215,7 +233,7 @@ void MainWindow::showtab3()
     QImage *img = new QImage;
     if (!(img->load(filename)))
     {
-        QMessageBox::information(this, tr("打开图像失败"), tr("打开图像失败!"));
+        QMessageBox::information(this, tr("加载图像失败"), tr("加载图像失败!"));
         delete img;
         return;
     }
@@ -237,11 +255,11 @@ void MainWindow::showtab3()
     showTable(ui->tableView3, this->sql_table3, trainResult, name);
 };
 
-void MainWindow::playvideo(QString path)
+void MainWindow::playvideo(QString path, QVideoWidget *videoWidget)
 {
     // play video
     QMediaPlayer *player = new QMediaPlayer;
-    QVideoWidget *videoWidget = ui->video_ns;
+
 
     videoWidget->show();
 
@@ -264,7 +282,7 @@ void MainWindow::showImages()
 
     if (!(img->load(filename)))
     {
-        QMessageBox::information(this, tr("打开图像失败"), tr("打开图像失败!"));
+        QMessageBox::information(this, tr("加载图像失败"), tr("加载图像失败!"));
         delete img;
         return;
     }
@@ -275,11 +293,14 @@ void MainWindow::showImages()
     ui->label_high->setText(testText);
     ui->label_chu->setText(testText);
     ui->label_ru->setText(testText);
+}
 
-    QString filename2 = "E:\\DBVideo\\Image\\Right\\1\\left_wrist_y_1.jpg";
-    if (!(img->load(filename2)))
+void MainWindow::showImage_y(QString filename)
+{
+    QImage *img = new QImage;
+    if (!(img->load(filename)))
     {
-        QMessageBox::information(this, tr("打开图像失败"), tr("打开图像失败!"));
+        QMessageBox::information(this, tr("加载图像失败"), tr("加载图像失败!"));
         delete img;
         return;
     }
