@@ -42,9 +42,9 @@
       <height>641</height>
      </rect>
     </property>
-    <layout class="QGridLayout" name="gridLayout" rowstretch="2,5" columnstretch="3,2">
+    <layout class="QGridLayout" name="gridLayout" rowstretch="2,5" columnstretch="4,3">
      <item row="1" column="0">
-      <layout class="QHBoxLayout" name="dbLayout" stretch="1">
+      <layout class="QHBoxLayout" name="dbLayout" stretch="0">
        <item>
         <widget class="QTabWidget" name="dbView">
          <property name="tabShape">
@@ -128,28 +128,74 @@
        <property name="alignment">
         <set>Qt::AlignCenter</set>
        </property>
-       <widget class="QVideoWidget" name="video_ns" native="true">
+       <widget class="QTabWidget" name="tabWidget">
         <property name="geometry">
          <rect>
-          <x>80</x>
+          <x>0</x>
           <y>30</y>
-          <width>341</width>
-          <height>171</height>
+          <width>541</width>
+          <height>611</height>
          </rect>
         </property>
-       </widget>
-       <widget class="QLabel" name="image_body">
-        <property name="geometry">
-         <rect>
-          <x>160</x>
-          <y>250</y>
-          <width>201</width>
-          <height>351</height>
-         </rect>
+        <property name="currentIndex">
+         <number>0</number>
         </property>
-        <property name="text">
-         <string/>
-        </property>
+        <widget class="QWidget" name="tab">
+         <attribute name="title">
+          <string>Tab 1</string>
+         </attribute>
+         <widget class="QLabel" name="image_body">
+          <property name="geometry">
+           <rect>
+            <x>280</x>
+            <y>340</y>
+            <width>241</width>
+            <height>221</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+         <widget class="QVideoWidget" name="video_ns" native="true">
+          <property name="geometry">
+           <rect>
+            <x>220</x>
+            <y>10</y>
+            <width>301</width>
+            <height>171</height>
+           </rect>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_5">
+          <property name="geometry">
+           <rect>
+            <x>220</x>
+            <y>190</y>
+            <width>301</width>
+            <height>151</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>TextLabel</string>
+          </property>
+         </widget>
+        </widget>
+        <widget class="QWidget" name="tab_4">
+         <attribute name="title">
+          <string>Tab 2</string>
+         </attribute>
+         <widget class="QGraphicsView" name="image_p">
+          <property name="geometry">
+           <rect>
+            <x>60</x>
+            <y>30</y>
+            <width>361</width>
+            <height>231</height>
+           </rect>
+          </property>
+         </widget>
+        </widget>
        </widget>
       </widget>
      </item>
@@ -166,16 +212,20 @@
          <rect>
           <x>30</x>
           <y>30</y>
-          <width>551</width>
+          <width>564</width>
           <height>131</height>
          </rect>
         </property>
-        <layout class="QHBoxLayout" name="horizontalLayout" stretch="2,7">
+        <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,7">
          <property name="spacing">
           <number>20</number>
          </property>
          <item>
-          <widget class="QGraphicsView" name="image_p"/>
+          <widget class="QLabel" name="label_4">
+           <property name="text">
+            <string>TextLabel</string>
+           </property>
+          </widget>
          </item>
          <item>
           <layout class="QVBoxLayout" name="verticalLayout" stretch="4,1,5,1,5">
