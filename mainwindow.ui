@@ -57,7 +57,7 @@
           <enum>QTabWidget::Rounded</enum>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>2</number>
          </property>
          <widget class="QWidget" name="tab_1">
           <attribute name="title">
@@ -68,7 +68,7 @@
             <rect>
              <x>-1</x>
              <y>-1</y>
-             <width>621</width>
+             <width>622</width>
              <height>432</height>
             </rect>
            </property>
@@ -89,7 +89,7 @@
             <rect>
              <x>-1</x>
              <y>-1</y>
-             <width>621</width>
+             <width>622</width>
              <height>432</height>
             </rect>
            </property>
@@ -107,7 +107,7 @@
             <rect>
              <x>-1</x>
              <y>-1</y>
-             <width>621</width>
+             <width>622</width>
              <height>432</height>
             </rect>
            </property>
@@ -144,7 +144,7 @@
          </rect>
         </property>
         <property name="currentIndex">
-         <number>0</number>
+         <number>1</number>
         </property>
         <widget class="QWidget" name="tab_5">
          <attribute name="icon">
@@ -497,7 +497,7 @@
            <pixmap resource="img.qrc">:/prefix1/resource/curve (Custom).png</pixmap>
           </property>
          </widget>
-         <widget class="QPushButton" name="pushButton">
+         <widget class="QPushButton" name="pauseButton">
           <property name="geometry">
            <rect>
             <x>150</x>
@@ -510,7 +510,7 @@
            <string>暂停</string>
           </property>
          </widget>
-         <widget class="QPushButton" name="pushButton_2">
+         <widget class="QPushButton" name="playButton">
           <property name="geometry">
            <rect>
             <x>270</x>
@@ -536,7 +536,7 @@
           <property name="geometry">
            <rect>
             <x>50</x>
-            <y>50</y>
+            <y>130</y>
             <width>511</width>
             <height>291</height>
            </rect>
@@ -545,35 +545,19 @@
          <widget class="QWidget" name="layoutWidget">
           <property name="geometry">
            <rect>
-            <x>20</x>
-            <y>10</y>
-            <width>571</width>
+            <x>80</x>
+            <y>20</y>
+            <width>451</width>
             <height>32</height>
            </rect>
           </property>
-          <layout class="QHBoxLayout" name="select_date" stretch="2,1,3,1,3,1">
+          <layout class="QHBoxLayout" name="select_date" stretch="2,6,1,2,6">
            <property name="spacing">
             <number>10</number>
            </property>
            <property name="topMargin">
             <number>0</number>
            </property>
-           <item>
-            <widget class="QLabel" name="label_2">
-             <property name="font">
-              <font>
-               <family>Microsoft YaHei UI</family>
-               <pointsize>11</pointsize>
-              </font>
-             </property>
-             <property name="text">
-              <string>  时间选择    </string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-             </property>
-            </widget>
-           </item>
            <item>
             <widget class="QLabel" name="label_13">
              <property name="font">
@@ -583,7 +567,7 @@
               </font>
              </property>
              <property name="text">
-              <string>起始:</string>
+              <string>起始时间</string>
              </property>
              <property name="alignment">
               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -592,6 +576,12 @@
            </item>
            <item>
             <widget class="QDateEdit" name="date_start">
+             <property name="maximumSize">
+              <size>
+               <width>120</width>
+               <height>16777215</height>
+              </size>
+             </property>
              <property name="dateTime">
               <datetime>
                <hour>0</hour>
@@ -621,6 +611,81 @@
             </widget>
            </item>
            <item>
+            <spacer name="horizontalSpacer_2">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_2">
+             <property name="font">
+              <font>
+               <family>Microsoft YaHei UI</family>
+               <pointsize>11</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>分析角度</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="comboAngle">
+             <property name="minimumSize">
+              <size>
+               <width>100</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>120</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <item>
+              <property name="text">
+               <string>右侧</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>左侧</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>前侧</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="">
+          <property name="geometry">
+           <rect>
+            <x>80</x>
+            <y>60</y>
+            <width>451</width>
+            <height>27</height>
+           </rect>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="2,6,1,2,6">
+           <property name="spacing">
+            <number>10</number>
+           </property>
+           <item>
             <widget class="QLabel" name="label_14">
              <property name="font">
               <font>
@@ -629,7 +694,7 @@
               </font>
              </property>
              <property name="text">
-              <string>结束:</string>
+              <string>结束时间</string>
              </property>
              <property name="alignment">
               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -638,6 +703,12 @@
            </item>
            <item>
             <widget class="QDateEdit" name="date_end">
+             <property name="maximumSize">
+              <size>
+               <width>120</width>
+               <height>16777215</height>
+              </size>
+             </property>
              <property name="dateTime">
               <datetime>
                <hour>0</hour>
@@ -664,10 +735,30 @@
             </widget>
            </item>
            <item>
+            <spacer name="horizontalSpacer_3">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_15">
+             <property name="text">
+              <string>                 </string>
+             </property>
+            </widget>
+           </item>
+           <item>
             <widget class="QPushButton" name="analysis">
              <property name="maximumSize">
               <size>
-               <width>80</width>
+               <width>120</width>
                <height>16777215</height>
               </size>
              </property>
