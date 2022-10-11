@@ -38,10 +38,12 @@ public:
 
     bool createConnection();
 
+    void GetnameList();
     void showtab();
     void showtab2();
     void showtab3();
     void showCombo();
+    void showImages();
 
     void showbody();
     void playvideo(QString path);

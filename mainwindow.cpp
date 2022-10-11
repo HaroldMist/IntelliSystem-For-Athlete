@@ -8,11 +8,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     createConnection();
 
-    nameList << "person1"
-             << "person2"
-             << "冀"
-             << "李"
-             << "张";
+    GetnameList();  //get the namelist in database
+
     createActions();
     createMenu();
 
@@ -73,6 +70,15 @@ void MainWindow::showCombo()
     ui->combo_p->setCurrentIndex(0);
 }
 
+void MainWindow::GetnameList(){
+    QString sql = "select distinct name from nonstd";
+    QSqlQuery sql_name = db.exec(sql);
+    this->nameList.clear();
+    while(sql_name.next()){
+        this->nameList << sql_name.value(0).toString();
+    }
+}
+
 void MainWindow::showtab()
 {
     int index = ui->combo_p->currentIndex();
@@ -98,9 +104,6 @@ void MainWindow::showtab()
                 << "桨最后"
                 << "桨最前";
     QString name[5] = {"video", "std", "date", "p_back", "p_front"};
-
-    int index = ui->combo_p->currentIndex();
-    QString ComboN = nameList[index];
 
     sql = "select * from nonstd where (angle = 'right') and (name = '" + ComboN + "') order by video desc";
     this->sql_table = db.exec(sql);
@@ -208,37 +211,37 @@ void MainWindow::showImages()
 
 void MainWindow::createActions()
 {
-    newAthlete = new QAction(tr("&New"), this);
+    newAthlete = new QAction(tr("&新建"), this);
     newAthlete->setShortcuts(QKeySequence::New);
     newAthlete->setStatusTip(tr("Create a new file"));
     connect(newAthlete, SIGNAL(triggered()), this, SLOT(test()));
 
-    open = new QAction(tr("&Open"), this);
+    open = new QAction(tr("&打开"), this);
     open->setShortcuts(QKeySequence::Open);
     open->setStatusTip(tr("open a new file"));
     connect(open, SIGNAL(triggered()), this, SLOT(test()));
 
-    Save = new QAction(tr("&Save"), this);
+    Save = new QAction(tr("&保存"), this);
     Save->setShortcuts(QKeySequence::Save);
     Save->setStatusTip(tr("Save a new file"));
     connect(Save, SIGNAL(triggered()), this, SLOT(test()));
 
-    saveAs = new QAction(tr("&SaveAs"), this);
+    saveAs = new QAction(tr("&另存为"), this);
     saveAs->setShortcuts(QKeySequence::SaveAs);
-    saveAs->setStatusTip(tr("SaveAs a new file"));
+    saveAs->setStatusTip(tr("Save As a new file"));
     connect(saveAs, SIGNAL(triggered()), this, SLOT(test()));
 
-    exit = new QAction(tr("&exit"), this);
+    exit = new QAction(tr("&退出"), this);
     exit->setShortcuts(QKeySequence::Close);
     exit->setStatusTip(tr("exit system"));
     connect(exit, SIGNAL(triggered()), this, SLOT(close()));
 
-    about = new QAction(tr("&about"), this);
-    about->setStatusTip(tr("SaveAs a new file"));
+    about = new QAction(tr("&关于"), this);
+    about->setStatusTip(tr("About this project"));
     connect(about, SIGNAL(triggered()), this, SLOT(test()));
 
     aboutQt = new QAction(tr("&aboutQt"), this);
-    aboutQt->setStatusTip(tr("exit a new file"));
+    aboutQt->setStatusTip(tr("About QT"));
     connect(aboutQt, SIGNAL(triggered()), this, SLOT(close()));
 }
 
