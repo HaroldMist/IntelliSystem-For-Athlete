@@ -42,7 +42,7 @@
       <height>651</height>
      </rect>
     </property>
-    <layout class="QGridLayout" name="gridLayout" rowstretch="2,5" columnstretch="5,4">
+    <layout class="QGridLayout" name="gridLayout" rowstretch="2,5" columnstretch="1,1">
      <item row="1" column="0">
       <layout class="QHBoxLayout" name="dbLayout" stretch="0">
        <item>
@@ -51,7 +51,7 @@
           <enum>QTabWidget::Rounded</enum>
          </property>
          <property name="currentIndex">
-          <number>2</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="tab_1">
           <attribute name="title">
@@ -62,8 +62,8 @@
             <rect>
              <x>-1</x>
              <y>-1</y>
-             <width>751</width>
-             <height>431</height>
+             <width>621</width>
+             <height>432</height>
             </rect>
            </property>
            <property name="cursor" stdset="0">
@@ -83,8 +83,8 @@
             <rect>
              <x>-1</x>
              <y>-1</y>
-             <width>751</width>
-             <height>431</height>
+             <width>621</width>
+             <height>432</height>
             </rect>
            </property>
            <property name="editTriggers">
@@ -101,8 +101,8 @@
             <rect>
              <x>-1</x>
              <y>-1</y>
-             <width>751</width>
-             <height>431</height>
+             <width>621</width>
+             <height>432</height>
             </rect>
            </property>
            <property name="editTriggers">
@@ -133,14 +133,14 @@
          <rect>
           <x>0</x>
           <y>30</y>
-          <width>541</width>
+          <width>621</width>
           <height>621</height>
          </rect>
         </property>
         <property name="currentIndex">
          <number>0</number>
         </property>
-        <widget class="QWidget" name="tab">
+        <widget class="QWidget" name="tab_5">
          <attribute name="title">
           <string>单次数据</string>
          </attribute>
@@ -148,9 +148,9 @@
           <property name="geometry">
            <rect>
             <x>10</x>
-            <y>300</y>
-            <width>511</width>
-            <height>281</height>
+            <y>430</y>
+            <width>600</width>
+            <height>154</height>
            </rect>
           </property>
           <property name="text">
@@ -160,70 +160,83 @@
          <widget class="QVideoWidget" name="video_ns" native="true">
           <property name="geometry">
            <rect>
-            <x>220</x>
-            <y>150</y>
-            <width>304</width>
-            <height>171</height>
+            <x>20</x>
+            <y>20</y>
+            <width>288</width>
+            <height>162</height>
            </rect>
           </property>
          </widget>
          <widget class="QLabel" name="label_y">
           <property name="geometry">
            <rect>
-            <x>20</x>
-            <y>20</y>
-            <width>251</width>
-            <height>210</height>
+            <x>320</x>
+            <y>190</y>
+            <width>281</width>
+            <height>231</height>
            </rect>
           </property>
           <property name="text">
            <string>TextLabel</string>
           </property>
          </widget>
-         <widget class="QWidget" name="">
+         <widget class="QVideoWidget" name="video_o" native="true">
           <property name="geometry">
            <rect>
-            <x>20</x>
-            <y>240</y>
-            <width>181</width>
-            <height>311</height>
+            <x>320</x>
+            <y>20</y>
+            <width>288</width>
+            <height>162</height>
            </rect>
           </property>
-          <layout class="QVBoxLayout" name="verticalLayout_2" stretch="1,1,1">
-           <property name="spacing">
-            <number>35</number>
-           </property>
-           <item>
-            <widget class="QLabel" name="label_high">
-             <property name="text">
-              <string>TextLabel</string>
-             </property>
-             <property name="wordWrap">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLabel" name="label_chu">
-             <property name="text">
-              <string>TextLabel</string>
-             </property>
-             <property name="wordWrap">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLabel" name="label_ru">
-             <property name="text">
-              <string>TextLabel</string>
-             </property>
-             <property name="wordWrap">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-          </layout>
+         </widget>
+         <widget class="QLabel" name="label_high">
+          <property name="geometry">
+           <rect>
+            <x>455</x>
+            <y>460</y>
+            <width>160</width>
+            <height>100</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>TextLabel</string>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_chu">
+          <property name="geometry">
+           <rect>
+            <x>40</x>
+            <y>328</y>
+            <width>160</width>
+            <height>100</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>TextLabel</string>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_ru">
+          <property name="geometry">
+           <rect>
+            <x>40</x>
+            <y>460</y>
+            <width>160</width>
+            <height>100</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>TextLabel</string>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
          </widget>
         </widget>
         <widget class="QWidget" name="tab_4">
@@ -233,12 +246,110 @@
          <widget class="QGraphicsView" name="image_p">
           <property name="geometry">
            <rect>
-            <x>60</x>
-            <y>30</y>
+            <x>80</x>
+            <y>100</y>
             <width>361</width>
             <height>231</height>
            </rect>
           </property>
+         </widget>
+         <widget class="QWidget" name="">
+          <property name="geometry">
+           <rect>
+            <x>30</x>
+            <y>10</y>
+            <width>472</width>
+            <height>32</height>
+           </rect>
+          </property>
+          <layout class="QHBoxLayout" name="select_date" stretch="2,3,3,1">
+           <property name="spacing">
+            <number>10</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QLabel" name="label_2">
+             <property name="font">
+              <font>
+               <family>Microsoft YaHei UI</family>
+               <pointsize>11</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>  时间选择</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QDateEdit" name="date_start">
+             <property name="dateTime">
+              <datetime>
+               <hour>0</hour>
+               <minute>0</minute>
+               <second>0</second>
+               <year>2021</year>
+               <month>4</month>
+               <day>1</day>
+              </datetime>
+             </property>
+             <property name="currentSection">
+              <enum>QDateTimeEdit::YearSection</enum>
+             </property>
+             <property name="displayFormat">
+              <string>yyyy-M-d ddd</string>
+             </property>
+             <property name="date">
+              <date>
+               <year>2021</year>
+               <month>4</month>
+               <day>1</day>
+              </date>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QDateEdit" name="date_end">
+             <property name="dateTime">
+              <datetime>
+               <hour>0</hour>
+               <minute>0</minute>
+               <second>0</second>
+               <year>2021</year>
+               <month>12</month>
+               <day>31</day>
+              </datetime>
+             </property>
+             <property name="displayFormat">
+              <string>yyyy-M-d ddd</string>
+             </property>
+             <property name="date">
+              <date>
+               <year>2021</year>
+               <month>12</month>
+               <day>31</day>
+              </date>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="analysis">
+             <property name="maximumSize">
+              <size>
+               <width>80</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>分析</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </widget>
         </widget>
        </widget>
@@ -257,13 +368,13 @@
          <rect>
           <x>30</x>
           <y>30</y>
-          <width>601</width>
-          <height>139</height>
+          <width>501</width>
+          <height>148</height>
          </rect>
         </property>
-        <layout class="QHBoxLayout" name="horizontalLayout" stretch="2,9">
+        <layout class="QHBoxLayout" name="horizontalLayout" stretch="2,1,6">
          <property name="spacing">
-          <number>20</number>
+          <number>10</number>
          </property>
          <item>
           <widget class="QLabel" name="label_p">
@@ -273,239 +384,133 @@
           </widget>
          </item>
          <item>
-          <layout class="QVBoxLayout" name="verticalLayout" stretch="4,1,5,1,5">
-           <property name="spacing">
-            <number>5</number>
+          <widget class="Line" name="line">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>135</height>
+            </size>
            </property>
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QGridLayout" name="gridLayout_2" rowstretch="5,1,5" columnstretch="1,2,2">
            <property name="topMargin">
-            <number>0</number>
+            <number>40</number>
            </property>
            <property name="bottomMargin">
-            <number>15</number>
+            <number>40</number>
            </property>
-           <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="2,2,5">
-             <property name="spacing">
-              <number>5</number>
-             </property>
-             <item>
-              <widget class="QLabel" name="label_3">
-               <property name="font">
-                <font>
-                 <family>Microsoft YaHei UI</family>
-                 <pointsize>11</pointsize>
-                </font>
-               </property>
-               <property name="text">
-                <string>  当前运动员：</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLabel" name="label">
-               <property name="font">
-                <font>
-                 <family>Microsoft YaHei UI</family>
-                 <pointsize>11</pointsize>
-                </font>
-               </property>
-               <property name="text">
-                <string>TextLabel</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <spacer name="horizontalSpacer">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-            </layout>
+           <property name="horizontalSpacing">
+            <number>10</number>
+           </property>
+           <property name="verticalSpacing">
+            <number>2</number>
+           </property>
+           <item row="2" column="1">
+            <widget class="QComboBox" name="combo_p"/>
            </item>
-           <item>
-            <layout class="QHBoxLayout" name="line_2layout">
-             <property name="leftMargin">
-              <number>0</number>
+           <item row="0" column="2">
+            <spacer name="horizontalSpacer">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
              </property>
-             <property name="topMargin">
-              <number>0</number>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
              </property>
-             <item>
-              <widget class="Line" name="line_2">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-              </widget>
-             </item>
-            </layout>
+            </spacer>
            </item>
-           <item>
-            <layout class="QHBoxLayout" name="select_button" stretch="5,3,1">
-             <property name="spacing">
-              <number>10</number>
+           <item row="2" column="2">
+            <widget class="QPushButton" name="query">
+             <property name="maximumSize">
+              <size>
+               <width>1677215</width>
+               <height>16777215</height>
+              </size>
              </property>
-             <property name="sizeConstraint">
-              <enum>QLayout::SetDefaultConstraint</enum>
+             <property name="text">
+              <string>查询</string>
              </property>
-             <property name="bottomMargin">
-              <number>0</number>
-             </property>
-             <item>
-              <widget class="QLabel" name="label_1">
-               <property name="maximumSize">
-                <size>
-                 <width>16777215</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="font">
-                <font>
-                 <family>Microsoft YaHei UI</family>
-                 <pointsize>11</pointsize>
-                </font>
-               </property>
-               <property name="text">
-                <string>  运动员选择     </string>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QComboBox" name="combo_p"/>
-             </item>
-             <item>
-              <widget class="QPushButton" name="query">
-               <property name="maximumSize">
-                <size>
-                 <width>1677215</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="text">
-                <string>查询</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
+            </widget>
            </item>
-           <item>
-            <layout class="QHBoxLayout" name="line_layout" stretch="0">
-             <property name="spacing">
-              <number>15</number>
+           <item row="0" column="1">
+            <widget class="QLabel" name="label">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
              </property>
-             <property name="leftMargin">
-              <number>0</number>
+             <property name="font">
+              <font>
+               <family>Microsoft YaHei UI</family>
+               <pointsize>11</pointsize>
+              </font>
              </property>
-             <property name="topMargin">
-              <number>0</number>
+             <property name="text">
+              <string>TextLabel</string>
              </property>
-             <item>
-              <widget class="Line" name="line">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-              </widget>
-             </item>
-            </layout>
+            </widget>
            </item>
-           <item>
-            <layout class="QHBoxLayout" name="select_date" stretch="2,3,3,1">
-             <property name="spacing">
-              <number>10</number>
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_3">
+             <property name="font">
+              <font>
+               <family>Microsoft YaHei UI</family>
+               <pointsize>11</pointsize>
+              </font>
              </property>
-             <property name="topMargin">
-              <number>0</number>
+             <property name="text">
+              <string>  当前运动员：</string>
              </property>
-             <item>
-              <widget class="QLabel" name="label_2">
-               <property name="font">
-                <font>
-                 <family>Microsoft YaHei UI</family>
-                 <pointsize>11</pointsize>
-                </font>
-               </property>
-               <property name="text">
-                <string>  时间选择</string>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QDateEdit" name="date_start">
-               <property name="dateTime">
-                <datetime>
-                 <hour>0</hour>
-                 <minute>0</minute>
-                 <second>0</second>
-                 <year>2021</year>
-                 <month>4</month>
-                 <day>1</day>
-                </datetime>
-               </property>
-               <property name="currentSection">
-                <enum>QDateTimeEdit::YearSection</enum>
-               </property>
-               <property name="displayFormat">
-                <string>yyyy-M-d ddd</string>
-               </property>
-               <property name="date">
-                <date>
-                 <year>2021</year>
-                 <month>4</month>
-                 <day>1</day>
-                </date>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QDateEdit" name="date_end">
-               <property name="dateTime">
-                <datetime>
-                 <hour>0</hour>
-                 <minute>0</minute>
-                 <second>0</second>
-                 <year>2021</year>
-                 <month>12</month>
-                 <day>31</day>
-                </datetime>
-               </property>
-               <property name="displayFormat">
-                <string>yyyy-M-d ddd</string>
-               </property>
-               <property name="date">
-                <date>
-                 <year>2021</year>
-                 <month>12</month>
-                 <day>31</day>
-                </date>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="analysis">
-               <property name="maximumSize">
-                <size>
-                 <width>80</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="text">
-                <string>分析</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_1">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>Microsoft YaHei UI</family>
+               <pointsize>11</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>  选择运动员</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0" colspan="3">
+            <widget class="Line" name="line_2">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
            </item>
           </layout>
          </item>
@@ -522,7 +527,7 @@
      <x>0</x>
      <y>0</y>
      <width>1280</width>
-     <height>28</height>
+     <height>22</height>
     </rect>
    </property>
    <property name="defaultUp">

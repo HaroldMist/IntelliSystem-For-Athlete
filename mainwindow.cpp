@@ -51,7 +51,8 @@ bool MainWindow::createConnection()
     db.setPort(3306);
     db.setDatabaseName("dc_db");
     db.setUserName("root");
-    db.setPassword("15897933683");
+    //db.setPassword("15897933683");
+    db.setPassword("17312767927");
     if (!db.open())
     {
         QMessageBox::critical(0, QObject::tr("无法打开数据库"), "无法创建数据库连接！ ", QMessageBox::Cancel);
@@ -72,7 +73,7 @@ void MainWindow::showCombo()
 
 void MainWindow::GetnameList()
 {
-    QString sql = "select distinct name from nonstd";
+    QString sql = "select distinct name from nonstd order by name asc";
     QSqlQuery sql_name = db.exec(sql);
     this->nameList.clear();
     while (sql_name.next())
@@ -207,10 +208,10 @@ void MainWindow::showImages()
         delete img;
         return;
     }
-    *img = img->scaled(500, 275, Qt::KeepAspectRatio);
+    *img = img->scaled(599, 153, Qt::KeepAspectRatio);
     ui->image_body->setPixmap(QPixmap::fromImage(*img));
 
-    QString testText = "aaaaaaaa\naaaaaa\naaaaa\naaaaaaa";
+    QString testText = "aaaaaaaa\naaaaaa\naaaaa\naaaaaaa\naaaaaaaaa\naaaaaaaaaa";
     ui->label_high->setText(testText);
     ui->label_chu->setText(testText);
     ui->label_ru->setText(testText);
@@ -222,7 +223,7 @@ void MainWindow::showImages()
         delete img;
         return;
     }
-    *img = img->scaled(240, 180, Qt::KeepAspectRatio);
+    *img = img->scaled(280, 210, Qt::KeepAspectRatio);
     ui->label_y->setPixmap(QPixmap::fromImage(*img));
 }
 
