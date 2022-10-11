@@ -8,7 +8,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     createConnection();
 
-    GetnameList();  //get the namelist in database
+    GetnameList(); // get the namelist in database
 
     createActions();
     createMenu();
@@ -70,11 +70,13 @@ void MainWindow::showCombo()
     ui->combo_p->setCurrentIndex(0);
 }
 
-void MainWindow::GetnameList(){
+void MainWindow::GetnameList()
+{
     QString sql = "select distinct name from nonstd";
     QSqlQuery sql_name = db.exec(sql);
     this->nameList.clear();
-    while(sql_name.next()){
+    while (sql_name.next())
+    {
         this->nameList << sql_name.value(0).toString();
     }
 }
@@ -196,7 +198,7 @@ void MainWindow::playvideo(QString path)
 
 void MainWindow::showImages()
 {
-    QImage *img = new QImage, *scaledimg = new QImage;
+    QImage *img = new QImage;
     QString filename = ":/prefix1/resource/boat.png";
 
     if (!(img->load(filename)))
@@ -205,14 +207,30 @@ void MainWindow::showImages()
         delete img;
         return;
     }
-    *scaledimg = img->scaled(240, 210, Qt::KeepAspectRatio);
-    ui->image_body->setPixmap(QPixmap::fromImage(*scaledimg));
+    *img = img->scaled(500, 275, Qt::KeepAspectRatio);
+    ui->image_body->setPixmap(QPixmap::fromImage(*img));
+
+    QString testText = "aaaaaaaa\naaaaaa\naaaaa\naaaaaaa";
+    ui->label_high->setText(testText);
+    ui->label_chu->setText(testText);
+    ui->label_ru->setText(testText);
+
+    QString filename2 = "E:\\DBVideo\\Image\\Right\\1\\left_wrist_y_1.jpg";
+    if (!(img->load(filename2)))
+    {
+        QMessageBox::information(this, tr("打开图像失败"), tr("打开图像失败!"));
+        delete img;
+        return;
+    }
+    *img = img->scaled(240, 180, Qt::KeepAspectRatio);
+    ui->label_y->setPixmap(QPixmap::fromImage(*img));
 }
 
 void MainWindow::createActions()
 {
     newAthlete = new QAction(tr("&新建"), this);
     newAthlete->setShortcuts(QKeySequence::New);
+
     newAthlete->setStatusTip(tr("Create a new file"));
     connect(newAthlete, SIGNAL(triggered()), this, SLOT(test()));
 
