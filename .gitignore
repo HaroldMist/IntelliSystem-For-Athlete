@@ -1,5 +1,7 @@
 /out
 /.vscode
+out/
+.vscode/
 
 # C++ objects and libs
 *.slo
