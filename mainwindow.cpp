@@ -271,7 +271,7 @@ void MainWindow::showImages()
     *img = img->scaled(599, 153, Qt::KeepAspectRatio);
     ui->image_body->setPixmap(QPixmap::fromImage(*img));
 
-    QString testText = "选择单次数据进行分析";
+    QString testText = "选择单次\n训练数据\n进行分析";
     ui->label_high->setText(testText);
     ui->label_chu->setText(testText);
     ui->label_ru->setText(testText);
