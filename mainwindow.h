@@ -36,25 +36,28 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    void test(); // empty function
     bool createConnection();
-
     void GetnameList();
-    void showtab();
-    void showtab2();
-    void showtab3();
-    void showCombo();
-    void showImages();
 
-    void showbody();
-    void playvideo(QString path);
     void createMenu();
     void createActions();
     void createToolBar();
 
-    void test(); // empty function
+    void showtab();
+    void showtab2();
+    void showtab3();
+    void showCombo();
+
+    void showImages();
+    void showImage_y(QString filename);
+
+    void playvideo(QString path, QVideoWidget *videoWidget);
 
     void setTable(QTableWidget *table);
     void showTable(QTableWidget *table, QSqlQuery result, QStringList tableHead, QString tableName[]);
+
+    void analysisDate();
 
     QString getSql();
 

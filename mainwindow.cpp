@@ -22,6 +22,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->query, &QPushButton::clicked, this, &MainWindow::showtab2);
     connect(ui->query, &QPushButton::clicked, this, &MainWindow::showtab3);
 
+    connect(ui->analysis, &QPushButton::clicked, this, &MainWindow::analysisDate);
+
     connect(ui->tableView, &QAbstractItemView::doubleClicked, this, [=](const QModelIndex &idx) -> void
             {
                 int RowIdx = idx.row();
@@ -34,7 +36,10 @@ MainWindow::MainWindow(QWidget *parent)
                 }
 
                 QString video = this->sql_table.value(2).toString();
-                playvideo(video);
+                playvideo(video, ui->video_ns);
+
+                QString video2 = this->sql_table.value(3).toString();
+                playvideo(video2, ui->video_o);
 
                 QString j_ru = this->sql_table.value(8).toString();
                 ui->label_ru->setText(j_ru);
@@ -44,6 +49,9 @@ MainWindow::MainWindow(QWidget *parent)
 
                 QString j_high = this->sql_table.value(10).toString();
                 ui->label_high->setText(j_high);
+
+                QString p_y = this->sql_table.value(11).toString();
+                showImage_y(p_y);
             });
 
     connect(ui->tableView2, &QAbstractItemView::doubleClicked, this, [=](const QModelIndex &idx) -> void
@@ -58,7 +66,10 @@ MainWindow::MainWindow(QWidget *parent)
                 }
 
                 QString video = this->sql_table2.value(2).toString();
-                playvideo(video);
+                playvideo(video, ui->video_ns);
+
+                QString video2 = this->sql_table2.value(3).toString();
+                playvideo(video2, ui->video_o);
 
                 QString j_ru = this->sql_table2.value(8).toString();
                 ui->label_ru->setText(j_ru);
@@ -68,6 +79,9 @@ MainWindow::MainWindow(QWidget *parent)
 
                 QString j_high = this->sql_table2.value(10).toString();
                 ui->label_high->setText(j_high);
+
+                QString p_y = this->sql_table2.value(11).toString();
+                showImage_y(p_y);
             });
 
     connect(ui->tableView3, &QAbstractItemView::doubleClicked, this, [=](const QModelIndex &idx) -> void
@@ -82,7 +96,10 @@ MainWindow::MainWindow(QWidget *parent)
                 }
 
                 QString video = this->sql_table3.value(2).toString();
-                playvideo(video);
+                playvideo(video, ui->video_ns);
+
+                QString video2 = this->sql_table3.value(3).toString();
+                playvideo(video2, ui->video_o);
 
                 QString j_ru = this->sql_table3.value(8).toString();
                 ui->label_ru->setText(j_ru);
@@ -92,6 +109,9 @@ MainWindow::MainWindow(QWidget *parent)
 
                 QString j_high = this->sql_table3.value(10).toString();
                 ui->label_high->setText(j_high);
+
+                QString p_y = this->sql_table3.value(11).toString();
+                showImage_y(p_y);
             });
 }
 
@@ -111,7 +131,7 @@ bool MainWindow::createConnection()
     db.setDatabaseName("dc_db");
     db.setUserName("root");
     db.setPassword("15897933683");
-//    db.setPassword("17312767927");
+    //    db.setPassword("17312767927");
     if (!db.open())
     {
         QMessageBox::critical(0, QObject::tr("无法打开数据库"), "无法创建数据库连接！ ", QMessageBox::Cancel);
@@ -151,7 +171,7 @@ void MainWindow::showtab()
     QImage *img = new QImage;
     if (!(img->load(filename)))
     {
-        QMessageBox::information(this, tr("打开图像失败"), tr("打开图像失败!"));
+        QMessageBox::information(this, tr("加载图像失败"), tr("加载图像失败!"));
         delete img;
         return;
     }
@@ -182,7 +202,7 @@ void MainWindow::showtab2()
     QImage *img = new QImage;
     if (!(img->load(filename)))
     {
-        QMessageBox::information(this, tr("打开图像失败"), tr("打开图像失败!"));
+        QMessageBox::information(this, tr("加载图像失败"), tr("加载图像失败!"));
         delete img;
         return;
     }
@@ -202,7 +222,7 @@ void MainWindow::showtab2()
     this->sql_table2 = db.exec(sql);
     // setTable(ui->tableView2);
     showTable(ui->tableView2, this->sql_table2, trainResult, name);
-};
+}
 
 void MainWindow::showtab3()
 {
@@ -214,7 +234,7 @@ void MainWindow::showtab3()
     QImage *img = new QImage;
     if (!(img->load(filename)))
     {
-        QMessageBox::information(this, tr("打开图像失败"), tr("打开图像失败!"));
+        QMessageBox::information(this, tr("加载图像失败"), tr("加载图像失败!"));
         delete img;
         return;
     }
@@ -234,13 +254,12 @@ void MainWindow::showtab3()
     this->sql_table3 = db.exec(sql);
     // setTable(ui->tableView2);
     showTable(ui->tableView3, this->sql_table3, trainResult, name);
-};
+}
 
-void MainWindow::playvideo(QString path)
+void MainWindow::playvideo(QString path, QVideoWidget *videoWidget)
 {
     // play video
     QMediaPlayer *player = new QMediaPlayer;
-    QVideoWidget *videoWidget = ui->video_ns;
 
     videoWidget->show();
 
@@ -254,7 +273,7 @@ void MainWindow::playvideo(QString path)
     player->setSource(QUrl::fromLocalFile(path));
     player->setVideoOutput(videoWidget);
     player->play();
-};
+}
 
 void MainWindow::showImages()
 {
@@ -263,7 +282,7 @@ void MainWindow::showImages()
 
     if (!(img->load(filename)))
     {
-        QMessageBox::information(this, tr("打开图像失败"), tr("打开图像失败!"));
+        QMessageBox::information(this, tr("加载图像失败"), tr("加载图像失败!"));
         delete img;
         return;
     }
@@ -274,16 +293,33 @@ void MainWindow::showImages()
     ui->label_high->setText(testText);
     ui->label_chu->setText(testText);
     ui->label_ru->setText(testText);
+}
 
-    QString filename2 = "E:\\DBVideo\\Image\\Right\\1\\left_wrist_y_1.jpg";
-    if (!(img->load(filename2)))
+void MainWindow::showImage_y(QString filename)
+{
+    QImage *img = new QImage;
+    if (!(img->load(filename)))
     {
-        QMessageBox::information(this, tr("打开图像失败"), tr("打开图像失败!"));
+        QMessageBox::information(this, tr("加载图像失败"), tr("加载图像失败!"));
         delete img;
         return;
     }
     *img = img->scaled(280, 210, Qt::KeepAspectRatio);
     ui->label_y->setPixmap(QPixmap::fromImage(*img));
+}
+
+void MainWindow::analysisDate()
+{
+    QDate date_s = ui->date_start->date();
+    QDate date_e = ui->date_end->date();
+
+    QString ds = date_s.toString("yyyy-MM-dd");
+    QString de = date_e.toString("yyyy-MM-dd");
+
+    QString sql = "select std from emp where to_date(date,'yyyy-mm-dd') "
+                  "between '" +
+                  ds + "' and '" + de + "and name and angle";
+    QSqlQuery result = db.exec(sql);
 }
 
 void MainWindow::createActions()

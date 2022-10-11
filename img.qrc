@@ -8,5 +8,22 @@
         <file>resource/p3.png</file>
         <file>resource/p5.png</file>
         <file>resource/boat.png</file>
+        <file>resource/chip.png</file>
+        <file>resource/clock.png</file>
+        <file>resource/cloud.png</file>
+        <file>resource/compass.png</file>
+        <file>resource/curve.png</file>
+        <file>resource/folder.png</file>
+        <file>resource/histogram.png</file>
+        <file>resource/histogram2.png</file>
+        <file>resource/light.png</file>
+        <file>resource/model.png</file>
+        <file>resource/note.png</file>
+        <file>resource/thumb.png</file>
+        <file>resource/up.png</file>
+        <file>resource/cloud (Custom).png</file>
+        <file>resource/curve (Custom).png</file>
+        <file>resource/light (Custom).png</file>
+        <file>resource/note (Custom).png</file>
     </qresource>
 </RCC>
