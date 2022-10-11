@@ -38,7 +38,7 @@ public:
     void showtab3();
     void showCombo();
 
-    void showbody();
+    void showImages();
     void playvideo();
     void createMenu();
     void createActions();
@@ -58,7 +58,7 @@ private:
     QStringList nameList;
     QString ComboN;
 
-     //文本框
+     //文本
     QPlainTextEdit *textEdit;
     //file菜单
     QMenu * fileMenu;

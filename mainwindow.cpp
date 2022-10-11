@@ -17,7 +17,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->label->setText("未选择");
     showCombo();
 
-    showbody();
+    showImages();
     playvideo();
 
     connect(ui->query, &QPushButton::clicked, this, &MainWindow::showtab);
@@ -60,14 +60,26 @@ void MainWindow::showCombo(){
 }
 
 void MainWindow::showtab(){
+    int index = ui->combo_p->currentIndex();
+    ComboN = nameList[index];
+    ui->label->setText(ComboN);
+
+    QString filename = QString(":/prefix1/resource/p%1.png").arg(index+1);
+    QImage* img=new QImage;
+    if(! ( img->load(filename) ) )
+    {
+        QMessageBox::information(this, tr("打开图像失败"), tr("打开图像失败!"));
+        delete img;
+        return;
+    }
+    *img=img->scaled(100,110,Qt::KeepAspectRatio);
+    ui->label_p->setPixmap(QPixmap::fromImage(*img));
+    
+
     QStringList trainResult;
     QString sql;
     trainResult << "记录视频" << "动作标准度" << "训练日期" <<"桨最后"<<"桨最前";
     QString name[5] = {"video", "std", "date", "p_back", "p_front"};
-
-    int index = ui->combo_p->currentIndex();
-    ComboN = nameList[index];
-    ui->label->setText(ComboN);
 
     sql = "select * from nonstd where (angle = 'right') and (name = '" + ComboN + "') order by video asc";
     QSqlQuery result = db.exec(sql);
@@ -76,14 +88,26 @@ void MainWindow::showtab(){
 }
 
 void MainWindow::showtab2(){
+    int index = ui->combo_p->currentIndex();
+    ComboN = nameList[index];
+    ui->label->setText(ComboN);
+
+    QString filename = QString(":/prefix1/resource/p%1.png").arg(index+1);
+    QImage* img=new QImage;
+    if(! ( img->load(filename) ) )
+    {
+        QMessageBox::information(this, tr("打开图像失败"), tr("打开图像失败!"));
+        delete img;
+        return;
+    }
+    *img=img->scaled(100,110,Qt::KeepAspectRatio);
+    ui->label_p->setPixmap(QPixmap::fromImage(*img));
+    
+
     QStringList trainResult;
     QString sql;
     trainResult << "记录视频" << "动作标准度" << "训练日期" <<"桨最后"<<"桨最前";
     QString name[5] = {"video", "std", "date", "p_back", "p_front"};
-
-    int index = ui->combo_p->currentIndex();
-    ComboN = nameList[index];
-    ui->label->setText(ComboN);
 
     sql = "select * from nonstd where (angle = 'left') and (name = '" + ComboN + "') order by video asc";
     QSqlQuery result = db.exec(sql);
@@ -92,14 +116,26 @@ void MainWindow::showtab2(){
 };
 
 void MainWindow::showtab3(){
+    int index = ui->combo_p->currentIndex();
+    ComboN = nameList[index];
+    ui->label->setText(ComboN);
+
+    QString filename = QString(":/prefix1/resource/p%1.png").arg(index+1);
+    QImage* img=new QImage;
+    if(! ( img->load(filename) ) )
+    {
+        QMessageBox::information(this, tr("打开图像失败"), tr("打开图像失败!"));
+        delete img;
+        return;
+    }
+    *img=img->scaled(100,110,Qt::KeepAspectRatio);
+    ui->label_p->setPixmap(QPixmap::fromImage(*img));
+    
+
     QStringList trainResult;
     QString sql;
     trainResult << "记录视频" << "动作标准度" << "训练日期" <<"桨最后"<<"桨最前";
     QString name[5] = {"video", "std", "date", "p_back", "p_front"};
-
-    int index = ui->combo_p->currentIndex();
-    ComboN = nameList[index];
-    ui->label->setText(ComboN);
 
     sql = "select * from nonstd where (angle = 'front') and (name = '" + ComboN + "') order by video asc";
     QSqlQuery result = db.exec(sql);
@@ -127,18 +163,17 @@ void MainWindow::playvideo(){
 
 };
 
-void MainWindow::showbody(){
-    QString filename=":/prefix1/resource/humanbody.png";
+void MainWindow::showImages(){
     QImage* img=new QImage,* scaledimg=new QImage;
+    QString filename=":/prefix1/resource/boat.png";
+
     if(! ( img->load(filename) ) )
     {
         QMessageBox::information(this, tr("打开图像失败"), tr("打开图像失败!"));
         delete img;
         return;
     }
-    int Fwidth=170;
-    int Fheight=340;
-    *scaledimg=img->scaled(Fwidth,Fheight,Qt::KeepAspectRatio);
+    *scaledimg=img->scaled(240,210,Qt::KeepAspectRatio);
     ui->image_body->setPixmap(QPixmap::fromImage(*scaledimg));
 }
 

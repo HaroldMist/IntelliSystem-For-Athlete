@@ -2,5 +2,11 @@
     <qresource prefix="/prefix1">
         <file>m_icon.png</file>
         <file>resource/humanbody.png</file>
+        <file>resource/p1.png</file>
+        <file>resource/p2.png</file>
+        <file>resource/p4.png</file>
+        <file>resource/p3.png</file>
+        <file>resource/p5.png</file>
+        <file>resource/boat.png</file>
     </qresource>
 </RCC>
