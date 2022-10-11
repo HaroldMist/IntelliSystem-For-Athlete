@@ -1,8 +1,6 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 
-
-
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow)
 {
@@ -10,19 +8,25 @@ MainWindow::MainWindow(QWidget *parent)
 
     createConnection();
 
-    nameList<<"person1"<<"person2"<<"冀"<<"李"<<"张";
+    nameList << "person1"
+             << "person2"
+             << "冀"
+             << "李"
+             << "张";
     createActions();
     createMenu();
 
+    ui->label->setText("未选择");
     showCombo();
 
-    showbody();
+    showImages();
 
     connect(ui->query, &QPushButton::clicked, this, &MainWindow::showtab);
-//    connect(ui->pushButton_2, &QPushButton::clicked, this, &MainWindow::select);
-//    connect(ui->pushButton_2, &QPushButton::clicked, this, &MainWindow::isEquals);
+    connect(ui->query, &QPushButton::clicked, this, &MainWindow::showtab2);
+    connect(ui->query, &QPushButton::clicked, this, &MainWindow::showtab3);
 
-    connect(ui->tableView, &QAbstractItemView::doubleClicked, this, [=](const QModelIndex& idx)->void{
+    connect(ui->tableView, &QAbstractItemView::doubleClicked, this, [=](const QModelIndex &idx) -> void
+            {
         int RowIdx = idx.row();
         int ColIdx = idx.column();
         //移动到指定行
@@ -32,9 +36,7 @@ MainWindow::MainWindow(QWidget *parent)
         }
 
         QString video = this->sql_table.value(2).toString();
-        playvideo(video);
-    });
-
+        playvideo(video); });
 }
 
 MainWindow::~MainWindow()
@@ -42,35 +44,59 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::test(){
-
+void MainWindow::test()
+{
 }
 
-bool MainWindow::createConnection(){
+bool MainWindow::createConnection()
+{
     db.setHostName("127.0.0.1");
     db.setPort(3306);
     db.setDatabaseName("dc_db");
     db.setUserName("root");
     db.setPassword("15897933683");
-    if (!db.open()) {
-        QMessageBox::critical(0, QObject::tr("无法打开数据库"),"无法创建数据库连接！ ", QMessageBox::Cancel);
+    if (!db.open())
+    {
+        QMessageBox::critical(0, QObject::tr("无法打开数据库"), "无法创建数据库连接！ ", QMessageBox::Cancel);
         return false;
-        }
-    else{
+    }
+    else
+    {
         statusBar()->showMessage(tr("数据库连接成功"), 5000);
         return true;
     }
 };
 
-void MainWindow::showCombo(){
+void MainWindow::showCombo()
+{
     ui->combo_p->addItems(nameList);
     ui->combo_p->setCurrentIndex(0);
 }
 
-void MainWindow::showtab(){
+void MainWindow::showtab()
+{
+    int index = ui->combo_p->currentIndex();
+    ComboN = nameList[index];
+    ui->label->setText(ComboN);
+
+    QString filename = QString(":/prefix1/resource/p%1.png").arg(index + 1);
+    QImage *img = new QImage;
+    if (!(img->load(filename)))
+    {
+        QMessageBox::information(this, tr("打开图像失败"), tr("打开图像失败!"));
+        delete img;
+        return;
+    }
+    *img = img->scaled(100, 110, Qt::KeepAspectRatio);
+    ui->label_p->setPixmap(QPixmap::fromImage(*img));
+
     QStringList trainResult;
     QString sql;
-    trainResult << "记录视频" << "动作标准度" << "训练日期" <<"桨最后"<<"桨最前";
+    trainResult << "记录视频"
+                << "动作标准度"
+                << "训练日期"
+                << "桨最后"
+                << "桨最前";
     QString name[5] = {"video", "std", "date", "p_back", "p_front"};
 
     int index = ui->combo_p->currentIndex();
@@ -81,103 +107,137 @@ void MainWindow::showtab(){
     showTable(ui->tableView, this->sql_table, trainResult, name);
 }
 
-void MainWindow::showtab2(){
+void MainWindow::showtab2()
+{
+    int index = ui->combo_p->currentIndex();
+    ComboN = nameList[index];
+    ui->label->setText(ComboN);
+
+    QString filename = QString(":/prefix1/resource/p%1.png").arg(index + 1);
+    QImage *img = new QImage;
+    if (!(img->load(filename)))
+    {
+        QMessageBox::information(this, tr("打开图像失败"), tr("打开图像失败!"));
+        delete img;
+        return;
+    }
+    *img = img->scaled(100, 110, Qt::KeepAspectRatio);
+    ui->label_p->setPixmap(QPixmap::fromImage(*img));
+
     QStringList trainResult;
     QString sql;
-    trainResult << "记录视频" << "动作标准度" << "训练日期" <<"桨最后"<<"桨最前";
+    trainResult << "记录视频"
+                << "动作标准度"
+                << "训练日期"
+                << "桨最后"
+                << "桨最前";
     QString name[5] = {"video", "std", "date", "p_back", "p_front"};
 
-
-    sql = "select * from nonstd where (angle = 'left') order by date asc";
+    sql = "select * from nonstd where (angle = 'left') and (name = '" + ComboN + "') order by video asc";
     QSqlQuery result = db.exec(sql);
-    //setTable(ui->tableView2);
+    // setTable(ui->tableView2);
     showTable(ui->tableView2, result, trainResult, name);
 };
 
-void MainWindow::showtab3(){
+void MainWindow::showtab3()
+{
+    int index = ui->combo_p->currentIndex();
+    ComboN = nameList[index];
+    ui->label->setText(ComboN);
+
+    QString filename = QString(":/prefix1/resource/p%1.png").arg(index + 1);
+    QImage *img = new QImage;
+    if (!(img->load(filename)))
+    {
+        QMessageBox::information(this, tr("打开图像失败"), tr("打开图像失败!"));
+        delete img;
+        return;
+    }
+    *img = img->scaled(100, 110, Qt::KeepAspectRatio);
+    ui->label_p->setPixmap(QPixmap::fromImage(*img));
+
     QStringList trainResult;
     QString sql;
-    trainResult << "记录视频" << "动作标准度" << "训练日期" <<"桨最后"<<"桨最前";
+    trainResult << "记录视频"
+                << "动作标准度"
+                << "训练日期"
+                << "桨最后"
+                << "桨最前";
     QString name[5] = {"video", "std", "date", "p_back", "p_front"};
 
-    sql = "select * from nonstd where (angle = 'front')";
+    sql = "select * from nonstd where (angle = 'front') and (name = '" + ComboN + "') order by video asc";
     QSqlQuery result = db.exec(sql);
-    //setTable(ui->tableView3);
+    // setTable(ui->tableView3);
     showTable(ui->tableView3, result, trainResult, name);
 };
 
-
-
-
-void MainWindow::playvideo(QString path){
-    //play video
+void MainWindow::playvideo(QString path)
+{
+    // play video
     QMediaPlayer *player = new QMediaPlayer;
     QVideoWidget *videoWidget = ui->video_ns;
 
     videoWidget->show();
 
     QFile file(path);
-        if(!file.open(QIODevice::ReadOnly)){
-            qDebug() << "Could not open file";
-            return;
-        }
+    if (!file.open(QIODevice::ReadOnly))
+    {
+        qDebug() << "Could not open file";
+        return;
+    }
 
     player->setSource(QUrl::fromLocalFile(path));
     player->setVideoOutput(videoWidget);
     player->play();
-
 };
 
-void MainWindow::showbody(){
-    QString filename=":/prefix1/resource/humanbody.png";
-    QImage* img=new QImage,* scaledimg=new QImage;
-    if(! ( img->load(filename) ) )
+void MainWindow::showImages()
+{
+    QImage *img = new QImage, *scaledimg = new QImage;
+    QString filename = ":/prefix1/resource/boat.png";
+
+    if (!(img->load(filename)))
     {
         QMessageBox::information(this, tr("打开图像失败"), tr("打开图像失败!"));
         delete img;
         return;
     }
-    int Fwidth=170;
-    int Fheight=340;
-    *scaledimg=img->scaled(Fwidth,Fheight,Qt::KeepAspectRatio);
+    *scaledimg = img->scaled(240, 210, Qt::KeepAspectRatio);
     ui->image_body->setPixmap(QPixmap::fromImage(*scaledimg));
 }
 
-
-
-
-void MainWindow::createActions(){
+void MainWindow::createActions()
+{
     newAthlete = new QAction(tr("&New"), this);
     newAthlete->setShortcuts(QKeySequence::New);
     newAthlete->setStatusTip(tr("Create a new file"));
     connect(newAthlete, SIGNAL(triggered()), this, SLOT(test()));
-    
+
     open = new QAction(tr("&Open"), this);
     open->setShortcuts(QKeySequence::Open);
     open->setStatusTip(tr("open a new file"));
     connect(open, SIGNAL(triggered()), this, SLOT(test()));
-    
+
     Save = new QAction(tr("&Save"), this);
     Save->setShortcuts(QKeySequence::Save);
     Save->setStatusTip(tr("Save a new file"));
     connect(Save, SIGNAL(triggered()), this, SLOT(test()));
-    
-    saveAs = new QAction( tr("&SaveAs"), this);
+
+    saveAs = new QAction(tr("&SaveAs"), this);
     saveAs->setShortcuts(QKeySequence::SaveAs);
     saveAs->setStatusTip(tr("SaveAs a new file"));
     connect(saveAs, SIGNAL(triggered()), this, SLOT(test()));
-    
-    exit = new QAction( tr("&exit"), this);
+
+    exit = new QAction(tr("&exit"), this);
     exit->setShortcuts(QKeySequence::Close);
     exit->setStatusTip(tr("exit system"));
     connect(exit, SIGNAL(triggered()), this, SLOT(close()));
-    
-    
+
     about = new QAction(tr("&about"), this);
     about->setStatusTip(tr("SaveAs a new file"));
     connect(about, SIGNAL(triggered()), this, SLOT(test()));
 
-    aboutQt = new QAction(tr("&aboutQt"),this);
+    aboutQt = new QAction(tr("&aboutQt"), this);
     aboutQt->setStatusTip(tr("exit a new file"));
     connect(aboutQt, SIGNAL(triggered()), this, SLOT(close()));
 }
@@ -185,7 +245,7 @@ void MainWindow::createActions(){
 void MainWindow::createMenu()
 {
     //创建一个name为file的菜单栏
-    fileMenu = menuBar()->addMenu(tr("&File"));
+    fileMenu = menuBar()->addMenu(tr("&管理"));
     //在这个菜单栏添加action即下拉菜单
     fileMenu->addAction(newAthlete);
     fileMenu->addAction(open);
@@ -202,16 +262,6 @@ void MainWindow::createMenu()
     helpMenu->addAction(about);
     helpMenu->addAction(aboutQt);
 }
-
-
-
-
-
-
-
-
-
-
 
 void MainWindow::setTable(QTableWidget *table)
 {
@@ -230,9 +280,11 @@ void MainWindow::showTable(QTableWidget *table, QSqlQuery result, QStringList ta
     table->setHorizontalHeaderLabels(tableHead);
 
     int i = 0;
-    while(result.next()) {
+    while (result.next())
+    {
         table->insertRow(i);
-        for(int j = 0; j < tableHead.size(); j++) {
+        for (int j = 0; j < tableHead.size(); j++)
+        {
             table->setItem(i, j, new QTableWidgetItem(result.value(tableName[j]).toString()));
             table->item(i, j)->setTextAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
         }
@@ -245,14 +297,14 @@ void MainWindow::showTable(QTableWidget *table, QSqlQuery result, QStringList ta
 
 QString MainWindow::getSql()
 {
-    //index from 0 to 5
+    // index from 0 to 5
     int index = ui->combo_p->currentIndex();
-    QString ComboN=QString::number(index);
+    QString ComboN = QString::number(index);
 
     QString sql = "";
     sql = "where no = " + ComboN + " and subject = '";
 
-//    no->clear();
-//    subject->clear();
+    //    no->clear();
+    //    subject->clear();
     return sql;
 }

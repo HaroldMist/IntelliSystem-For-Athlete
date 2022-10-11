@@ -19,10 +19,13 @@
 #include <QSqlTableModel>
 #include <QSqlRecord>
 
-#include<QFileInfo>
+#include <QFileInfo>
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
+namespace Ui
+{
+    class MainWindow;
+}
 QT_END_NAMESPACE
 
 class MainWindow : public QMainWindow
@@ -34,7 +37,7 @@ public:
     ~MainWindow();
 
     bool createConnection();
-    
+
     void showtab();
     void showtab2();
     void showtab3();
@@ -46,7 +49,7 @@ public:
     void createActions();
     void createToolBar();
 
-    void test(); //empty function
+    void test(); // empty function
 
     void setTable(QTableWidget *table);
     void showTable(QTableWidget *table, QSqlQuery result, QStringList tableHead, QString tableName[]);
@@ -58,12 +61,13 @@ private:
     QSqlDatabase db = QSqlDatabase::addDatabase("QODBC");
 
     QStringList nameList;
-    QSqlQuery sql_table;   //表中显示内容对应的sql
-     //文本框
+    QString ComboN;
+    QSqlQuery sql_table; //表中显示内容对应的sql
+                         //文本
     QPlainTextEdit *textEdit;
-    //file菜单
-    QMenu * fileMenu;
-    QMenu * helpMenu;
+    // file菜单
+    QMenu *fileMenu;
+    QMenu *helpMenu;
     //定义file的下拉菜单new open save saveAS exit
     QAction *newAthlete;
     QAction *open;
@@ -76,7 +80,6 @@ private:
 
     QToolBar *fileToolBar;
     QToolBar *editToolBar;
-
 };
 
 #endif // MAINWINDOW_H
