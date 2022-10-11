@@ -22,78 +22,77 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->query, &QPushButton::clicked, this, &MainWindow::showtab2);
     connect(ui->query, &QPushButton::clicked, this, &MainWindow::showtab3);
 
-    connect(ui->tableView, &QAbstractItemView::doubleClicked, this
-            , [=](const QModelIndex &idx) -> void
+    connect(ui->tableView, &QAbstractItemView::doubleClicked, this, [=](const QModelIndex &idx) -> void
             {
                 int RowIdx = idx.row();
                 int ColIdx = idx.column();
                 //移动到指定行
                 this->sql_table.first();
-                for(int i=0;i<RowIdx;i++){this->sql_table.next();}
+                for (int i = 0; i < RowIdx; i++)
+                {
+                    this->sql_table.next();
+                }
 
                 QString video = this->sql_table.value(2).toString();
-                playvideo(video); 
-                
+                playvideo(video);
+
                 QString j_ru = this->sql_table.value(8).toString();
                 ui->label_ru->setText(j_ru);
-                
+
                 QString j_chu = this->sql_table.value(9).toString();
                 ui->label_chu->setText(j_chu);
-                
+
                 QString j_high = this->sql_table.value(10).toString();
                 ui->label_high->setText(j_high);
-                    
             });
 
-    connect(ui->tableView2, &QAbstractItemView::doubleClicked, this
-            , [=](const QModelIndex &idx) -> void
+    connect(ui->tableView2, &QAbstractItemView::doubleClicked, this, [=](const QModelIndex &idx) -> void
             {
                 int RowIdx = idx.row();
                 int ColIdx = idx.column();
                 //移动到指定行
                 this->sql_table2.first();
-                for(int i=0;i<RowIdx;i++){this->sql_table2.next();}
+                for (int i = 0; i < RowIdx; i++)
+                {
+                    this->sql_table2.next();
+                }
 
                 QString video = this->sql_table2.value(2).toString();
-                playvideo(video); 
-                
+                playvideo(video);
+
                 QString j_ru = this->sql_table2.value(8).toString();
                 ui->label_ru->setText(j_ru);
-                
+
                 QString j_chu = this->sql_table2.value(9).toString();
                 ui->label_chu->setText(j_chu);
-                
+
                 QString j_high = this->sql_table2.value(10).toString();
                 ui->label_high->setText(j_high);
-                    
             });
 
-    connect(ui->tableView3, &QAbstractItemView::doubleClicked, this
-            , [=](const QModelIndex &idx) -> void
+    connect(ui->tableView3, &QAbstractItemView::doubleClicked, this, [=](const QModelIndex &idx) -> void
             {
                 int RowIdx = idx.row();
                 int ColIdx = idx.column();
                 //移动到指定行
                 this->sql_table3.first();
-                for(int i=0;i<RowIdx;i++){this->sql_table3.next();}
+                for (int i = 0; i < RowIdx; i++)
+                {
+                    this->sql_table3.next();
+                }
 
                 QString video = this->sql_table3.value(2).toString();
-                playvideo(video); 
-                
+                playvideo(video);
+
                 QString j_ru = this->sql_table3.value(8).toString();
                 ui->label_ru->setText(j_ru);
-                
+
                 QString j_chu = this->sql_table3.value(9).toString();
                 ui->label_chu->setText(j_chu);
-                
+
                 QString j_high = this->sql_table3.value(10).toString();
                 ui->label_high->setText(j_high);
-                    
             });
-
-
-
-            
 }
 
 MainWindow::~MainWindow()
@@ -111,8 +110,8 @@ bool MainWindow::createConnection()
     db.setPort(3306);
     db.setDatabaseName("dc_db");
     db.setUserName("root");
-    //db.setPassword("15897933683");
-    db.setPassword("17312767927");
+    db.setPassword("15897933683");
+//    db.setPassword("17312767927");
     if (!db.open())
     {
         QMessageBox::critical(0, QObject::tr("无法打开数据库"), "无法创建数据库连接！ ", QMessageBox::Cancel);
