@@ -22,6 +22,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->query, &QPushButton::clicked, this, &MainWindow::showtab2);
     connect(ui->query, &QPushButton::clicked, this, &MainWindow::showtab3);
 
+    connect(ui->analysis, &QPushButton::clicked, this, &MainWindow::analysisDate);
+
     connect(ui->tableView, &QAbstractItemView::doubleClicked, this
             , [=](const QModelIndex &idx) -> void
             {
@@ -108,7 +110,6 @@ MainWindow::MainWindow(QWidget *parent)
                 showImage_y(p_y);
                     
             });
-
 
 
             
@@ -221,7 +222,7 @@ void MainWindow::showtab2()
     this->sql_table2 = db.exec(sql);
     // setTable(ui->tableView2);
     showTable(ui->tableView2, this->sql_table2, trainResult, name);
-};
+}
 
 void MainWindow::showtab3()
 {
@@ -253,7 +254,7 @@ void MainWindow::showtab3()
     this->sql_table3 = db.exec(sql);
     // setTable(ui->tableView2);
     showTable(ui->tableView3, this->sql_table3, trainResult, name);
-};
+}
 
 void MainWindow::playvideo(QString path, QVideoWidget *videoWidget)
 {
@@ -273,7 +274,7 @@ void MainWindow::playvideo(QString path, QVideoWidget *videoWidget)
     player->setSource(QUrl::fromLocalFile(path));
     player->setVideoOutput(videoWidget);
     player->play();
-};
+}
 
 void MainWindow::showImages()
 {
@@ -307,6 +308,23 @@ void MainWindow::showImage_y(QString filename)
     *img = img->scaled(280, 210, Qt::KeepAspectRatio);
     ui->label_y->setPixmap(QPixmap::fromImage(*img));
 }
+
+void MainWindow::analysisDate()
+{
+    QDate date_s = ui->date_start->date();
+    QDate date_e = ui->date_end->date();
+
+    QString ds = date_s.toString("yyyy-MM-dd");
+    QString de = date_e.toString("yyyy-MM-dd");
+
+    QString sql = "select std from emp where to_date(date,'yyyy-mm-dd') "
+                  "between '" + ds + "' and '" + de +"and name and angle";
+    QSqlQuery result = db.exec(sql);
+
+}
+
+
+
 
 void MainWindow::createActions()
 {
