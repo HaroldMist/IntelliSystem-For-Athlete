@@ -21,6 +21,8 @@ set(PROJECT_SOURCES
         mainwindow.cpp
         mainwindow.h
         mainwindow.ui
+        qcustomplot.cpp
+        qcustomplot.h
         img.qrc
         video.qrc
 )
