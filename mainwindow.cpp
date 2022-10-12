@@ -130,8 +130,8 @@ bool MainWindow::createConnection()
     db.setPort(3306);
     db.setDatabaseName("dc_db");
     db.setUserName("root");
-    db.setPassword("15897933683");
-//    db.setPassword("17312767927");
+//    db.setPassword("15897933683");
+    db.setPassword("17312767927");
     if (!db.open())
     {
         QMessageBox::critical(0, QObject::tr("无法打开数据库"), "无法创建数据库连接！ ", QMessageBox::Cancel);
@@ -335,14 +335,32 @@ void MainWindow::analysisDate()
     QString sql = "select std from nonstd where date >='" +ds +"'"
             + "and date<='" + de +"'"
             + "and name ='" + this->nameList[index] +"' "
-            + "and angle ='" + map[ui->comboAngle->currentText()] + "'";
+            + "and angle ='" + map[ui->comboAngle->currentText()] + "'"
+            + "order by date asc";
     QSqlQuery result = db.exec(sql);
     QVector<double> std;
-    while(result.next()){
+    int count = 0;
+    while(result.next())
+    {
         std.append(result.value("std").toDouble());
+        count ++;
+    }
+    QString std_s;
+    for (int i = 1; i<count; i++)
+    {
+        std_s.append(QString::number(std[i],'f',2)+" ");
     }
 
+
+    ui->ax_y->setText(std_s);
 }
+
+void MainWindow::drawGraphic()
+{
+
+}
+
+
 
 void MainWindow::createActions()
 {

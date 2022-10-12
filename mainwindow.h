@@ -58,6 +58,7 @@ public:
     void showTable(QTableWidget *table, QSqlQuery result, QStringList tableHead, QString tableName[]);
 
     void analysisDate();
+    void drawGraphic();
 
     QString getSql();
 
