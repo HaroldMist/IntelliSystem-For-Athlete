@@ -672,13 +672,13 @@
            </item>
           </layout>
          </widget>
-         <widget class="QWidget" name="">
+         <widget class="QWidget" name="layoutWidget">
           <property name="geometry">
            <rect>
             <x>80</x>
             <y>60</y>
             <width>451</width>
-            <height>27</height>
+            <height>33</height>
            </rect>
           </property>
           <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="2,6,1,2,6">
@@ -750,7 +750,7 @@
            <item>
             <widget class="QLabel" name="label_15">
              <property name="text">
-              <string>                 </string>
+              <string/>
              </property>
             </widget>
            </item>
@@ -945,7 +945,7 @@
      <x>0</x>
      <y>0</y>
      <width>1280</width>
-     <height>22</height>
+     <height>28</height>
     </rect>
    </property>
    <property name="defaultUp">

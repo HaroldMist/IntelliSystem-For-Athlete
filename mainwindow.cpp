@@ -39,7 +39,7 @@ MainWindow::MainWindow(QWidget *parent)
                 playvideo(video, ui->video_ns);
 
                 QString video2 = this->sql_table.value(3).toString();
-                playvideo(video2, ui->video_o);
+                playvideo(video2, ui->video_o, 2);
 
                 QString j_ru = this->sql_table.value(8).toString();
                 ui->label_ru->setText(j_ru);
@@ -69,7 +69,7 @@ MainWindow::MainWindow(QWidget *parent)
                 playvideo(video, ui->video_ns);
 
                 QString video2 = this->sql_table2.value(3).toString();
-                playvideo(video2, ui->video_o);
+                playvideo(video2, ui->video_o, 2);
 
                 QString j_ru = this->sql_table2.value(8).toString();
                 ui->label_ru->setText(j_ru);
@@ -99,7 +99,7 @@ MainWindow::MainWindow(QWidget *parent)
                 playvideo(video, ui->video_ns);
 
                 QString video2 = this->sql_table3.value(3).toString();
-                playvideo(video2, ui->video_o);
+                playvideo(video2, ui->video_o, 2);
 
                 QString j_ru = this->sql_table3.value(8).toString();
                 ui->label_ru->setText(j_ru);
@@ -131,7 +131,7 @@ bool MainWindow::createConnection()
     db.setDatabaseName("dc_db");
     db.setUserName("root");
     db.setPassword("15897933683");
-    //    db.setPassword("17312767927");
+//    db.setPassword("17312767927");
     if (!db.open())
     {
         QMessageBox::critical(0, QObject::tr("无法打开数据库"), "无法创建数据库连接！ ", QMessageBox::Cancel);
@@ -256,23 +256,33 @@ void MainWindow::showtab3()
     showTable(ui->tableView3, this->sql_table3, trainResult, name);
 }
 
-void MainWindow::playvideo(QString path, QVideoWidget *videoWidget)
+void MainWindow::playvideo(QString path, QVideoWidget *videoWidget, int pos)
 {
     // play video
-    QMediaPlayer *player = new QMediaPlayer;
+    if(pos==1){
+        this->player = new QMediaPlayer;
+    }else{
+        this->player1 = new QMediaPlayer;
+    }
 
     videoWidget->show();
 
     QFile file(path);
     if (!file.open(QIODevice::ReadOnly))
     {
-        qDebug() << "Could not open file";
+        qDebug() << "Could not open video file";
         return;
     }
 
-    player->setSource(QUrl::fromLocalFile(path));
-    player->setVideoOutput(videoWidget);
-    player->play();
+    if(pos == 1){
+        player->setSource(QUrl::fromLocalFile(path));
+        player->setVideoOutput(videoWidget);
+        player->play();
+    }else{
+        player1->setSource(QUrl::fromLocalFile(path));
+        player1->setVideoOutput(videoWidget);
+        player1->play();
+    }
 }
 
 void MainWindow::showImages()
@@ -316,10 +326,22 @@ void MainWindow::analysisDate()
     QString ds = date_s.toString("yyyy-MM-dd");
     QString de = date_e.toString("yyyy-MM-dd");
 
-    QString sql = "select std from emp where to_date(date,'yyyy-mm-dd') "
-                  "between '" +
-                  ds + "' and '" + de + "and name and angle";
+    int index = ui->combo_p->currentIndex();
+    QMap<QString,QString> map;
+    map["右侧"] = "right";
+    map["左侧"] = "left";
+    map["前侧"] = "front";
+
+    QString sql = "select std from nonstd where date > DATE_ADD('" +ds +"', INTERVAL -1 DAY) "
+            + "and date<DATE_ADD('" + de +"', INTERVAL +1 DAY) "
+            + "and name ='" + this->nameList[index] +"' "
+            + "and angle ='" + map[ui->comboAngle->currentText()] + "'";
     QSqlQuery result = db.exec(sql);
+    QVector<double> std;
+    while(result.next()){
+        std.append(result.value("std").toDouble());
+    }
+
 }
 
 void MainWindow::createActions()
@@ -425,3 +447,23 @@ QString MainWindow::getSql()
     //    subject->clear();
     return sql;
 }
+
+
+void MainWindow::on_pauseButton_clicked()
+{
+    if(this->player==nullptr || this->player1==nullptr){
+        return;
+    }
+    this->player->pause();
+    this->player1->pause();
+}
+
+void MainWindow::on_playButton_clicked()
+{
+    if(this->player==nullptr || this->player1==nullptr){
+        return;
+    }
+    this->player->play();
+    this->player1->play();
+}
+

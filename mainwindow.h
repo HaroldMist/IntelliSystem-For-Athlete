@@ -52,7 +52,7 @@ public:
     void showImages();
     void showImage_y(QString filename);
 
-    void playvideo(QString path, QVideoWidget *videoWidget);
+    void playvideo(QString path, QVideoWidget *videoWidget, int pos=1);
 
     void setTable(QTableWidget *table);
     void showTable(QTableWidget *table, QSqlQuery result, QStringList tableHead, QString tableName[]);
@@ -60,6 +60,11 @@ public:
     void analysisDate();
 
     QString getSql();
+
+private slots:
+    void on_pauseButton_clicked();
+
+    void on_playButton_clicked();
 
 private:
     Ui::MainWindow *ui;
@@ -70,6 +75,9 @@ private:
     QSqlQuery sql_table;
     QSqlQuery sql_table2;
     QSqlQuery sql_table3;
+
+    QMediaPlayer *player=nullptr;
+    QMediaPlayer *player1=nullptr;
 
     QPlainTextEdit *textEdit;
     // file菜单
