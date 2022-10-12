@@ -332,8 +332,8 @@ void MainWindow::analysisDate()
     map["左侧"] = "left";
     map["前侧"] = "front";
 
-    QString sql = "select std from nonstd where date > DATE_ADD('" +ds +"', INTERVAL -1 DAY) "
-            + "and date<DATE_ADD('" + de +"', INTERVAL +1 DAY) "
+    QString sql = "select std from nonstd where date >='" +ds +"'"
+            + "and date<='" + de +"'"
             + "and name ='" + this->nameList[index] +"' "
             + "and angle ='" + map[ui->comboAngle->currentText()] + "'";
     QSqlQuery result = db.exec(sql);
