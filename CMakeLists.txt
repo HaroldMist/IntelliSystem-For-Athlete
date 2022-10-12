@@ -15,6 +15,7 @@ find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 find_package(Qt6 REQUIRED COMPONENTS Sql)
 find_package(Qt6 COMPONENTS MultimediaWidgets REQUIRED)
+find_package(Qt6 REQUIRED COMPONENTS PrintSupport)
 
 set(PROJECT_SOURCES
         main.cpp
@@ -53,6 +54,7 @@ endif()
 target_link_libraries(DC_1 PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 target_link_libraries(DC_1 PRIVATE Qt6::Sql)
 target_link_libraries(DC_1 PRIVATE Qt6::MultimediaWidgets)
+target_link_libraries(DC_1 PRIVATE Qt6::PrintSupport)
 
 set_target_properties(DC_1 PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
