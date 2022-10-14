@@ -23,7 +23,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->query, &QPushButton::clicked, this, &MainWindow::showtab2);
     connect(ui->query, &QPushButton::clicked, this, &MainWindow::showtab3);
 
-    connect(ui->analysis, &QPushButton::clicked, this, &MainWindow::analysisDate);
+    connect(ui->analysis, &QPushButton::clicked, this, &MainWindow::drawGraphic);
 
     connect(ui->tableView, &QAbstractItemView::doubleClicked, this, [=](const QModelIndex &idx) -> void
             {
@@ -131,8 +131,8 @@ bool MainWindow::createConnection()
     db.setPort(3306);
     db.setDatabaseName("dc_db");
     db.setUserName("root");
-//    db.setPassword("15897933683");
-    db.setPassword("17312767927");
+    db.setPassword("15897933683");
+//    db.setPassword("17312767927");
     if (!db.open())
     {
         QMessageBox::critical(0, QObject::tr("无法打开数据库"), "无法创建数据库连接！ ", QMessageBox::Cancel);
@@ -319,7 +319,7 @@ void MainWindow::showImage_y(QString filename)
     ui->label_y->setPixmap(QPixmap::fromImage(*img));
 }
 
-void MainWindow::analysisDate()
+void MainWindow::analysisDate(QVector<double> &std)
 {
     QDate date_s = ui->date_start->date();
     QDate date_e = ui->date_end->date();
@@ -339,25 +339,37 @@ void MainWindow::analysisDate()
             + "and angle ='" + map[ui->comboAngle->currentText()] + "'"
             + "order by date asc";
     QSqlQuery result = db.exec(sql);
-    QVector<double> std;
-    int count = 0;
+
+    std.clear();
     while(result.next())
     {
         std.append(result.value("std").toDouble());
-        count ++;
     }
-    QString std_s;
-    for (int i = 1; i<count; i++)
-    {
-        std_s.append(QString::number(std[i],'f',2)+" ");
-    }
-
-
-    ui->ax_y->setText(std_s);
 }
 
 void MainWindow::drawGraphic()
 {
+    QVector<double> std;
+    analysisDate(std);
+    QVector<double> t;
+    for(int i=0; i<std.size(); i++){
+        t.append(i);
+        qDebug() << std[i];
+    }
+
+    ui->qcp_analysis->addGraph();
+    ui->qcp_analysis->graph(0)->setPen(QPen(Qt::blue));
+    ui->qcp_analysis->graph(0)->setData(t, std);
+
+    ui->qcp_analysis->xAxis->setLabel("时间");
+    ui->qcp_analysis->yAxis->setLabel("标准度");
+    ui->qcp_analysis->xAxis->setRange(0, std.size()+2);
+    ui->qcp_analysis->yAxis->setRange(0, 1.2);
+    ui->qcp_analysis->xAxis->setTickLabels(false);
+    ui->qcp_analysis->xAxis->setUpperEnding(QCPLineEnding::esSpikeArrow);
+    ui->qcp_analysis->yAxis->setUpperEnding(QCPLineEnding::esSpikeArrow);
+
+    ui->qcp_analysis->replot();
 
 }
 
@@ -452,21 +464,6 @@ void MainWindow::showTable(QTableWidget *table, QSqlQuery result, QStringList ta
     table->resizeColumnsToContents();
     table->resizeRowsToContents();
 }
-
-QString MainWindow::getSql()
-{
-    // index from 0 to 5
-    int index = ui->combo_p->currentIndex();
-    QString ComboN = QString::number(index);
-
-    QString sql = "";
-    sql = "where no = " + ComboN + " and subject = '";
-
-    //    no->clear();
-    //    subject->clear();
-    return sql;
-}
-
 
 void MainWindow::on_pauseButton_clicked()
 {

@@ -57,10 +57,8 @@ public:
     void setTable(QTableWidget *table);
     void showTable(QTableWidget *table, QSqlQuery result, QStringList tableHead, QString tableName[]);
 
-    void analysisDate();
+    void analysisDate(QVector<double> &std);
     void drawGraphic();
-
-    QString getSql();
 
 private slots:
     void on_pauseButton_clicked();
