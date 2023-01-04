@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+﻿#include "mainwindow.h"
 #include "qcustomplot.h"
 #include "./ui_mainwindow.h"
 
@@ -415,7 +415,7 @@ void MainWindow::createActions()
 void MainWindow::createMenu()
 {
     //创建一个name为file的菜单栏
-    fileMenu = menuBar()->addMenu(tr("&管理"));
+    fileMenu = menuBar()->addMenu(tr("&文件"));
     //在这个菜单栏添加action即下拉菜单
     fileMenu->addAction(newAthlete);
     fileMenu->addAction(open);
