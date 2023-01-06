@@ -3,7 +3,8 @@
         {
             "name": "Win32",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+                "D:\\Qt\\Qt6.4.0\\6.4.0\\mingw_64\\include\\**"
             ],
             "defines": [
                 "_DEBUG",
@@ -11,11 +12,15 @@
                 "_UNICODE"
             ],
             "windowsSdkVersion": "10.0.19041.0",
-            "compilerPath": "D:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.33.31629/bin/Hostx64/x64/cl.exe",
+            "compilerPath": "D:\\Qt\\Qt6.4.0\\Tools\\mingw1120_64\\bin\\g++.exe",
             "cStandard": "c17",
             "cppStandard": "c++17",
-            "intelliSenseMode": "windows-msvc-x64",
-            "configurationProvider": "ms-vscode.cmake-tools"
+            "intelliSenseMode": "windows-gcc-x64",
+            "configurationProvider": "ms-vscode.cmake-tools",
+            "forcedInclude": [],
+            "browse": {
+                "path": []
+            }
         }
     ],
     "version": 4
