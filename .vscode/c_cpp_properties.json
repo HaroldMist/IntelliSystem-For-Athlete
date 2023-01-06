@@ -4,7 +4,7 @@
             "name": "Win32",
             "includePath": [
                 "${workspaceFolder}/**",
-                "D:\\Qt\\Qt6.4.0\\6.4.0\\mingw_64\\include\\**"
+                "D:/Qt/Qt6.4.0/6.4.0/mingw_64/include/**"
             ],
             "defines": [
                 "_DEBUG",
