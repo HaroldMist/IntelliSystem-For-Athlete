@@ -9,7 +9,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     createConnection();
 
-    GetnameList(); // get the namelist in database
+    GetnameList();
 
     createActions();
     createMenu();
@@ -19,6 +19,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     showImages();
 
+    //显示三个方向的数据
     connect(ui->query, &QPushButton::clicked, this, &MainWindow::showtab);
     connect(ui->query, &QPushButton::clicked, this, &MainWindow::showtab2);
     connect(ui->query, &QPushButton::clicked, this, &MainWindow::showtab3);
@@ -125,6 +126,9 @@ void MainWindow::test()
 {
 }
 
+
+/// @brief 连接数据库
+/// @return bool 是否成功
 bool MainWindow::createConnection()
 {
     db.setHostName("127.0.0.1");
@@ -145,12 +149,14 @@ bool MainWindow::createConnection()
     }
 };
 
+/// @brief 显示姓名选项
 void MainWindow::showCombo()
 {
     ui->combo_p->addItems(nameList);
     ui->combo_p->setCurrentIndex(0);
 }
 
+/// @brief 获取数据库姓名到nameList
 void MainWindow::GetnameList()
 {
     QString sql = "select distinct name from nonstd order by name asc";
@@ -161,6 +167,11 @@ void MainWindow::GetnameList()
         this->nameList << sql_name.value(0).toString();
     }
 }
+
+
+/***********************************************************************************************
+ * 显示三个方向的数据
+************************************************************************************************/
 
 void MainWindow::showtab()
 {
@@ -257,6 +268,10 @@ void MainWindow::showtab3()
     showTable(ui->tableView3, this->sql_table3, trainResult, name);
 }
 
+/************************************************************************************************
+ * 单次分析内容显示
+************************************************************************************************/
+
 void MainWindow::playvideo(QString path, QVideoWidget *videoWidget, int pos)
 {
     // play video
@@ -286,6 +301,7 @@ void MainWindow::playvideo(QString path, QVideoWidget *videoWidget, int pos)
     }
 }
 
+/// @brief 显示分析建议文本和龙舟图片
 void MainWindow::showImages()
 {
     QImage *img = new QImage;
@@ -306,6 +322,8 @@ void MainWindow::showImages()
     ui->label_ru->setText(testText);
 }
 
+/// @brief 显示手部轨迹图片
+/// @param filename 对应数据的轨迹图片文件
 void MainWindow::showImage_y(QString filename)
 {
     QImage *img = new QImage;
@@ -319,6 +337,13 @@ void MainWindow::showImage_y(QString filename)
     ui->label_y->setPixmap(QPixmap::fromImage(*img));
 }
 
+/************************************************************************************************
+ * 长期分析内容显示
+************************************************************************************************/
+
+// TODO 把参数改成返回值
+/// @brief 从数据库读标准度
+/// @param std 
 void MainWindow::analysisDate(QVector<double> &std)
 {
     QDate date_s = ui->date_start->date();
@@ -347,6 +372,8 @@ void MainWindow::analysisDate(QVector<double> &std)
     }
 }
 
+// TODO 改成按分析数据画回归曲线
+/// @brief 按标准度画曲线
 void MainWindow::drawGraphic()
 {
     QVector<double> std;
@@ -373,8 +400,11 @@ void MainWindow::drawGraphic()
 
 }
 
+/************************************************************************************************
+ * 显示主界面内容 
+ ************************************************************************************************/
 
-
+/// @brief 创建菜单栏选项功能
 void MainWindow::createActions()
 {
     newAthlete = new QAction(tr("&新建"), this);
@@ -412,6 +442,8 @@ void MainWindow::createActions()
     connect(aboutQt, SIGNAL(triggered()), this, SLOT(close()));
 }
 
+
+/// @brief 创建菜单栏选项
 void MainWindow::createMenu()
 {
     //创建一个name为file的菜单栏
@@ -433,6 +465,8 @@ void MainWindow::createMenu()
     helpMenu->addAction(aboutQt);
 }
 
+/// @brief 设置表格样式
+/// @param table 
 void MainWindow::setTable(QTableWidget *table)
 {
     table->verticalHeader()->setVisible(false);
@@ -442,6 +476,12 @@ void MainWindow::setTable(QTableWidget *table)
     table->setFrameShape(QFrame::NoFrame);
 }
 
+
+/// @brief 显示表格
+/// @param table 表格
+/// @param result 数据库查询结果
+/// @param tableHead 表格显示列名
+/// @param tableName 数据库列名
 void MainWindow::showTable(QTableWidget *table, QSqlQuery result, QStringList tableHead, QString tableName[])
 {
     QWidget qw;
@@ -465,6 +505,7 @@ void MainWindow::showTable(QTableWidget *table, QSqlQuery result, QStringList ta
     table->resizeRowsToContents();
 }
 
+/// @brief 暂停播放
 void MainWindow::on_pauseButton_clicked()
 {
     if(this->player==nullptr || this->player1==nullptr){
@@ -474,6 +515,7 @@ void MainWindow::on_pauseButton_clicked()
     this->player1->pause();
 }
 
+/// @brief 继续播放
 void MainWindow::on_playButton_clicked()
 {
     if(this->player==nullptr || this->player1==nullptr){
