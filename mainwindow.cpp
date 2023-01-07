@@ -19,13 +19,16 @@ MainWindow::MainWindow(QWidget *parent)
 
     showImages();
 
-    //显示三个方向的数据
+    // 显示三个方向的数据
     connect(ui->query, &QPushButton::clicked, this, &MainWindow::showtab);
     connect(ui->query, &QPushButton::clicked, this, &MainWindow::showtab2);
     connect(ui->query, &QPushButton::clicked, this, &MainWindow::showtab3);
 
+    // 分析按钮
     connect(ui->analysis, &QPushButton::clicked, this, &MainWindow::drawGraphic);
 
+    // TODO 改成函数
+    // 点击表格行播放视频、显示信息
     connect(ui->tableView, &QAbstractItemView::doubleClicked, this, [=](const QModelIndex &idx) -> void
             {
                 int RowIdx = idx.row();
@@ -115,6 +118,13 @@ MainWindow::MainWindow(QWidget *parent)
                 QString p_y = this->sql_table3.value(11).toString();
                 showImage_y(p_y);
             });
+    
+
+
+
+
+
+    
 }
 
 MainWindow::~MainWindow()
@@ -152,8 +162,11 @@ bool MainWindow::createConnection()
 /// @brief 显示姓名选项
 void MainWindow::showCombo()
 {
-    ui->combo_p->addItems(nameList);
-    ui->combo_p->setCurrentIndex(0);
+    ui->combo_p1->addItems(nameList);
+    ui->combo_p1->setCurrentIndex(0);
+    ui->combo_p2->addItems(nameList);
+    ui->combo_p2->setCurrentIndex(0);
+
 }
 
 /// @brief 获取数据库姓名到nameList
@@ -175,7 +188,7 @@ void MainWindow::GetnameList()
 
 void MainWindow::showtab()
 {
-    int index = ui->combo_p->currentIndex();
+    int index = ui->combo_p1->currentIndex();
     ComboN = nameList[index];
     ui->label->setText(ComboN);
 
@@ -206,7 +219,7 @@ void MainWindow::showtab()
 
 void MainWindow::showtab2()
 {
-    int index = ui->combo_p->currentIndex();
+    int index = ui->combo_p1->currentIndex();
     ComboN = nameList[index];
     ui->label->setText(ComboN);
 
@@ -238,7 +251,7 @@ void MainWindow::showtab2()
 
 void MainWindow::showtab3()
 {
-    int index = ui->combo_p->currentIndex();
+    int index = ui->combo_p1->currentIndex();
     ComboN = nameList[index];
     ui->label->setText(ComboN);
 
@@ -352,7 +365,7 @@ void MainWindow::analysisDate(QVector<double> &std)
     QString ds = date_s.toString("yyyy-MM-dd");
     QString de = date_e.toString("yyyy-MM-dd");
 
-    int index = ui->combo_p->currentIndex();
+    int index = ui->combo_p1->currentIndex();
     QMap<QString,QString> map;
     map["右侧"] = "right";
     map["左侧"] = "left";

@@ -22,7 +22,7 @@
   <property name="font">
    <font>
     <family>Microsoft YaHei UI</family>
-    <pointsize>10</pointsize>
+    <pointsize>11</pointsize>
    </font>
   </property>
   <property name="windowTitle">
@@ -48,6 +48,13 @@
    <layout class="QGridLayout" name="gridLayout_3">
     <item row="0" column="0">
      <widget class="QTabWidget" name="tabWidget_2">
+      <property name="font">
+       <font>
+        <family>Microsoft YaHei UI</family>
+        <pointsize>11</pointsize>
+        <bold>false</bold>
+       </font>
+      </property>
       <property name="currentIndex">
        <number>1</number>
       </property>
@@ -59,7 +66,7 @@
         </size>
        </property>
        <attribute name="title">
-        <string>数据查询</string>
+        <string>训练建议 / 数据查询</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_5" columnstretch="1,1" rowminimumheight="180,0">
         <property name="sizeConstraint">
@@ -187,7 +194,7 @@
                 <number>2</number>
                </property>
                <item row="2" column="1">
-                <widget class="QComboBox" name="combo_p">
+                <widget class="QComboBox" name="combo_p1">
                  <property name="minimumSize">
                   <size>
                    <width>100</width>
@@ -240,6 +247,7 @@
                   <font>
                    <family>Microsoft YaHei UI</family>
                    <pointsize>11</pointsize>
+                   <bold>false</bold>
                   </font>
                  </property>
                  <property name="text">
@@ -253,6 +261,7 @@
                   <font>
                    <family>Microsoft YaHei UI</family>
                    <pointsize>11</pointsize>
+                   <bold>false</bold>
                   </font>
                  </property>
                  <property name="text">
@@ -278,6 +287,7 @@
                   <font>
                    <family>Microsoft YaHei UI</family>
                    <pointsize>11</pointsize>
+                   <bold>false</bold>
                   </font>
                  </property>
                  <property name="text">
@@ -335,666 +345,672 @@
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
-          <widget class="QTabWidget" name="tabWidget">
-           <property name="geometry">
-            <rect>
-             <x>-10</x>
-             <y>20</y>
-             <width>621</width>
-             <height>621</height>
-            </rect>
-           </property>
-           <property name="currentIndex">
-            <number>1</number>
-           </property>
-           <widget class="QWidget" name="tab_5">
-            <attribute name="icon">
-             <iconset resource="img.qrc">
-              <normaloff>:/prefix1/resource/folder.png</normaloff>:/prefix1/resource/folder.png</iconset>
-            </attribute>
-            <attribute name="title">
-             <string>单次数据</string>
-            </attribute>
-            <widget class="QLabel" name="image_body">
-             <property name="geometry">
-              <rect>
-               <x>10</x>
-               <y>430</y>
-               <width>600</width>
-               <height>154</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-            </widget>
-            <widget class="QVideoWidget" name="video_ns" native="true">
-             <property name="geometry">
-              <rect>
-               <x>20</x>
-               <y>40</y>
-               <width>288</width>
-               <height>162</height>
-              </rect>
-             </property>
-            </widget>
-            <widget class="QLabel" name="label_y">
-             <property name="geometry">
-              <rect>
-               <x>320</x>
-               <y>210</y>
-               <width>281</width>
-               <height>231</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string>选择单次数据</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
-             </property>
-            </widget>
-            <widget class="QVideoWidget" name="video_o" native="true">
-             <property name="geometry">
-              <rect>
-               <x>320</x>
-               <y>40</y>
-               <width>288</width>
-               <height>162</height>
-              </rect>
-             </property>
-            </widget>
-            <widget class="QLabel" name="label_high">
-             <property name="geometry">
-              <rect>
-               <x>488</x>
-               <y>460</y>
-               <width>140</width>
-               <height>100</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string>TextLabel</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
-             </property>
-             <property name="wordWrap">
-              <bool>true</bool>
-             </property>
-            </widget>
-            <widget class="QLabel" name="label_chu">
-             <property name="geometry">
-              <rect>
-               <x>75</x>
-               <y>328</y>
-               <width>140</width>
-               <height>100</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string>TextLabel</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
-             </property>
-             <property name="wordWrap">
-              <bool>true</bool>
-             </property>
-            </widget>
-            <widget class="QLabel" name="label_ru">
-             <property name="geometry">
-              <rect>
-               <x>75</x>
-               <y>460</y>
-               <width>140</width>
-               <height>100</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string>TextLabel</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
-             </property>
-             <property name="wordWrap">
-              <bool>true</bool>
-             </property>
-            </widget>
-            <widget class="QLabel" name="label_4">
-             <property name="geometry">
-              <rect>
-               <x>15</x>
-               <y>365</y>
-               <width>58</width>
-               <height>41</height>
-              </rect>
-             </property>
-             <property name="font">
-              <font>
-               <family>Microsoft YaHei UI</family>
-               <pointsize>11</pointsize>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="text">
-              <string>桨出水时刻</string>
-             </property>
-             <property name="textFormat">
-              <enum>Qt::AutoText</enum>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
-             </property>
-             <property name="wordWrap">
-              <bool>true</bool>
-             </property>
-            </widget>
-            <widget class="QLabel" name="label_5">
-             <property name="geometry">
-              <rect>
-               <x>15</x>
-               <y>500</y>
-               <width>58</width>
-               <height>41</height>
-              </rect>
-             </property>
-             <property name="font">
-              <font>
-               <family>Microsoft YaHei UI</family>
-               <pointsize>11</pointsize>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="text">
-              <string>桨入水时刻</string>
-             </property>
-             <property name="textFormat">
-              <enum>Qt::AutoText</enum>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
-             </property>
-             <property name="wordWrap">
-              <bool>true</bool>
-             </property>
-            </widget>
-            <widget class="QLabel" name="label_6">
-             <property name="geometry">
-              <rect>
-               <x>430</x>
-               <y>500</y>
-               <width>58</width>
-               <height>41</height>
-              </rect>
-             </property>
-             <property name="font">
-              <font>
-               <family>Microsoft YaHei UI</family>
-               <pointsize>11</pointsize>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="text">
-              <string>桨最高时刻</string>
-             </property>
-             <property name="textFormat">
-              <enum>Qt::AutoText</enum>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
-             </property>
-             <property name="wordWrap">
-              <bool>true</bool>
-             </property>
-            </widget>
-            <widget class="QLabel" name="label_7">
-             <property name="geometry">
-              <rect>
-               <x>252</x>
-               <y>240</y>
-               <width>79</width>
-               <height>50</height>
-              </rect>
-             </property>
-             <property name="font">
-              <font>
-               <family>Microsoft YaHei UI</family>
-               <pointsize>12</pointsize>
-               <bold>true</bold>
-               <kerning>true</kerning>
-              </font>
-             </property>
-             <property name="text">
-              <string>手部轨迹：</string>
-             </property>
-            </widget>
-            <widget class="QLabel" name="label_8">
-             <property name="geometry">
-              <rect>
-               <x>50</x>
-               <y>240</y>
-               <width>79</width>
-               <height>51</height>
-              </rect>
-             </property>
-             <property name="font">
-              <font>
-               <family>Microsoft YaHei UI</family>
-               <pointsize>12</pointsize>
-               <bold>true</bold>
-               <kerning>true</kerning>
-              </font>
-             </property>
-             <property name="text">
-              <string>动作建议：</string>
-             </property>
-            </widget>
-            <widget class="QLabel" name="label_9">
-             <property name="geometry">
-              <rect>
-               <x>50</x>
-               <y>-10</y>
-               <width>79</width>
-               <height>56</height>
-              </rect>
-             </property>
-             <property name="font">
-              <font>
-               <family>Microsoft YaHei UI</family>
-               <pointsize>12</pointsize>
-               <bold>true</bold>
-               <kerning>true</kerning>
-              </font>
-             </property>
-             <property name="text">
-              <string>运动模型：</string>
-             </property>
-            </widget>
-            <widget class="Line" name="line_3">
-             <property name="geometry">
-              <rect>
-               <x>18</x>
-               <y>205</y>
-               <width>581</width>
-               <height>16</height>
-              </rect>
-             </property>
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-            </widget>
-            <widget class="Line" name="line_4">
-             <property name="geometry">
-              <rect>
-               <x>224</x>
-               <y>428</y>
-               <width>376</width>
-               <height>20</height>
-              </rect>
-             </property>
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-            </widget>
-            <widget class="Line" name="line_5">
-             <property name="geometry">
-              <rect>
-               <x>213</x>
-               <y>213</y>
-               <width>20</width>
-               <height>226</height>
-              </rect>
-             </property>
-             <property name="orientation">
-              <enum>Qt::Vertical</enum>
-             </property>
-            </widget>
-            <widget class="QLabel" name="label_10">
-             <property name="geometry">
-              <rect>
-               <x>25</x>
-               <y>10</y>
-               <width>31</width>
-               <height>16</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="pixmap">
-              <pixmap resource="img.qrc">:/prefix1/resource/cloud (Custom).png</pixmap>
-             </property>
-            </widget>
-            <widget class="QLabel" name="label_11">
-             <property name="geometry">
-              <rect>
-               <x>25</x>
-               <y>258</y>
-               <width>49</width>
-               <height>16</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="pixmap">
-              <pixmap resource="img.qrc">:/prefix1/resource/light (Custom).png</pixmap>
-             </property>
-            </widget>
-            <widget class="QLabel" name="label_12">
-             <property name="geometry">
-              <rect>
-               <x>230</x>
-               <y>257</y>
-               <width>49</width>
-               <height>16</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="pixmap">
-              <pixmap resource="img.qrc">:/prefix1/resource/curve (Custom).png</pixmap>
-             </property>
-            </widget>
-            <widget class="QPushButton" name="pauseButton">
-             <property name="geometry">
-              <rect>
-               <x>150</x>
-               <y>7</y>
-               <width>100</width>
-               <height>25</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string>暂停</string>
-             </property>
-            </widget>
-            <widget class="QPushButton" name="playButton">
-             <property name="geometry">
-              <rect>
-               <x>270</x>
-               <y>7</y>
-               <width>100</width>
-               <height>25</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string>继续</string>
-             </property>
-            </widget>
-           </widget>
-           <widget class="QWidget" name="tab_4">
-            <attribute name="icon">
-             <iconset resource="img.qrc">
-              <normaloff>:/prefix1/resource/clock.png</normaloff>:/prefix1/resource/clock.png</iconset>
-            </attribute>
-            <attribute name="title">
-             <string>长期分析</string>
-            </attribute>
-            <widget class="QWidget" name="layoutWidget">
-             <property name="geometry">
-              <rect>
-               <x>80</x>
-               <y>20</y>
-               <width>451</width>
-               <height>32</height>
-              </rect>
-             </property>
-             <layout class="QHBoxLayout" name="select_1" stretch="2,6,1,2,6">
-              <property name="spacing">
-               <number>10</number>
-              </property>
-              <property name="topMargin">
-               <number>0</number>
-              </property>
-              <item>
-               <widget class="QLabel" name="label_13">
-                <property name="font">
-                 <font>
-                  <family>Microsoft YaHei UI</family>
-                  <pointsize>11</pointsize>
-                 </font>
+          <layout class="QGridLayout" name="gridLayout_15">
+           <item row="0" column="0">
+            <widget class="QTabWidget" name="tabWidget">
+             <property name="currentIndex">
+              <number>0</number>
+             </property>
+             <widget class="QWidget" name="tab_5">
+              <attribute name="icon">
+               <iconset resource="img.qrc">
+                <normaloff>:/prefix1/resource/folder.png</normaloff>:/prefix1/resource/folder.png</iconset>
+              </attribute>
+              <attribute name="title">
+               <string>单次数据</string>
+              </attribute>
+              <widget class="QLabel" name="image_body">
+               <property name="geometry">
+                <rect>
+                 <x>72</x>
+                 <y>545</y>
+                 <width>600</width>
+                 <height>154</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+              <widget class="QVideoWidget" name="video_ns" native="true">
+               <property name="geometry">
+                <rect>
+                 <x>400</x>
+                 <y>40</y>
+                 <width>321</width>
+                 <height>181</height>
+                </rect>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_y">
+               <property name="geometry">
+                <rect>
+                 <x>20</x>
+                 <y>80</y>
+                 <width>321</width>
+                 <height>251</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>请选择单次数据</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+              <widget class="QVideoWidget" name="video_o" native="true">
+               <property name="geometry">
+                <rect>
+                 <x>400</x>
+                 <y>225</y>
+                 <width>321</width>
+                 <height>181</height>
+                </rect>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_high">
+               <property name="geometry">
+                <rect>
+                 <x>550</x>
+                 <y>575</y>
+                 <width>140</width>
+                 <height>100</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>TextLabel</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+               </property>
+               <property name="wordWrap">
+                <bool>true</bool>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_chu">
+               <property name="geometry">
+                <rect>
+                 <x>137</x>
+                 <y>443</y>
+                 <width>140</width>
+                 <height>100</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>TextLabel</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+               </property>
+               <property name="wordWrap">
+                <bool>true</bool>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_ru">
+               <property name="geometry">
+                <rect>
+                 <x>137</x>
+                 <y>575</y>
+                 <width>140</width>
+                 <height>100</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>TextLabel</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+               </property>
+               <property name="wordWrap">
+                <bool>true</bool>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_4">
+               <property name="geometry">
+                <rect>
+                 <x>77</x>
+                 <y>480</y>
+                 <width>58</width>
+                 <height>41</height>
+                </rect>
+               </property>
+               <property name="font">
+                <font>
+                 <family>Microsoft YaHei UI</family>
+                 <pointsize>11</pointsize>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>桨出水时刻</string>
+               </property>
+               <property name="textFormat">
+                <enum>Qt::AutoText</enum>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+               <property name="wordWrap">
+                <bool>true</bool>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_5">
+               <property name="geometry">
+                <rect>
+                 <x>77</x>
+                 <y>615</y>
+                 <width>58</width>
+                 <height>41</height>
+                </rect>
+               </property>
+               <property name="font">
+                <font>
+                 <family>Microsoft YaHei UI</family>
+                 <pointsize>11</pointsize>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>桨入水时刻</string>
+               </property>
+               <property name="textFormat">
+                <enum>Qt::AutoText</enum>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+               <property name="wordWrap">
+                <bool>true</bool>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_6">
+               <property name="geometry">
+                <rect>
+                 <x>492</x>
+                 <y>615</y>
+                 <width>58</width>
+                 <height>41</height>
+                </rect>
+               </property>
+               <property name="font">
+                <font>
+                 <family>Microsoft YaHei UI</family>
+                 <pointsize>11</pointsize>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>桨最高时刻</string>
+               </property>
+               <property name="textFormat">
+                <enum>Qt::AutoText</enum>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+               <property name="wordWrap">
+                <bool>true</bool>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_7">
+               <property name="geometry">
+                <rect>
+                 <x>40</x>
+                 <y>0</y>
+                 <width>79</width>
+                 <height>50</height>
+                </rect>
+               </property>
+               <property name="font">
+                <font>
+                 <family>Microsoft YaHei UI</family>
+                 <pointsize>12</pointsize>
+                 <bold>true</bold>
+                 <kerning>true</kerning>
+                </font>
+               </property>
+               <property name="text">
+                <string>手部轨迹：</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_8">
+               <property name="geometry">
+                <rect>
+                 <x>40</x>
+                 <y>432</y>
+                 <width>79</width>
+                 <height>51</height>
+                </rect>
+               </property>
+               <property name="font">
+                <font>
+                 <family>Microsoft YaHei UI</family>
+                 <pointsize>12</pointsize>
+                 <bold>true</bold>
+                 <kerning>true</kerning>
+                </font>
+               </property>
+               <property name="text">
+                <string>动作建议：</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_9">
+               <property name="geometry">
+                <rect>
+                 <x>420</x>
+                 <y>-5</y>
+                 <width>79</width>
+                 <height>56</height>
+                </rect>
+               </property>
+               <property name="font">
+                <font>
+                 <family>Microsoft YaHei UI</family>
+                 <pointsize>12</pointsize>
+                 <bold>true</bold>
+                 <kerning>true</kerning>
+                </font>
+               </property>
+               <property name="text">
+                <string>运动模型：</string>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_10">
+               <property name="geometry">
+                <rect>
+                 <x>395</x>
+                 <y>15</y>
+                 <width>31</width>
+                 <height>16</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="pixmap">
+                <pixmap resource="img.qrc">:/prefix1/resource/cloud (Custom).png</pixmap>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_11">
+               <property name="geometry">
+                <rect>
+                 <x>15</x>
+                 <y>450</y>
+                 <width>49</width>
+                 <height>16</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="pixmap">
+                <pixmap resource="img.qrc">:/prefix1/resource/light (Custom).png</pixmap>
+               </property>
+              </widget>
+              <widget class="QLabel" name="label_12">
+               <property name="geometry">
+                <rect>
+                 <x>18</x>
+                 <y>17</y>
+                 <width>49</width>
+                 <height>16</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="pixmap">
+                <pixmap resource="img.qrc">:/prefix1/resource/curve (Custom).png</pixmap>
+               </property>
+              </widget>
+              <widget class="QPushButton" name="pauseButton">
+               <property name="geometry">
+                <rect>
+                 <x>510</x>
+                 <y>412</y>
+                 <width>100</width>
+                 <height>25</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>暂停</string>
+               </property>
+              </widget>
+              <widget class="QPushButton" name="playButton">
+               <property name="geometry">
+                <rect>
+                 <x>620</x>
+                 <y>412</y>
+                 <width>100</width>
+                 <height>25</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>继续</string>
+               </property>
+              </widget>
+              <widget class="Line" name="line_3">
+               <property name="geometry">
+                <rect>
+                 <x>15</x>
+                 <y>436</y>
+                 <width>717</width>
+                 <height>16</height>
+                </rect>
+               </property>
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+              </widget>
+              <widget class="Line" name="line_4">
+               <property name="geometry">
+                <rect>
+                 <x>360</x>
+                 <y>10</y>
+                 <width>16</width>
+                 <height>434</height>
+                </rect>
+               </property>
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+              </widget>
+              <zorder>video_o</zorder>
+              <zorder>image_body</zorder>
+              <zorder>video_ns</zorder>
+              <zorder>label_y</zorder>
+              <zorder>label_high</zorder>
+              <zorder>label_chu</zorder>
+              <zorder>label_ru</zorder>
+              <zorder>label_4</zorder>
+              <zorder>label_5</zorder>
+              <zorder>label_6</zorder>
+              <zorder>label_7</zorder>
+              <zorder>label_8</zorder>
+              <zorder>label_9</zorder>
+              <zorder>label_10</zorder>
+              <zorder>label_11</zorder>
+              <zorder>label_12</zorder>
+              <zorder>pauseButton</zorder>
+              <zorder>playButton</zorder>
+              <zorder>line_3</zorder>
+              <zorder>line_4</zorder>
+             </widget>
+             <widget class="QWidget" name="tab_4">
+              <attribute name="icon">
+               <iconset resource="img.qrc">
+                <normaloff>:/prefix1/resource/clock.png</normaloff>:/prefix1/resource/clock.png</iconset>
+              </attribute>
+              <attribute name="title">
+               <string>长期分析</string>
+              </attribute>
+              <widget class="QWidget" name="layoutWidget">
+               <property name="geometry">
+                <rect>
+                 <x>80</x>
+                 <y>20</y>
+                 <width>451</width>
+                 <height>32</height>
+                </rect>
+               </property>
+               <layout class="QHBoxLayout" name="select_1" stretch="2,6,1,2,6">
+                <property name="spacing">
+                 <number>10</number>
                 </property>
-                <property name="text">
-                 <string>起始时间</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QDateEdit" name="date_start">
-                <property name="maximumSize">
-                 <size>
-                  <width>120</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="dateTime">
-                 <datetime>
-                  <hour>0</hour>
-                  <minute>0</minute>
-                  <second>0</second>
-                  <year>2021</year>
-                  <month>4</month>
-                  <day>1</day>
-                 </datetime>
-                </property>
-                <property name="currentSection">
-                 <enum>QDateTimeEdit::YearSection</enum>
-                </property>
-                <property name="displayFormat">
-                 <string>yyyy-MM-dd</string>
-                </property>
-                <property name="calendarPopup">
-                 <bool>true</bool>
-                </property>
-                <property name="date">
-                 <date>
-                  <year>2021</year>
-                  <month>4</month>
-                  <day>1</day>
-                 </date>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <spacer name="horizontalSpacer_2">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>40</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-              <item>
-               <widget class="QLabel" name="label_2">
-                <property name="font">
-                 <font>
-                  <family>Microsoft YaHei UI</family>
-                  <pointsize>11</pointsize>
-                 </font>
-                </property>
-                <property name="text">
-                 <string>分析角度</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QComboBox" name="comboAngle">
-                <property name="minimumSize">
-                 <size>
-                  <width>100</width>
-                  <height>0</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>120</width>
-                  <height>16777215</height>
-                 </size>
+                <property name="topMargin">
+                 <number>0</number>
                 </property>
                 <item>
-                 <property name="text">
-                  <string>右侧</string>
-                 </property>
+                 <widget class="QLabel" name="label_13">
+                  <property name="font">
+                   <font>
+                    <family>Microsoft YaHei UI</family>
+                    <pointsize>11</pointsize>
+                    <bold>false</bold>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>起始时间</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                  </property>
+                 </widget>
                 </item>
                 <item>
-                 <property name="text">
-                  <string>左侧</string>
-                 </property>
+                 <widget class="QDateEdit" name="date_start">
+                  <property name="maximumSize">
+                   <size>
+                    <width>120</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="dateTime">
+                   <datetime>
+                    <hour>0</hour>
+                    <minute>0</minute>
+                    <second>0</second>
+                    <year>2021</year>
+                    <month>4</month>
+                    <day>1</day>
+                   </datetime>
+                  </property>
+                  <property name="currentSection">
+                   <enum>QDateTimeEdit::YearSection</enum>
+                  </property>
+                  <property name="displayFormat">
+                   <string>yyyy-MM-dd</string>
+                  </property>
+                  <property name="calendarPopup">
+                   <bool>true</bool>
+                  </property>
+                  <property name="date">
+                   <date>
+                    <year>2021</year>
+                    <month>4</month>
+                    <day>1</day>
+                   </date>
+                  </property>
+                 </widget>
                 </item>
                 <item>
-                 <property name="text">
-                  <string>前侧</string>
-                 </property>
+                 <spacer name="horizontalSpacer_2">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
                 </item>
-               </widget>
-              </item>
-             </layout>
+                <item>
+                 <widget class="QLabel" name="label_2">
+                  <property name="font">
+                   <font>
+                    <family>Microsoft YaHei UI</family>
+                    <pointsize>11</pointsize>
+                    <bold>false</bold>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>分析角度</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QComboBox" name="comboAngle">
+                  <property name="minimumSize">
+                   <size>
+                    <width>100</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>120</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <item>
+                   <property name="text">
+                    <string>右侧</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>左侧</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>前侧</string>
+                   </property>
+                  </item>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+              <widget class="QWidget" name="layoutWidget">
+               <property name="geometry">
+                <rect>
+                 <x>80</x>
+                 <y>60</y>
+                 <width>451</width>
+                 <height>33</height>
+                </rect>
+               </property>
+               <layout class="QHBoxLayout" name="select_2" stretch="2,6,1,2,6">
+                <property name="spacing">
+                 <number>10</number>
+                </property>
+                <item>
+                 <widget class="QLabel" name="label_14">
+                  <property name="font">
+                   <font>
+                    <family>Microsoft YaHei UI</family>
+                    <pointsize>11</pointsize>
+                    <bold>false</bold>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>结束时间</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QDateEdit" name="date_end">
+                  <property name="maximumSize">
+                   <size>
+                    <width>120</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="dateTime">
+                   <datetime>
+                    <hour>0</hour>
+                    <minute>0</minute>
+                    <second>0</second>
+                    <year>2021</year>
+                    <month>12</month>
+                    <day>31</day>
+                   </datetime>
+                  </property>
+                  <property name="displayFormat">
+                   <string>yyyy-MM-dd</string>
+                  </property>
+                  <property name="calendarPopup">
+                   <bool>true</bool>
+                  </property>
+                  <property name="date">
+                   <date>
+                    <year>2021</year>
+                    <month>12</month>
+                    <day>31</day>
+                   </date>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer_3">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_15">
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="analysis">
+                  <property name="maximumSize">
+                   <size>
+                    <width>120</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string>分析</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+              <widget class="QLabel" name="ax_y">
+               <property name="geometry">
+                <rect>
+                 <x>50</x>
+                 <y>430</y>
+                 <width>511</width>
+                 <height>61</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>TextLabel</string>
+               </property>
+               <property name="wordWrap">
+                <bool>true</bool>
+               </property>
+              </widget>
+              <widget class="QCustomPlot" name="qcp_analysis" native="true">
+               <property name="geometry">
+                <rect>
+                 <x>50</x>
+                 <y>120</y>
+                 <width>531</width>
+                 <height>281</height>
+                </rect>
+               </property>
+              </widget>
+             </widget>
             </widget>
-            <widget class="QWidget" name="layoutWidget">
-             <property name="geometry">
-              <rect>
-               <x>80</x>
-               <y>60</y>
-               <width>451</width>
-               <height>33</height>
-              </rect>
-             </property>
-             <layout class="QHBoxLayout" name="select_2" stretch="2,6,1,2,6">
-              <property name="spacing">
-               <number>10</number>
-              </property>
-              <item>
-               <widget class="QLabel" name="label_14">
-                <property name="font">
-                 <font>
-                  <family>Microsoft YaHei UI</family>
-                  <pointsize>11</pointsize>
-                 </font>
-                </property>
-                <property name="text">
-                 <string>结束时间</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QDateEdit" name="date_end">
-                <property name="maximumSize">
-                 <size>
-                  <width>120</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="dateTime">
-                 <datetime>
-                  <hour>0</hour>
-                  <minute>0</minute>
-                  <second>0</second>
-                  <year>2021</year>
-                  <month>12</month>
-                  <day>31</day>
-                 </datetime>
-                </property>
-                <property name="displayFormat">
-                 <string>yyyy-MM-dd</string>
-                </property>
-                <property name="calendarPopup">
-                 <bool>true</bool>
-                </property>
-                <property name="date">
-                 <date>
-                  <year>2021</year>
-                  <month>12</month>
-                  <day>31</day>
-                 </date>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <spacer name="horizontalSpacer_3">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>40</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-              <item>
-               <widget class="QLabel" name="label_15">
-                <property name="text">
-                 <string/>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QPushButton" name="analysis">
-                <property name="maximumSize">
-                 <size>
-                  <width>120</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string>分析</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-            <widget class="QLabel" name="ax_y">
-             <property name="geometry">
-              <rect>
-               <x>50</x>
-               <y>430</y>
-               <width>511</width>
-               <height>61</height>
-              </rect>
-             </property>
-             <property name="text">
-              <string>TextLabel</string>
-             </property>
-             <property name="wordWrap">
-              <bool>true</bool>
-             </property>
-            </widget>
-            <widget class="QCustomPlot" name="qcp_analysis" native="true">
-             <property name="geometry">
-              <rect>
-               <x>50</x>
-               <y>120</y>
-               <width>531</width>
-               <height>281</height>
-              </rect>
-             </property>
-            </widget>
-           </widget>
-          </widget>
+           </item>
+          </layout>
          </widget>
         </item>
        </layout>
       </widget>
       <widget class="QWidget" name="tab_manage">
        <attribute name="title">
-        <string>档案管理</string>
+        <string>动作分析 / 数据管理</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_11">
         <item row="0" column="0" colspan="3">
@@ -1022,18 +1038,142 @@
             <number>10</number>
            </property>
            <property name="verticalSpacing">
-            <number>10</number>
+            <number>8</number>
            </property>
-           <item row="0" column="1" rowspan="5">
-            <widget class="Line" name="line_6">
-             <property name="maximumSize">
+           <item row="2" column="5">
+            <widget class="QLabel" name="label_20">
+             <property name="minimumSize">
               <size>
-               <width>16777215</width>
-               <height>135</height>
+               <width>120</width>
+               <height>0</height>
               </size>
              </property>
+             <property name="maximumSize">
+              <size>
+               <width>120</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>Microsoft YaHei UI</family>
+               <pointsize>11</pointsize>
+               <bold>false</bold>
+              </font>
+             </property>
+             <property name="text">
+              <string>TextLabel</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="6">
+            <spacer name="horizontalSpacer_4">
              <property name="orientation">
-              <enum>Qt::Vertical</enum>
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Fixed</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>155</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="2" column="3">
+            <widget class="QLabel" name="label_16">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>120</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>120</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>Microsoft YaHei UI</family>
+               <pointsize>11</pointsize>
+               <bold>false</bold>
+              </font>
+             </property>
+             <property name="text">
+              <string>TextLabel</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="10">
+            <widget class="QPushButton" name="pushButtonDelAth">
+             <property name="minimumSize">
+              <size>
+               <width>110</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>120</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>删除该运动员</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="4">
+            <widget class="QLabel" name="label_31">
+             <property name="font">
+              <font>
+               <family>Microsoft YaHei UI</family>
+               <pointsize>11</pointsize>
+               <bold>false</bold>
+              </font>
+             </property>
+             <property name="text">
+              <string>年龄</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="10">
+            <widget class="QPushButton" name="pushButton">
+             <property name="minimumSize">
+              <size>
+               <width>120</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>修改个人信息</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="3">
+            <widget class="QLabel" name="label_32">
+             <property name="font">
+              <font>
+               <family>Microsoft YaHei UI</family>
+               <pointsize>11</pointsize>
+               <bold>false</bold>
+              </font>
+             </property>
+             <property name="text">
+              <string>TextLabel</string>
              </property>
             </widget>
            </item>
@@ -1041,8 +1181,8 @@
             <widget class="QLabel" name="label_p_2">
              <property name="minimumSize">
               <size>
-               <width>120</width>
-               <height>140</height>
+               <width>80</width>
+               <height>110</height>
               </size>
              </property>
              <property name="maximumSize">
@@ -1056,7 +1196,7 @@
              </property>
             </widget>
            </item>
-           <item row="4" column="2">
+           <item row="5" column="5">
             <spacer name="verticalSpacer">
              <property name="orientation">
               <enum>Qt::Vertical</enum>
@@ -1093,13 +1233,14 @@
               <font>
                <family>Microsoft YaHei UI</family>
                <pointsize>11</pointsize>
+               <bold>false</bold>
               </font>
              </property>
              <property name="text">
               <string>  选择运动员</string>
              </property>
              <property name="alignment">
-              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+              <set>Qt::AlignCenter</set>
              </property>
             </widget>
            </item>
@@ -1121,76 +1262,14 @@
               <font>
                <family>Microsoft YaHei UI</family>
                <pointsize>11</pointsize>
+               <bold>false</bold>
               </font>
              </property>
              <property name="text">
-              <string>  当前运动员：</string>
+              <string>  当前运动员</string>
              </property>
-            </widget>
-           </item>
-           <item row="1" column="3">
-            <widget class="QComboBox" name="combo_p_2">
-             <property name="minimumSize">
-              <size>
-               <width>120</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>120</width>
-               <height>16777215</height>
-              </size>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="3">
-            <widget class="QLabel" name="label_16">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>120</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>120</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="font">
-              <font>
-               <family>Microsoft YaHei UI</family>
-               <pointsize>11</pointsize>
-              </font>
-             </property>
-             <property name="text">
-              <string>TextLabel</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="4">
-            <widget class="QPushButton" name="query_2">
-             <property name="minimumSize">
-              <size>
-               <width>120</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>120</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>查询</string>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
              </property>
             </widget>
            </item>
@@ -1212,88 +1291,55 @@
               <font>
                <family>Microsoft YaHei UI</family>
                <pointsize>11</pointsize>
+               <bold>false</bold>
               </font>
              </property>
              <property name="text">
-              <string>所属小组：</string>
+              <string>所属小组</string>
              </property>
              <property name="alignment">
-              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+              <set>Qt::AlignCenter</set>
              </property>
             </widget>
            </item>
-           <item row="2" column="6" colspan="4">
-            <spacer name="horizontalSpacer_5">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
+           <item row="0" column="1" rowspan="5">
+            <widget class="Line" name="line_6">
+             <property name="maximumSize">
               <size>
-               <width>40</width>
-               <height>20</height>
+               <width>16777215</width>
+               <height>135</height>
               </size>
              </property>
-            </spacer>
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
            </item>
-           <item row="2" column="5">
-            <widget class="QLabel" name="label_20">
+           <item row="1" column="8" rowspan="4">
+            <widget class="QLabel" name="label_34">
              <property name="minimumSize">
               <size>
                <width>120</width>
                <height>0</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>120</width>
-               <height>16777215</height>
               </size>
              </property>
              <property name="font">
               <font>
                <family>Microsoft YaHei UI</family>
                <pointsize>11</pointsize>
+               <bold>false</bold>
               </font>
              </property>
              <property name="text">
-              <string>TextLabel</string>
+              <string>数据处理</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
              </property>
             </widget>
            </item>
-           <item row="1" column="6">
-            <spacer name="horizontalSpacer_4">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-           <item row="1" column="7">
-            <widget class="QPushButton" name="pushButton">
-             <property name="minimumSize">
-              <size>
-               <width>100</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>120</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>删除该运动员</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="8">
-            <widget class="QPushButton" name="pushButton_2">
+           <item row="3" column="10">
+            <widget class="QPushButton" name="pushButtonAddAth">
              <property name="minimumSize">
               <size>
                <width>100</width>
@@ -1311,10 +1357,540 @@
              </property>
             </widget>
            </item>
+           <item row="1" column="3">
+            <widget class="QComboBox" name="combo_p2">
+             <property name="minimumSize">
+              <size>
+               <width>120</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>120</width>
+               <height>16777215</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="5">
+            <widget class="QLabel" name="label_33">
+             <property name="font">
+              <font>
+               <family>Microsoft YaHei UI</family>
+               <pointsize>11</pointsize>
+               <bold>false</bold>
+              </font>
+             </property>
+             <property name="text">
+              <string>TextLabel</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="11">
+            <spacer name="horizontalSpacer_5">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="3" column="13">
+            <widget class="QPushButton" name="pushButton_4">
+             <property name="minimumSize">
+              <size>
+               <width>120</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>PushButton</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="4">
+            <widget class="QPushButton" name="query2">
+             <property name="minimumSize">
+              <size>
+               <width>120</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>120</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>查询</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="2">
+            <widget class="QLabel" name="label_30">
+             <property name="minimumSize">
+              <size>
+               <width>120</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>Microsoft YaHei UI</family>
+               <pointsize>11</pointsize>
+               <bold>false</bold>
+              </font>
+             </property>
+             <property name="text">
+              <string>姓别</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="12">
+            <widget class="QPushButton" name="pushButton_2">
+             <property name="minimumSize">
+              <size>
+               <width>120</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>删除选中数据</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="7" rowspan="4">
+            <widget class="Line" name="line_7">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
           </layout>
          </widget>
         </item>
-        <item row="2" column="0">
+        <item row="2" column="1">
+         <widget class="QGroupBox" name="groupBox">
+          <property name="minimumSize">
+           <size>
+            <width>800</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Microsoft YaHei UI</family>
+            <pointsize>11</pointsize>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="title">
+           <string>数据分析</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+          <layout class="QGridLayout" name="gridLayout">
+           <item row="4" column="0" colspan="4">
+            <layout class="QGridLayout" name="gridLayout_10" rowstretch="0">
+             <property name="horizontalSpacing">
+              <number>10</number>
+             </property>
+             <item row="0" column="0">
+              <widget class="QPushButton" name="pushButton_3">
+               <property name="maximumSize">
+                <size>
+                 <width>120</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>选择视频文件</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="2">
+              <widget class="QLabel" name="label_23">
+               <property name="minimumSize">
+                <size>
+                 <width>300</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>TextLabel</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="8" column="0" colspan="4">
+            <layout class="QGridLayout" name="gridLayout_17">
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_28">
+               <property name="minimumSize">
+                <size>
+                 <width>120</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>手部轨迹：</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1" colspan="4">
+              <layout class="QGridLayout" name="gridLayout_18">
+               <item row="1" column="1">
+                <widget class="QDateEdit" name="dateEdit">
+                 <property name="minimumSize">
+                  <size>
+                   <width>140</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>140</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="label_25">
+                 <property name="minimumSize">
+                  <size>
+                   <width>80</width>
+                   <height>30</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string>选择日期    </string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <spacer name="verticalSpacer_2">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item row="1" column="2">
+                <widget class="QPushButton" name="pushButtonImport">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>160</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>120</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="layoutDirection">
+                  <enum>Qt::LeftToRight</enum>
+                 </property>
+                 <property name="text">
+                  <string>确认并导入分析结果</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item row="1" column="2">
+              <widget class="QLabel" name="label_26">
+               <property name="minimumSize">
+                <size>
+                 <width>100</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;标准度：&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="labelResultY">
+               <property name="minimumSize">
+                <size>
+                 <width>255</width>
+                 <height>215</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>200</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>TextLabel</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="0" colspan="5">
+              <widget class="QLabel" name="label_27">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>30</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>分析结果</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="3">
+              <widget class="QLabel" name="labelResultStd">
+               <property name="minimumSize">
+                <size>
+                 <width>100</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>TextLabel</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="4">
+              <spacer name="horizontalSpacer_7">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item row="5" column="0" colspan="4">
+            <layout class="QGridLayout" name="gridLayout_16">
+             <property name="horizontalSpacing">
+              <number>10</number>
+             </property>
+             <item row="0" column="2">
+              <widget class="QComboBox" name="comboAngle2">
+               <property name="minimumSize">
+                <size>
+                 <width>100</width>
+                 <height>0</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="3">
+              <widget class="QPushButton" name="pushButtonDocker">
+               <property name="minimumSize">
+                <size>
+                 <width>100</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>100</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>开始分析</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="4">
+              <widget class="QProgressBar" name="progressBar">
+               <property name="value">
+                <number>0</number>
+               </property>
+               <property name="textVisible">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QLabel" name="label_24">
+               <property name="minimumSize">
+                <size>
+                 <width>120</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>选择分析方向</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="5">
+              <widget class="QLabel" name="label_29">
+               <property name="minimumSize">
+                <size>
+                 <width>100</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>100</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>TextLabel</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="7" column="3">
+            <widget class="QVideoWidget" name="video_ns_3" native="true">
+             <property name="enabled">
+              <bool>true</bool>
+             </property>
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <horstretch>16</horstretch>
+               <verstretch>9</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>320</width>
+               <height>180</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>400</width>
+               <height>225</height>
+              </size>
+             </property>
+             <property name="mouseTracking">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="7" column="0" colspan="3">
+            <widget class="QVideoWidget" name="video_ns_2" native="true">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+               <horstretch>16</horstretch>
+               <verstretch>9</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>320</width>
+               <height>180</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>400</width>
+               <height>225</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="3">
+            <widget class="QLabel" name="label_22">
+             <property name="font">
+              <font>
+               <family>Microsoft YaHei UI</family>
+               <pointsize>11</pointsize>
+               <bold>false</bold>
+              </font>
+             </property>
+             <property name="text">
+              <string>分析视频</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="0" colspan="3">
+            <widget class="QLabel" name="label_21">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>Microsoft YaHei UI</family>
+               <pointsize>11</pointsize>
+               <bold>false</bold>
+              </font>
+             </property>
+             <property name="text">
+              <string>原视频</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="1" column="2" rowspan="2">
          <widget class="QTabWidget" name="dbView_2">
           <property name="tabShape">
            <enum>QTabWidget::Rounded</enum>
@@ -1369,335 +1945,6 @@
           </widget>
          </widget>
         </item>
-        <item row="2" column="1">
-         <widget class="QGroupBox" name="groupBox">
-          <property name="minimumSize">
-           <size>
-            <width>800</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="font">
-           <font>
-            <family>Microsoft YaHei UI</family>
-            <pointsize>11</pointsize>
-           </font>
-          </property>
-          <property name="title">
-           <string>数据分析</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-          <layout class="QGridLayout" name="gridLayout" rowminimumheight="0,0,0,0,0,0,0,0,0,0">
-           <item row="4" column="0" colspan="4">
-            <layout class="QGridLayout" name="gridLayout_10" rowstretch="0">
-             <property name="horizontalSpacing">
-              <number>10</number>
-             </property>
-             <item row="0" column="0">
-              <widget class="QPushButton" name="pushButton_3">
-               <property name="maximumSize">
-                <size>
-                 <width>120</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="text">
-                <string>选择视频文件</string>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="2">
-              <widget class="QLabel" name="label_23">
-               <property name="minimumSize">
-                <size>
-                 <width>300</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="text">
-                <string>TextLabel</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-           <item row="7" column="0" colspan="2">
-            <widget class="QLabel" name="label_21">
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>30</height>
-              </size>
-             </property>
-             <property name="font">
-              <font>
-               <family>Microsoft YaHei UI</family>
-               <pointsize>11</pointsize>
-              </font>
-             </property>
-             <property name="text">
-              <string>原视频</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
-             </property>
-            </widget>
-           </item>
-           <item row="5" column="0" colspan="4">
-            <layout class="QGridLayout" name="gridLayout_16">
-             <property name="horizontalSpacing">
-              <number>10</number>
-             </property>
-             <item row="0" column="3">
-              <widget class="QPushButton" name="pushButton_4">
-               <property name="minimumSize">
-                <size>
-                 <width>100</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>120</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="text">
-                <string>开始分析</string>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="0">
-              <spacer name="horizontalSpacer_7">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-             <item row="0" column="1">
-              <widget class="QLabel" name="label_24">
-               <property name="minimumSize">
-                <size>
-                 <width>100</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="text">
-                <string>选择分析方向</string>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignCenter</set>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="2">
-              <widget class="QComboBox" name="comboBox">
-               <property name="minimumSize">
-                <size>
-                 <width>100</width>
-                 <height>0</height>
-                </size>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-           <item row="9" column="0">
-            <spacer name="verticalSpacer_2">
-             <property name="orientation">
-              <enum>Qt::Vertical</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>20</width>
-               <height>40</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-           <item row="8" column="0" colspan="2">
-            <widget class="QVideoWidget" name="video_ns_2" native="true">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-               <horstretch>16</horstretch>
-               <verstretch>9</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>320</width>
-               <height>180</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>400</width>
-               <height>225</height>
-              </size>
-             </property>
-            </widget>
-           </item>
-           <item row="8" column="2" colspan="2">
-            <widget class="QVideoWidget" name="video_ns_3" native="true">
-             <property name="enabled">
-              <bool>true</bool>
-             </property>
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-               <horstretch>16</horstretch>
-               <verstretch>9</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>320</width>
-               <height>180</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>400</width>
-               <height>225</height>
-              </size>
-             </property>
-             <property name="mouseTracking">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="7" column="2" colspan="2">
-            <widget class="QLabel" name="label_22">
-             <property name="font">
-              <font>
-               <family>Microsoft YaHei UI</family>
-               <pointsize>11</pointsize>
-              </font>
-             </property>
-             <property name="text">
-              <string>分析视频</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
-             </property>
-            </widget>
-           </item>
-           <item row="6" column="0" colspan="4">
-            <layout class="QGridLayout" name="gridLayout_17">
-             <item row="0" column="0">
-              <widget class="QProgressBar" name="progressBar">
-               <property name="value">
-                <number>24</number>
-               </property>
-               <property name="textVisible">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="1">
-              <widget class="QLabel" name="label_29">
-               <property name="minimumSize">
-                <size>
-                 <width>100</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="text">
-                <string>TextLabel</string>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignCenter</set>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-           <item row="9" column="1" colspan="3">
-            <layout class="QGridLayout" name="gridLayout_18">
-             <property name="spacing">
-              <number>10</number>
-             </property>
-             <item row="0" column="0">
-              <widget class="QLabel" name="label_27">
-               <property name="minimumSize">
-                <size>
-                 <width>0</width>
-                 <height>30</height>
-                </size>
-               </property>
-               <property name="text">
-                <string>分析结果</string>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignCenter</set>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="0">
-              <widget class="QLabel" name="label_25">
-               <property name="minimumSize">
-                <size>
-                 <width>0</width>
-                 <height>30</height>
-                </size>
-               </property>
-               <property name="text">
-                <string>选择日期</string>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignCenter</set>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="3">
-              <widget class="QLabel" name="label_28">
-               <property name="text">
-                <string>TextLabel</string>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="1" colspan="2">
-              <widget class="QDateEdit" name="dateEdit"/>
-             </item>
-             <item row="2" column="3">
-              <widget class="QPushButton" name="pushButton_5">
-               <property name="text">
-                <string>导入分析结果</string>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="2">
-              <widget class="QLabel" name="label_26">
-               <property name="text">
-                <string>标准度</string>
-               </property>
-              </widget>
-             </item>
-             <item row="3" column="3">
-              <spacer name="verticalSpacer_3">
-               <property name="orientation">
-                <enum>Qt::Vertical</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>20</width>
-                 <height>40</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-            </layout>
-           </item>
-          </layout>
-         </widget>
-        </item>
        </layout>
       </widget>
      </widget>
@@ -1710,7 +1957,7 @@
      <x>0</x>
      <y>0</y>
      <width>1600</width>
-     <height>22</height>
+     <height>25</height>
     </rect>
    </property>
    <property name="defaultUp">
