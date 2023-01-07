@@ -1478,6 +1478,61 @@
           </layout>
          </widget>
         </item>
+        <item row="1" column="2" rowspan="2">
+         <widget class="QTabWidget" name="dbView_2">
+          <property name="tabShape">
+           <enum>QTabWidget::Rounded</enum>
+          </property>
+          <property name="currentIndex">
+           <number>0</number>
+          </property>
+          <widget class="QWidget" name="tab_7">
+           <attribute name="title">
+            <string>右侧方向</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_12">
+            <item row="0" column="0">
+             <widget class="QTableWidget" name="tableView_2">
+              <property name="cursor" stdset="0">
+               <cursorShape>ArrowCursor</cursorShape>
+              </property>
+              <property name="editTriggers">
+               <set>QAbstractItemView::NoEditTriggers</set>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_8">
+           <attribute name="title">
+            <string>左侧方向</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_13">
+            <item row="0" column="0">
+             <widget class="QTableWidget" name="tableView2_2">
+              <property name="editTriggers">
+               <set>QAbstractItemView::NoEditTriggers</set>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_9">
+           <attribute name="title">
+            <string>前侧方向</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_14">
+            <item row="0" column="0">
+             <widget class="QTableWidget" name="tableView3_2">
+              <property name="editTriggers">
+               <set>QAbstractItemView::NoEditTriggers</set>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
         <item row="2" column="1">
          <widget class="QGroupBox" name="groupBox">
           <property name="minimumSize">
@@ -1533,7 +1588,7 @@
              </item>
             </layout>
            </item>
-           <item row="8" column="0" colspan="4">
+           <item row="10" column="0" colspan="4">
             <layout class="QGridLayout" name="gridLayout_17">
              <item row="1" column="0">
               <widget class="QLabel" name="label_28">
@@ -1777,13 +1832,13 @@
               <widget class="QLabel" name="label_29">
                <property name="minimumSize">
                 <size>
-                 <width>100</width>
+                 <width>80</width>
                  <height>0</height>
                 </size>
                </property>
                <property name="maximumSize">
                 <size>
-                 <width>100</width>
+                 <width>80</width>
                  <height>16777215</height>
                 </size>
                </property>
@@ -1797,74 +1852,61 @@
              </item>
             </layout>
            </item>
-           <item row="7" column="3">
-            <widget class="QVideoWidget" name="video_ns_3" native="true">
-             <property name="enabled">
-              <bool>true</bool>
-             </property>
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-               <horstretch>16</horstretch>
-               <verstretch>9</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>320</width>
-               <height>180</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>400</width>
-               <height>225</height>
-              </size>
-             </property>
-             <property name="mouseTracking">
-              <bool>false</bool>
-             </property>
-            </widget>
+           <item row="9" column="0" colspan="4">
+            <layout class="QHBoxLayout" name="horizontalLayout_3">
+             <item>
+              <widget class="QVideoWidget" name="video_ns_2" native="true">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                 <horstretch>16</horstretch>
+                 <verstretch>9</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>320</width>
+                 <height>180</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>400</width>
+                 <height>225</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QVideoWidget" name="video_ns_3" native="true">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                 <horstretch>16</horstretch>
+                 <verstretch>9</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>320</width>
+                 <height>180</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>400</width>
+                 <height>225</height>
+                </size>
+               </property>
+               <property name="mouseTracking">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
            </item>
-           <item row="7" column="0" colspan="3">
-            <widget class="QVideoWidget" name="video_ns_2" native="true">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-               <horstretch>16</horstretch>
-               <verstretch>9</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>320</width>
-               <height>180</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>400</width>
-               <height>225</height>
-              </size>
-             </property>
-            </widget>
-           </item>
-           <item row="6" column="3">
-            <widget class="QLabel" name="label_22">
-             <property name="font">
-              <font>
-               <family>Microsoft YaHei UI</family>
-               <pointsize>11</pointsize>
-               <bold>false</bold>
-              </font>
-             </property>
-             <property name="text">
-              <string>分析视频</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
-             </property>
-            </widget>
-           </item>
-           <item row="6" column="0" colspan="3">
+           <item row="6" column="0" colspan="2">
             <widget class="QLabel" name="label_21">
              <property name="maximumSize">
               <size>
@@ -1887,62 +1929,24 @@
              </property>
             </widget>
            </item>
+           <item row="6" column="2" colspan="2">
+            <widget class="QLabel" name="label_22">
+             <property name="font">
+              <font>
+               <family>Microsoft YaHei UI</family>
+               <pointsize>11</pointsize>
+               <bold>false</bold>
+              </font>
+             </property>
+             <property name="text">
+              <string>分析视频</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
           </layout>
-         </widget>
-        </item>
-        <item row="1" column="2" rowspan="2">
-         <widget class="QTabWidget" name="dbView_2">
-          <property name="tabShape">
-           <enum>QTabWidget::Rounded</enum>
-          </property>
-          <property name="currentIndex">
-           <number>0</number>
-          </property>
-          <widget class="QWidget" name="tab_7">
-           <attribute name="title">
-            <string>右侧方向</string>
-           </attribute>
-           <layout class="QGridLayout" name="gridLayout_12">
-            <item row="0" column="0">
-             <widget class="QTableWidget" name="tableView_2">
-              <property name="cursor" stdset="0">
-               <cursorShape>ArrowCursor</cursorShape>
-              </property>
-              <property name="editTriggers">
-               <set>QAbstractItemView::NoEditTriggers</set>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-          <widget class="QWidget" name="tab_8">
-           <attribute name="title">
-            <string>左侧方向</string>
-           </attribute>
-           <layout class="QGridLayout" name="gridLayout_13">
-            <item row="0" column="0">
-             <widget class="QTableWidget" name="tableView2_2">
-              <property name="editTriggers">
-               <set>QAbstractItemView::NoEditTriggers</set>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-          <widget class="QWidget" name="tab_9">
-           <attribute name="title">
-            <string>前侧方向</string>
-           </attribute>
-           <layout class="QGridLayout" name="gridLayout_14">
-            <item row="0" column="0">
-             <widget class="QTableWidget" name="tableView3_2">
-              <property name="editTriggers">
-               <set>QAbstractItemView::NoEditTriggers</set>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
          </widget>
         </item>
        </layout>
