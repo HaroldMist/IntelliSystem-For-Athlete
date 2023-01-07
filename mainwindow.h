@@ -12,6 +12,7 @@
 #include <QMediaPlayer>
 #include <QImage>
 #include <QFile>
+#include <QFileDialog>
 
 #include <QSqlDatabase>
 #include <QSqlQuery>
