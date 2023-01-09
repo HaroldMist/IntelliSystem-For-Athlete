@@ -12,6 +12,7 @@
 #include <QMediaPlayer>
 #include <QImage>
 #include <QFile>
+#include <QFileDialog>
 
 #include <QSqlDatabase>
 #include <QSqlQuery>
@@ -44,9 +45,9 @@ public:
     void createActions();
     void createToolBar();
 
-    void showtab();
-    void showtab2();
-    void showtab3();
+    void showNameHead();
+    void PlayandShow(QSqlQuery sql_result, int row);
+    void showtab(QTableWidget *table, QSqlQuery &sql_table, QString angle);
     void showCombo();
 
     void showImages();
@@ -57,15 +58,25 @@ public:
     void setTable(QTableWidget *table);
     void showTable(QTableWidget *table, QSqlQuery result, QStringList tableHead, QString tableName[]);
 
-    void analysisDate();
+    void analysisDate(QVector<double> &std);
     void drawGraphic();
-
-    QString getSql();
 
 private slots:
     void on_pauseButton_clicked();
 
     void on_playButton_clicked();
+
+    void on_query_clicked();
+
+    void on_query2_clicked();
+
+    void on_pushButton_3_clicked();
+
+    void on_tableView_cellDoubleClicked(int row, int column);
+
+    void on_tableView2_cellDoubleClicked(int row, int column);
+
+    void on_tableView3_cellDoubleClicked(int row, int column);
 
 private:
     Ui::MainWindow *ui;
