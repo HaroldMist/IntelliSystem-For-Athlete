@@ -251,7 +251,7 @@
                   </font>
                  </property>
                  <property name="text">
-                  <string>TextLabel</string>
+                  <string>未选择</string>
                  </property>
                 </widget>
                </item>
@@ -882,7 +882,7 @@
                  <x>80</x>
                  <y>60</y>
                  <width>451</width>
-                 <height>33</height>
+                 <height>34</height>
                 </rect>
                </property>
                <layout class="QHBoxLayout" name="select_2" stretch="2,6,1,2,6">
@@ -1062,7 +1062,7 @@
               </font>
              </property>
              <property name="text">
-              <string>TextLabel</string>
+              <string>暂无</string>
              </property>
             </widget>
            </item>
@@ -1110,7 +1110,7 @@
               </font>
              </property>
              <property name="text">
-              <string>TextLabel</string>
+              <string>未选择</string>
              </property>
             </widget>
            </item>
@@ -1173,7 +1173,7 @@
               </font>
              </property>
              <property name="text">
-              <string>TextLabel</string>
+              <string>暂无</string>
              </property>
             </widget>
            </item>
@@ -1383,7 +1383,7 @@
               </font>
              </property>
              <property name="text">
-              <string>TextLabel</string>
+              <string>暂无</string>
              </property>
             </widget>
            </item>
@@ -1582,7 +1582,7 @@
                 </size>
                </property>
                <property name="text">
-                <string>TextLabel</string>
+                <string>未选择</string>
                </property>
               </widget>
              </item>
@@ -1621,6 +1621,16 @@
                    <width>140</width>
                    <height>16777215</height>
                   </size>
+                 </property>
+                 <property name="dateTime">
+                  <datetime>
+                   <hour>8</hour>
+                   <minute>0</minute>
+                   <second>0</second>
+                   <year>2021</year>
+                   <month>12</month>
+                   <day>30</day>
+                  </datetime>
                  </property>
                 </widget>
                </item>
@@ -1961,7 +1971,7 @@
      <x>0</x>
      <y>0</y>
      <width>1600</width>
-     <height>25</height>
+     <height>29</height>
     </rect>
    </property>
    <property name="defaultUp">

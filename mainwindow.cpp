@@ -14,117 +14,12 @@ MainWindow::MainWindow(QWidget *parent)
     createActions();
     createMenu();
 
-    ui->label->setText("未选择");
     showCombo();
 
     showImages();
 
-    // 显示三个方向的数据
-    connect(ui->query, &QPushButton::clicked, this, &MainWindow::showtab);
-    connect(ui->query, &QPushButton::clicked, this, &MainWindow::showtab2);
-    connect(ui->query, &QPushButton::clicked, this, &MainWindow::showtab3);
-
     // 分析按钮
     connect(ui->analysis, &QPushButton::clicked, this, &MainWindow::drawGraphic);
-
-    // TODO 改成函数
-    // 点击表格行播放视频、显示信息
-    connect(ui->tableView, &QAbstractItemView::doubleClicked, this, [=](const QModelIndex &idx) -> void
-            {
-                int RowIdx = idx.row();
-                int ColIdx = idx.column();
-                //移动到指定行
-                this->sql_table.first();
-                for (int i = 0; i < RowIdx; i++)
-                {
-                    this->sql_table.next();
-                }
-
-                QString video = this->sql_table.value(2).toString();
-                playvideo(video, ui->video_ns);
-
-                QString video2 = this->sql_table.value(3).toString();
-                playvideo(video2, ui->video_o, 2);
-
-                QString j_ru = this->sql_table.value(8).toString();
-                ui->label_ru->setText(j_ru);
-
-                QString j_chu = this->sql_table.value(9).toString();
-                ui->label_chu->setText(j_chu);
-
-                QString j_high = this->sql_table.value(10).toString();
-                ui->label_high->setText(j_high);
-
-                QString p_y = this->sql_table.value(11).toString();
-                showImage_y(p_y);
-            });
-
-    connect(ui->tableView2, &QAbstractItemView::doubleClicked, this, [=](const QModelIndex &idx) -> void
-            {
-                int RowIdx = idx.row();
-                int ColIdx = idx.column();
-                //移动到指定行
-                this->sql_table2.first();
-                for (int i = 0; i < RowIdx; i++)
-                {
-                    this->sql_table2.next();
-                }
-
-                QString video = this->sql_table2.value(2).toString();
-                playvideo(video, ui->video_ns);
-
-                QString video2 = this->sql_table2.value(3).toString();
-                playvideo(video2, ui->video_o, 2);
-
-                QString j_ru = this->sql_table2.value(8).toString();
-                ui->label_ru->setText(j_ru);
-
-                QString j_chu = this->sql_table2.value(9).toString();
-                ui->label_chu->setText(j_chu);
-
-                QString j_high = this->sql_table2.value(10).toString();
-                ui->label_high->setText(j_high);
-
-                QString p_y = this->sql_table2.value(11).toString();
-                showImage_y(p_y);
-            });
-
-    connect(ui->tableView3, &QAbstractItemView::doubleClicked, this, [=](const QModelIndex &idx) -> void
-            {
-                int RowIdx = idx.row();
-                int ColIdx = idx.column();
-                //移动到指定行
-                this->sql_table3.first();
-                for (int i = 0; i < RowIdx; i++)
-                {
-                    this->sql_table3.next();
-                }
-
-                QString video = this->sql_table3.value(2).toString();
-                playvideo(video, ui->video_ns);
-
-                QString video2 = this->sql_table3.value(3).toString();
-                playvideo(video2, ui->video_o, 2);
-
-                QString j_ru = this->sql_table3.value(8).toString();
-                ui->label_ru->setText(j_ru);
-
-                QString j_chu = this->sql_table3.value(9).toString();
-                ui->label_chu->setText(j_chu);
-
-                QString j_high = this->sql_table3.value(10).toString();
-                ui->label_high->setText(j_high);
-
-                QString p_y = this->sql_table3.value(11).toString();
-                showImage_y(p_y);
-            });
-    
-
-
-
-
-
-    
 }
 
 MainWindow::~MainWindow()
@@ -136,7 +31,6 @@ void MainWindow::test()
 {
 }
 
-
 /// @brief 连接数据库
 /// @return bool 是否成功
 bool MainWindow::createConnection()
@@ -145,8 +39,8 @@ bool MainWindow::createConnection()
     db.setPort(3306);
     db.setDatabaseName("dc_db");
     db.setUserName("root");
-//    db.setPassword("15897933683");
-    db.setPassword("17312767927");
+     db.setPassword("15897933683");
+//    db.setPassword("17312767927");
     if (!db.open())
     {
         QMessageBox::critical(0, QObject::tr("无法打开数据库"), "无法创建数据库连接！ ", QMessageBox::Cancel);
@@ -162,11 +56,16 @@ bool MainWindow::createConnection()
 /// @brief 显示姓名选项
 void MainWindow::showCombo()
 {
-    ui->combo_p1->addItems(nameList);
+    ui->combo_p1->addItems(this->nameList);
     ui->combo_p1->setCurrentIndex(0);
-    ui->combo_p2->addItems(nameList);
+    ui->combo_p2->addItems(this->nameList);
     ui->combo_p2->setCurrentIndex(0);
-
+    // 显示管理界面的复选框
+    QStringList angles;
+    angles << "右侧"
+           << "左侧"
+           << "前侧";
+    ui->comboAngle2->addItems(angles);
 }
 
 /// @brief 获取数据库姓名到nameList
@@ -181,28 +80,78 @@ void MainWindow::GetnameList()
     }
 }
 
+// 显示姓名和头像
+void MainWindow::showNameHead()
+{
+    int index(0);
+    if (ui->tabWidget_2->currentIndex() == 0)
+    {
+        index = ui->combo_p1->currentIndex();
+    }
+    else
+    {
+        index = ui->combo_p2->currentIndex();
+    }
+
+    this->ComboN = this->nameList[index];
+
+    QString filename = QString(":/prefix1/resource/p%1.png").arg(index + 1);
+    QImage *img = new QImage;
+    if (!(img->load(filename)))
+    {
+        QMessageBox::information(this, tr("加载图像失败"), tr("加载图像失败!"));
+        delete img;
+        return;
+    }
+    *img = img->scaled(100, 110, Qt::KeepAspectRatio);
+    // 显示
+    if (ui->tabWidget_2->currentIndex() == 0)
+    {
+        ui->label->setText(this->ComboN);
+        ui->label_p->setPixmap(QPixmap::fromImage(*img));
+    }
+    else
+    {
+        ui->label_16->setText(this->ComboN);
+        ui->label_p_2->setPixmap(QPixmap::fromImage(*img));
+    }
+}
+
+// 双击表格时播放视频，显示内容
+void MainWindow::PlayandShow(QSqlQuery sql_result, int row)
+{
+    // 移动到指定行
+    sql_result.first();
+    for (int i = 0; i < row; i++)
+    {
+        sql_result.next();
+    }
+
+    QString video = sql_result.value(2).toString();
+    playvideo(video, ui->video_ns);
+
+    QString video2 = sql_result.value(3).toString();
+    playvideo(video2, ui->video_o, 2);
+
+    QString j_ru = sql_result.value(8).toString();
+    ui->label_ru->setText(j_ru);
+
+    QString j_chu = sql_result.value(9).toString();
+    ui->label_chu->setText(j_chu);
+
+    QString j_high = sql_result.value(10).toString();
+    ui->label_high->setText(j_high);
+
+    QString p_y = sql_result.value(11).toString();
+    showImage_y(p_y);
+}
 
 /***********************************************************************************************
  * 显示三个方向的数据
-************************************************************************************************/
+ ************************************************************************************************/
 
-void MainWindow::showtab()
+void MainWindow::showtab(QTableWidget *table, QSqlQuery &sql_result, QString angle = "right")
 {
-    int index = ui->combo_p1->currentIndex();
-    ComboN = nameList[index];
-    ui->label->setText(ComboN);
-
-    QString filename = QString(":/prefix1/resource/p%1.png").arg(index + 1);
-    QImage *img = new QImage;
-    if (!(img->load(filename)))
-    {
-        QMessageBox::information(this, tr("加载图像失败"), tr("加载图像失败!"));
-        delete img;
-        return;
-    }
-    *img = img->scaled(100, 110, Qt::KeepAspectRatio);
-    ui->label_p->setPixmap(QPixmap::fromImage(*img));
-
     QStringList trainResult;
     QString sql;
     trainResult << "记录视频"
@@ -212,85 +161,26 @@ void MainWindow::showtab()
                 << "桨最前";
     QString name[5] = {"video", "std", "date", "p_back", "p_front"};
 
-    sql = "select * from nonstd where (angle = 'right') and (name = '" + ComboN + "') order by video desc";
-    this->sql_table = db.exec(sql);
-    showTable(ui->tableView, this->sql_table, trainResult, name);
-}
-
-void MainWindow::showtab2()
-{
-    int index = ui->combo_p1->currentIndex();
-    ComboN = nameList[index];
-    ui->label->setText(ComboN);
-
-    QString filename = QString(":/prefix1/resource/p%1.png").arg(index + 1);
-    QImage *img = new QImage;
-    if (!(img->load(filename)))
-    {
-        QMessageBox::information(this, tr("加载图像失败"), tr("加载图像失败!"));
-        delete img;
-        return;
-    }
-    *img = img->scaled(100, 110, Qt::KeepAspectRatio);
-    ui->label_p->setPixmap(QPixmap::fromImage(*img));
-
-    QStringList trainResult;
-    QString sql;
-    trainResult << "记录视频"
-                << "动作标准度"
-                << "训练日期"
-                << "桨最后"
-                << "桨最前";
-    QString name[5] = {"video", "std", "date", "p_back", "p_front"};
-
-    sql = "select * from nonstd where (angle = 'left') and (name = '" + ComboN + "') order by video asc";
-    this->sql_table2 = db.exec(sql);
-    // setTable(ui->tableView2);
-    showTable(ui->tableView2, this->sql_table2, trainResult, name);
-}
-
-void MainWindow::showtab3()
-{
-    int index = ui->combo_p1->currentIndex();
-    ComboN = nameList[index];
-    ui->label->setText(ComboN);
-
-    QString filename = QString(":/prefix1/resource/p%1.png").arg(index + 1);
-    QImage *img = new QImage;
-    if (!(img->load(filename)))
-    {
-        QMessageBox::information(this, tr("加载图像失败"), tr("加载图像失败!"));
-        delete img;
-        return;
-    }
-    *img = img->scaled(100, 110, Qt::KeepAspectRatio);
-    ui->label_p->setPixmap(QPixmap::fromImage(*img));
-
-    QStringList trainResult;
-    QString sql;
-    trainResult << "记录视频"
-                << "动作标准度"
-                << "训练日期"
-                << "桨最后"
-                << "桨最前";
-    QString name[5] = {"video", "std", "date", "p_back", "p_front"};
-
-    sql = "select * from nonstd where (angle = 'front') and (name = '" + ComboN + "') order by video asc";
-    this->sql_table3 = db.exec(sql);
-    // setTable(ui->tableView2);
-    showTable(ui->tableView3, this->sql_table3, trainResult, name);
+    sql = "select * from nonstd where (angle = '" + angle +
+          "') and (name = '" + this->ComboN +
+          "') order by video desc";
+    sql_result = db.exec(sql);
+    showTable(table, sql_result, trainResult, name);
 }
 
 /************************************************************************************************
  * 单次分析内容显示
-************************************************************************************************/
+ ************************************************************************************************/
 
 void MainWindow::playvideo(QString path, QVideoWidget *videoWidget, int pos)
 {
     // play video
-    if(pos==1){
+    if (pos == 1)
+    {
         this->player = new QMediaPlayer;
-    }else{
+    }
+    else
+    {
         this->player1 = new QMediaPlayer;
     }
 
@@ -303,11 +193,14 @@ void MainWindow::playvideo(QString path, QVideoWidget *videoWidget, int pos)
         return;
     }
 
-    if(pos == 1){
+    if (pos == 1)
+    {
         player->setSource(QUrl::fromLocalFile(path));
         player->setVideoOutput(videoWidget);
         player->play();
-    }else{
+    }
+    else
+    {
         player1->setSource(QUrl::fromLocalFile(path));
         player1->setVideoOutput(videoWidget);
         player1->play();
@@ -352,11 +245,11 @@ void MainWindow::showImage_y(QString filename)
 
 /************************************************************************************************
  * 长期分析内容显示
-************************************************************************************************/
+ ************************************************************************************************/
 
 // TODO 把参数改成返回值
 /// @brief 从数据库读标准度
-/// @param std 
+/// @param std
 void MainWindow::analysisDate(QVector<double> &std)
 {
     QDate date_s = ui->date_start->date();
@@ -366,20 +259,16 @@ void MainWindow::analysisDate(QVector<double> &std)
     QString de = date_e.toString("yyyy-MM-dd");
 
     int index = ui->combo_p1->currentIndex();
-    QMap<QString,QString> map;
+    QMap<QString, QString> map;
     map["右侧"] = "right";
     map["左侧"] = "left";
     map["前侧"] = "front";
 
-    QString sql = "select std from nonstd where date >='" +ds +"'"
-            + "and date<='" + de +"'"
-            + "and name ='" + this->nameList[index] +"' "
-            + "and angle ='" + map[ui->comboAngle->currentText()] + "'"
-            + "order by date asc";
+    QString sql = "select std from nonstd where date >='" + ds + "'" + "and date<='" + de + "'" + "and name ='" + this->nameList[index] + "' " + "and angle ='" + map[ui->comboAngle->currentText()] + "'" + "order by date asc";
     QSqlQuery result = db.exec(sql);
 
     std.clear();
-    while(result.next())
+    while (result.next())
     {
         std.append(result.value("std").toDouble());
     }
@@ -392,7 +281,8 @@ void MainWindow::drawGraphic()
     QVector<double> std;
     analysisDate(std);
     QVector<double> t;
-    for(int i=0; i<std.size(); i++){
+    for (int i = 0; i < std.size(); i++)
+    {
         t.append(i);
         qDebug() << std[i];
     }
@@ -403,18 +293,17 @@ void MainWindow::drawGraphic()
 
     ui->qcp_analysis->xAxis->setLabel("时间");
     ui->qcp_analysis->yAxis->setLabel("标准度");
-    ui->qcp_analysis->xAxis->setRange(0, std.size()+2);
+    ui->qcp_analysis->xAxis->setRange(0, std.size() + 2);
     ui->qcp_analysis->yAxis->setRange(0, 1.2);
     ui->qcp_analysis->xAxis->setTickLabels(false);
     ui->qcp_analysis->xAxis->setUpperEnding(QCPLineEnding::esSpikeArrow);
     ui->qcp_analysis->yAxis->setUpperEnding(QCPLineEnding::esSpikeArrow);
 
     ui->qcp_analysis->replot();
-
 }
 
 /************************************************************************************************
- * 显示主界面内容 
+ * 显示主界面内容
  ************************************************************************************************/
 
 /// @brief 创建菜单栏选项功能
@@ -455,31 +344,30 @@ void MainWindow::createActions()
     connect(aboutQt, SIGNAL(triggered()), this, SLOT(close()));
 }
 
-
 /// @brief 创建菜单栏选项
 void MainWindow::createMenu()
 {
-    //创建一个name为file的菜单栏
+    // 创建一个name为file的菜单栏
     fileMenu = menuBar()->addMenu(tr("&文件"));
-    //在这个菜单栏添加action即下拉菜单
+    // 在这个菜单栏添加action即下拉菜单
     fileMenu->addAction(newAthlete);
     fileMenu->addAction(open);
     fileMenu->addAction(Save);
     fileMenu->addAction(saveAs);
-    //添加一个分割器
+    // 添加一个分割器
     fileMenu->addSeparator();
-    //推出下拉菜单
+    // 推出下拉菜单
     fileMenu->addAction(exit);
 
-    //创建一个name为help的菜单栏
+    // 创建一个name为help的菜单栏
     helpMenu = menuBar()->addMenu(tr("&帮助"));
-    //在这个菜单栏添加action即下拉菜单
+    // 在这个菜单栏添加action即下拉菜单
     helpMenu->addAction(about);
     helpMenu->addAction(aboutQt);
 }
 
 /// @brief 设置表格样式
-/// @param table 
+/// @param table
 void MainWindow::setTable(QTableWidget *table)
 {
     table->verticalHeader()->setVisible(false);
@@ -488,7 +376,6 @@ void MainWindow::setTable(QTableWidget *table)
     table->horizontalHeader()->setFont(font);
     table->setFrameShape(QFrame::NoFrame);
 }
-
 
 /// @brief 显示表格
 /// @param table 表格
@@ -521,7 +408,8 @@ void MainWindow::showTable(QTableWidget *table, QSqlQuery result, QStringList ta
 /// @brief 暂停播放
 void MainWindow::on_pauseButton_clicked()
 {
-    if(this->player==nullptr || this->player1==nullptr){
+    if (this->player == nullptr || this->player1 == nullptr)
+    {
         return;
     }
     this->player->pause();
@@ -531,10 +419,60 @@ void MainWindow::on_pauseButton_clicked()
 /// @brief 继续播放
 void MainWindow::on_playButton_clicked()
 {
-    if(this->player==nullptr || this->player1==nullptr){
+    if (this->player == nullptr || this->player1 == nullptr)
+    {
         return;
     }
     this->player->play();
     this->player1->play();
 }
 
+void MainWindow::on_query_clicked()
+{
+    MainWindow::showNameHead();
+    MainWindow::showtab(ui->tableView, this->sql_table);
+    MainWindow::showtab(ui->tableView2, this->sql_table, "left");
+    MainWindow::showtab(ui->tableView3, this->sql_table, "front");
+}
+
+void MainWindow::on_query2_clicked()
+{
+    MainWindow::showNameHead();
+    MainWindow::showtab(ui->tableView_2, this->sql_table);
+    MainWindow::showtab(ui->tableView2_2, this->sql_table, "left");
+    MainWindow::showtab(ui->tableView3_2, this->sql_table, "front");
+}
+
+void MainWindow::on_pushButton_3_clicked()
+{
+    QFileDialog *fileDialog = new QFileDialog(this);
+    // 定义文件对话框标题
+    fileDialog->setWindowTitle(QStringLiteral("选择文件"));
+    // 设置打开的文件路径
+    fileDialog->setDirectory("E://");
+    // 设置文件过滤器,只显示mp4文件,多个过滤文件使用空格隔开
+    fileDialog->setNameFilter(tr("File(*.mp4)"));
+    // 设置视图模式
+    fileDialog->setViewMode(QFileDialog::Detail);
+    // 获取选择的文件的路径
+    if (fileDialog->exec())
+    {
+        QString fileName = fileDialog->selectedFiles()[0];
+        ui->label_23->setText(fileName);
+    }
+}
+
+void MainWindow::on_tableView_cellDoubleClicked(int row, int column)
+{
+    MainWindow::PlayandShow(this->sql_table, row);
+}
+
+void MainWindow::on_tableView2_cellDoubleClicked(int row, int column)
+{
+    MainWindow::PlayandShow(this->sql_table2, row);
+}
+
+void MainWindow::on_tableView3_cellDoubleClicked(int row, int column)
+{
+    MainWindow::PlayandShow(this->sql_table3, row);
+}
