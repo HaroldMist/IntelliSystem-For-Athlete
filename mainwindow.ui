@@ -1624,7 +1624,7 @@
                  </property>
                  <property name="dateTime">
                   <datetime>
-                   <hour>8</hour>
+                   <hour>0</hour>
                    <minute>0</minute>
                    <second>0</second>
                    <year>2021</year>
@@ -1971,7 +1971,7 @@
      <x>0</x>
      <y>0</y>
      <width>1600</width>
-     <height>29</height>
+     <height>25</height>
     </rect>
    </property>
    <property name="defaultUp">
@@ -1998,4 +1998,7 @@
   <include location="img.qrc"/>
  </resources>
  <connections/>
+ <slots>
+  <slot>slot1()</slot>
+ </slots>
 </ui>

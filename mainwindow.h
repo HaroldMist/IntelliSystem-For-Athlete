@@ -13,6 +13,7 @@
 #include <QImage>
 #include <QFile>
 #include <QFileDialog>
+#include <QFileInfo>
 
 #include <QSqlDatabase>
 #include <QSqlQuery>
@@ -20,7 +21,8 @@
 #include <QSqlTableModel>
 #include <QSqlRecord>
 
-#include <QFileInfo>
+#include <QProcess>
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui
@@ -61,22 +63,23 @@ public:
     void analysisDate(QVector<double> &std);
     void drawGraphic();
 
+    void startDocker();
+
 private slots:
     void on_pauseButton_clicked();
-
     void on_playButton_clicked();
 
     void on_query_clicked();
-
     void on_query2_clicked();
-
+    
+    // 选择视频文件
     void on_pushButton_3_clicked();
 
     void on_tableView_cellDoubleClicked(int row, int column);
-
     void on_tableView2_cellDoubleClicked(int row, int column);
-
     void on_tableView3_cellDoubleClicked(int row, int column);
+
+
 
 private:
     Ui::MainWindow *ui;
@@ -107,6 +110,8 @@ private:
 
     QToolBar *fileToolBar;
     QToolBar *editToolBar;
+
+    QString filePath;
 };
 
 #endif // MAINWINDOW_H
