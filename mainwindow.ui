@@ -1868,7 +1868,7 @@
            <item row="9" column="0" colspan="4">
             <layout class="QHBoxLayout" name="horizontalLayout_3">
              <item>
-              <widget class="QVideoWidget" name="video_ns_2" native="true">
+              <widget class="QVideoWidget" name="video_3" native="true">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
                  <horstretch>16</horstretch>
@@ -1890,7 +1890,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QVideoWidget" name="video_ns_3" native="true">
+              <widget class="QVideoWidget" name="video_4" native="true">
                <property name="enabled">
                 <bool>true</bool>
                </property>

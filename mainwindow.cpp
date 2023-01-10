@@ -535,21 +535,31 @@ void MainWindow::startDocker()
             break;
         }
         process.write(pyFile.toStdString().c_str());
-        for(int i = 1500;i <= 5000;i += 1){
+        for(int i = 1500;i <= 4000;i += 1){
             ui->progressBar->setValue(i);
             Sleep(2);
         }
 
         ui->label_29->setText("渲染视频中");
-        process.write("docker exec asd /bin/bash -c 'cd /PyMAF_use && python3 /PyMAF_use/demo.py --checkpoint=data/pretrained_model/PyMAF_model_checkpoint.pt --vid_file input/test.mp4 --use_opendr'\n");
-        for(int i = 5000;i <= 9500;i += 1){
+        process.write("docker exec asd /bin/bash -c 'cd /PyMAF_use && python3 /PyMAF_use/demo_orig.py --checkpoint=data/pretrained_model/PyMAF_model_checkpoint.pt --vid_file input/test.mp4 --use_opendr'\n");
+        for(int i = 4000;i <= 9000;i += 1){
             ui->progressBar->setValue(i);
-            Sleep(3);
+            Sleep(4);
         }
-        process.write("docker exec asd /bin/bash -c 'cd /PyMAF_use/output && ls'\n");
+
+        cpPath = "docker cp asd: /PyMAF_use/output/test/test_result.mp4 E:/DBVideo/result/";
+        process.write(cpPath.toStdString().c_str());
+
+        QString video = "E:/DBVideo/result/test_result.mp4";
+        playvideo(video, ui->video_4);
+        
+        playvideo(filePath, ui->video_3);
+
+
+        // process.write("docker exec asd /bin/bash -c 'cd /PyMAF_use/output && ls'\n");
         
         process.waitForFinished();
-        for(int i = 9500;i <= 10000;i += 1){
+        for(int i = 9000;i <= 10000;i += 1){
             ui->progressBar->setValue(i);
             Sleep(2);
         }
