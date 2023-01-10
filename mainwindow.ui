@@ -32,6 +32,9 @@
    <iconset resource="img.qrc">
     <normaloff>:/prefix1/m_icon.png</normaloff>:/prefix1/m_icon.png</iconset>
   </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
   <property name="iconSize">
    <size>
     <width>28</width>
@@ -1409,7 +1412,7 @@
               </size>
              </property>
              <property name="text">
-              <string>PushButton</string>
+              <string>修改该行数据</string>
              </property>
             </widget>
            </item>
@@ -1464,7 +1467,7 @@
               </size>
              </property>
              <property name="text">
-              <string>删除选中数据</string>
+              <string>删除该行数据</string>
              </property>
             </widget>
            </item>
@@ -1756,7 +1759,7 @@
                 </size>
                </property>
                <property name="text">
-                <string>TextLabel</string>
+                <string/>
                </property>
                <property name="alignment">
                 <set>Qt::AlignCenter</set>
@@ -1797,7 +1800,7 @@
               <widget class="QPushButton" name="pushButtonDocker">
                <property name="minimumSize">
                 <size>
-                 <width>100</width>
+                 <width>80</width>
                  <height>0</height>
                 </size>
                </property>
@@ -1842,7 +1845,7 @@
               <widget class="QLabel" name="label_29">
                <property name="minimumSize">
                 <size>
-                 <width>80</width>
+                 <width>100</width>
                  <height>0</height>
                 </size>
                </property>
@@ -1853,7 +1856,7 @@
                 </size>
                </property>
                <property name="text">
-                <string>TextLabel</string>
+                <string/>
                </property>
                <property name="alignment">
                 <set>Qt::AlignCenter</set>

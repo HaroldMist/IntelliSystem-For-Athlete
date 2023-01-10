@@ -462,18 +462,21 @@ void MainWindow::on_tableView3_cellDoubleClicked(int row, int column)
 void MainWindow::on_pushButton_3_clicked()
 {
     QFileDialog *fileDialog = new QFileDialog(this);
-    // 定义文件对话框标题
+
     fileDialog->setWindowTitle(QStringLiteral("选择文件"));
-    // 设置打开的文件路径
     fileDialog->setDirectory("E://");
-    // 设置文件过滤器,只显示mp4文件,多个过滤文件使用空格隔开
+
+    // 设置文件过滤器,多个过滤文件使用空格隔开
     fileDialog->setNameFilter(tr("File(*.mp4)"));
+
     // 设置视图模式
     fileDialog->setViewMode(QFileDialog::Detail);
     // 获取选择的文件的路径
     if (fileDialog->exec())
     {
         filePath = fileDialog->selectedFiles()[0];
+        fileinfo = QFileInfo(filePath);
+        fileName = fileinfo.fileName();
         ui->label_23->setText(filePath);
     }
 }
@@ -484,27 +487,65 @@ void MainWindow::startDocker()
     ui->progressBar->setRange(0,10000);
     QProcess process(this);
     process.setProgram("powershell");
+
+    // copy file to container
+    QString cpPath = "docker cp " + filePath + "asd: /PyMAF_use/input\n";
+    process.write(cpPath.toStdString().c_str());
+
+    // rename file as test.mp4
+    cpPath = "docker exec asd /bin/bash -c 'cp /PyMAF_use/input/" + fileName + " /PyMAF_use/input/test.mp4\n";
+    process.write(cpPath.toStdString().c_str());
     for(int i = 0;i <= 500;i += 1){
-            ui->progressBar->setValue(i);
+        ui->progressBar->setValue(i);
+        Sleep(1);
     }
+
     // QStringList argument;
     // argument<< "/c" << "docker exec asd /bin/bash -c 'cd PyMAF_use && ls'";
     // process.setArguments(argument);
+    
     process.start();
-    process.waitForStarted(); //等待程序启动
+    process.waitForStarted();
     for(int i = 500;i <= 1500;i += 1){
-            ui->progressBar->setValue(i);
-    }
-    process.write("docker exec asd /bin/bash -c 'cd /PyMAF_use && python3 /PyMAF_use/extract_feature.py'");
-    for(int i = 1500;i <= 9500;i += 1){
-            ui->progressBar->setValue(i);
-            Sleep(10);
+        ui->progressBar->setValue(i);
+        Sleep(1);
     }
 
+    ui->label_29->setText("分析准确度中");
+    QString pyFile;
+    switch (ui->combo_p1->currentIndex())
+    {
+    case 0:
+        pyFile = "docker exec asd /bin/bash -c 'cd /PyMAF_use && python3 /PyMAF_use/extract_feature_3.py'\n";
+        break;
+    case 1:
+        pyFile = "docker exec asd /bin/bash -c 'cd /PyMAF_use && python3 /PyMAF_use/extract_feature_2.py'\n";
+        break;
+    case 2:
+        pyFile = "docker exec asd /bin/bash -c 'cd /PyMAF_use && python3 /PyMAF_use/extract_feature.py'\n";
+        break;
+    default:
+        pyFile = "docker exec asd /bin/bash -c 'cd /PyMAF_use && python3 /PyMAF_use/extract_feature.py'\n";
+        break;
+    }
+    process.write(pyFile.toStdString().c_str());
+    for(int i = 1500;i <= 5000;i += 1){
+        ui->progressBar->setValue(i);
+        Sleep(2);
+    }
+
+    ui->label_29->setText("渲染视频中");
+    process.write("docker exec asd /bin/bash -c 'cd /PyMAF_use && python3 /PyMAF_use/demo.py --checkpoint=data/pretrained_model/PyMAF_model_checkpoint.pt --vid_file input/test.mp4 --use_opendr'\n");
+    for(int i = 5000;i <= 9500;i += 1){
+        ui->progressBar->setValue(i);
+        Sleep(3);
+    }
+    process.write("docker exec asd /bin/bash -c 'cd /PyMAF_use/output && ls'\n");
     
     process.waitForFinished();
     for(int i = 9500;i <= 10000;i += 1){
-            ui->progressBar->setValue(i);
+        ui->progressBar->setValue(i);
+        Sleep(2);
     }
     QString temp=QString::fromLocal8Bit(process.readAllStandardOutput());
     QMessageBox textMessage;
@@ -512,6 +553,11 @@ void MainWindow::startDocker()
     textMessage.exec();
 
     ui->label_29->setText("分析完成");
+    
+    
+    
+    
+
   
 }
 

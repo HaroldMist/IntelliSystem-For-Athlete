@@ -111,7 +111,9 @@ private:
     QToolBar *fileToolBar;
     QToolBar *editToolBar;
 
+    QFileInfo fileinfo;
     QString filePath;
+    QString fileName;
 };
 
 #endif // MAINWINDOW_H
