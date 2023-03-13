@@ -1,7 +1,6 @@
 ﻿#include "mainwindow.h"
 #include "qcustomplot.h"
 #include "./ui_mainwindow.h"
-
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow)
 {
@@ -19,6 +18,17 @@ MainWindow::MainWindow(QWidget *parent)
     // 分析按钮
     connect(ui->analysis, &QPushButton::clicked, this, &MainWindow::drawGraphic);
     connect(ui->pushButtonDocker, &QPushButton::clicked, this, &MainWindow::startDocker);
+
+    view = new form(this) ;//将类指针实例化
+    connect(view,SIGNAL(mysignal()),this,SLOT(reshow()));
+    view2=new xiu;
+    connect(view2,SIGNAL(mysignal2()),this,SLOT(reshow()));
+    view3=new xiuhang;
+    connect(view3,SIGNAL(mysignal3()),this,SLOT(reshow()));
+
+    connect(ui->tableView3_2,SIGNAL(cellClicked(int , int )), this, SLOT(getData(int, int)));
+    connect(ui->tableView_2,SIGNAL(cellClicked(int , int )), this, SLOT(getData1(int, int)));
+    connect(ui->tableView2_2,SIGNAL(cellClicked(int , int )), this, SLOT(getData2(int, int)));
 
 }
 
@@ -38,8 +48,8 @@ bool MainWindow::createConnection()
     db.setHostName("127.0.0.1");
     db.setPort(3306);
     db.setDatabaseName("dc_db");
+//    db.setDatabaseName("test_qt");
     db.setUserName("root");
-    // db.setPassword("15897933683");
     db.setPassword("17312767927");
     if (!db.open())
     {
@@ -80,6 +90,41 @@ void MainWindow::GetnameList()
     }
 }
 
+//显示年龄组别性别xiugai
+void MainWindow::showagender()
+{
+    int index(0);
+    if (ui->tabWidget_2->currentIndex() == 0)
+    {
+        index = ui->combo_p1->currentIndex();
+    }
+    else
+    {
+        index = ui->combo_p2->currentIndex();
+    }
+    this->ComboN = this->nameList[index];
+
+    if (ui->tabWidget_2->currentIndex() != 0)
+    {
+        QString str=QString("select *from nonstd where name = '%1'").arg( this->ComboN);//表名、列名
+        QSqlQuery query;
+        query.exec(str);
+        int group;
+        int age;
+        QString gender;
+        while(query.next())
+        {
+            group =query.value("group").toInt();
+            age =query.value("age").toInt();
+            gender=query.value("gender").toString();
+        }
+        ui->label_20->setText(QString().setNum(group));
+        ui->label_33->setText(QString().setNum(age));
+        ui->label_32->setText(gender);
+
+    }
+}
+
 // 显示姓名和头像
 void MainWindow::showNameHead()
 {
@@ -96,6 +141,7 @@ void MainWindow::showNameHead()
     this->ComboN = this->nameList[index];
 
     QString filename = QString(":/prefix1/resource/p%1.png").arg(index + 1);
+    //QString filename = QString("D:/QT/xiangmu/photos/%1.png").arg(this->ComboN);
     QImage *img = new QImage;
     if (!(img->load(filename)))
     {
@@ -233,6 +279,9 @@ void MainWindow::showImages()
 void MainWindow::showImage_y(QString filename)
 {
     QImage *img = new QImage;
+    if (filename.length()==0){
+        return;
+    }
     if (!(img->load(filename)))
     {
         QMessageBox::information(this, tr("加载图像失败"), tr("加载图像失败!"));
@@ -431,16 +480,17 @@ void MainWindow::on_query_clicked()
 {
     MainWindow::showNameHead();
     MainWindow::showtab(ui->tableView, this->sql_table);
-    MainWindow::showtab(ui->tableView2, this->sql_table, "left");
-    MainWindow::showtab(ui->tableView3, this->sql_table, "front");
+    MainWindow::showtab(ui->tableView2, this->sql_table2, "left");
+    MainWindow::showtab(ui->tableView3, this->sql_table3, "front");
 }
 
 void MainWindow::on_query2_clicked()
 {
     MainWindow::showNameHead();
+    MainWindow::showagender();
     MainWindow::showtab(ui->tableView_2, this->sql_table);
-    MainWindow::showtab(ui->tableView2_2, this->sql_table, "left");
-    MainWindow::showtab(ui->tableView3_2, this->sql_table, "front");
+    MainWindow::showtab(ui->tableView2_2, this->sql_table2, "left");
+    MainWindow::showtab(ui->tableView3_2, this->sql_table3, "front");
 }
 
 void MainWindow::on_tableView_cellDoubleClicked(int row, int column)
@@ -476,7 +526,7 @@ void MainWindow::on_pushButton_3_clicked()
     {
         filePath = fileDialog->selectedFiles()[0];
         fileinfo = QFileInfo(filePath);
-        fileName = fileinfo.fileName();
+        this->fileName = fileinfo.fileName();
         ui->label_23->setText(filePath);
     }
 }
@@ -504,23 +554,19 @@ void MainWindow::startDocker()
             Sleep(1);
         }
 
-        // process.waitForFinished(5000);
-        // process.close();
-        // process.waitForReadyRead();
         QString cpPath2 = "docker exec asd /bin/bash -c 'mv /PyMAF_use/input/" + fileName + " /PyMAF_use/input/test.mp4'\n";
         process.write(cpPath2.toStdString().c_str());
         for(int i = 1000;i <= 2000;i += 1){
             ui->progressBar->setValue(i);
             Sleep(1);
         }        
-        // process.waitForReadyRead();
         process.waitForFinished(5000);
-        process.close();
+//        process.close();
 
         ui->label_29->setText("分析准确度中");
         
         QString pyFile;
-        switch (ui->combo_p1->currentIndex())
+        switch (ui->comboAngle2->currentIndex())
         {
         case 0:
             pyFile = "docker exec asd /bin/bash -c 'cd /PyMAF_use && python3 /PyMAF_use/extract_feature_3.py'\n";
@@ -535,7 +581,6 @@ void MainWindow::startDocker()
             pyFile = "docker exec asd /bin/bash -c 'cd /PyMAF_use && python3 /PyMAF_use/extract_feature.py'\n";
             break;
         }
-
         QProcess process2(this);
         process2.setProgram("powershell");
         process2.start();
@@ -547,12 +592,22 @@ void MainWindow::startDocker()
         }
 
         process2.waitForFinished(40000);
-        QString temp=QString::fromLocal8Bit(process2.readAllStandardOutput());
+        // 从结果中提取标准度
+        QString temp=QString::fromUtf8(process2.readAllStandardOutput());
+        QRegularExpression re("标准度为([\\d\\.]+)");
+        QRegularExpressionMatch match = re.match(temp);
+        QString value="1.0";
+        if (match.hasMatch()) {
+            value = match.captured(1);
+        }
+        ui->labelResultStd->setText(value);
+        // 获取手部轨迹图片
+        process2.write("docker cp asd:/PyMAF_use/output/wrist.jpg E:/DBVideo/result/\n");
+        process2.waitForFinished(4000);
         process2.close();
 
         ui->label_29->setText("渲染视频中");
 
-        // process.waitForReadyRead(-1);
         QProcess process3(this);
         process3.setProgram("powershell");
         process3.start();
@@ -563,39 +618,182 @@ void MainWindow::startDocker()
             Sleep(4);
         }
         process3.waitForFinished(100000);
-        QString temp2 = QString::fromLocal8Bit(process3.readAllStandardOutput());
         process3.close();
 
         QProcess process4(this);
         process4.setProgram("powershell");
         process4.start();
         process4.waitForStarted();
-        // process.waitForReadyRead(-1);
         process4.write("docker cp asd:/PyMAF_use/output/test/test_result.mp4 E:/DBVideo/result/\n");
-
-        // process.waitForFinished();
-        // process.write("docker exec asd /bin/bash -c 'cd /PyMAF_use/output && ls'\n");
-        
         process4.waitForFinished(100000);
         for(int i = 9500;i <= 10000;i += 1){
             ui->progressBar->setValue(i);
             Sleep(2);
         }
         
-        QMessageBox textMessage;
-        textMessage.setText((temp+temp2));
-        textMessage.exec();
-        
         ui->label_29->setText("分析完成");
+
+        // 显示图片
+        QImage *img = new QImage;
+        img->load("E:/DBVideo/result/wrist.jpg");
+        *img = img->scaled(250, 210, Qt::KeepAspectRatio);
+        ui->labelResultY->setPixmap(QPixmap::fromImage(*img));
 
         QString video = "E:/DBVideo/result/test_result.mp4";
         playvideo(video, ui->video_4);
         playvideo(filePath, ui->video_3);
 
         process4.close();
-        
     }
-    
 }
 
+void MainWindow::reshow()
+{
+    GetnameList();
+    ui->combo_p1->clear();
+    ui->combo_p2->clear();
+    showCombo();
+    MainWindow::showtab(ui->tableView_2, this->sql_table);
+    MainWindow::showtab(ui->tableView2_2, this->sql_table2, "left");
+    MainWindow::showtab(ui->tableView3_2, this->sql_table3, "front");
+
+}
+//新增运动员
+void MainWindow::on_pushButtonAddAth_clicked()
+{
+    view->show();
+}
+
+
+
+//删除运动员
+
+void MainWindow::on_pushButtonDelAth_clicked()
+{
+    QMessageBox message(QMessageBox::Warning,"提示","确定要删除该项吗？",QMessageBox::Yes|QMessageBox::No,NULL);
+        if (message.exec()==QMessageBox::Yes)
+        {
+        QSqlQuery dequery;
+        QString command = QString("delete from nonstd where name = '%1' ") .arg( this->ComboN);  //只获取当前表格内容
+        dequery.exec(command);
+        GetnameList();
+        ui->combo_p1->clear();
+        ui->combo_p2->clear();
+        showCombo();
+        ui->label_16->setText("未选择");
+        ui->label_20->clear();
+        ui->label_32->clear();
+        ui->label_33->clear();
+        ui->label_p_2->clear();
+        QString address=QString(":/prefix1/resource/%1.png").arg(this->ComboN);
+        QFile file(address);
+        bool ok = file.remove();
+        }
+}
+
+
+//修改个人信息
+void MainWindow::on_pushButton_clicked()
+{
+   // view2 = new xiu(this);
+    view2->fromA(ComboN);
+    view2->show();
+    view2->showNameHead2();
+
+}
+
+//删除该行数据
+void MainWindow::on_pushButton_2_clicked()
+{
+    //进行查询组名
+    QString str=QString("select *from nonstd where name = '%1'").arg( this->ComboN);//表名、列名
+    QSqlQuery query;
+    query.exec(str);
+    int group;
+    int age;
+    QString gender;
+    while(query.next())
+    {
+        group =query.value("group").toInt();
+        age =query.value("age").toInt();
+        gender=query.value("gender").toString();
+    }
+
+    //进行
+    QString tishi=QString("确定要删除第%1项吗？").arg(col);
+    QMessageBox message(QMessageBox::Warning,"提示",tishi,QMessageBox::Yes|QMessageBox::No,NULL);
+        if (message.exec()==QMessageBox::Yes)
+        {
+
+            QSqlQuery query;
+            QString command = QString("DELETE FROM nonstd WHERE `name` = '%1' AND age=%2 AND `group`=%3 AND gender='%4' AND angle='%5' AND video='%6' AND `std`='%7' AND `date`='%8' AND p_back='%9' AND p_front='%10' LIMIT 1;  ")
+                                        .arg( this->ComboN).arg(age).arg(group).arg(gender).arg(angle1).arg(vedio1).arg(biaozhun).arg(data).arg(last).arg(first);  //只获取当前表格内容
+            query.exec(command);
+        }
+
+        MainWindow::reshow();
+
+
+}
+//从三个表获取数据
+void MainWindow::getData(int row, int column)
+{
+   angle1="front";
+   col = ui->tableView3_2->rowCount();
+   vedio1=ui->tableView3_2->item(row,0)->text();
+   biaozhun=ui->tableView3_2->item(row,1)->text();
+   data=ui->tableView3_2->item(row,2)->text();
+   last=ui->tableView3_2->item(row,3)->text();
+   first=ui->tableView3_2->item(row,4)->text();
+}
+void MainWindow::getData2(int row, int column)
+{
+   angle1="left";
+   col = ui->tableView2_2->rowCount() ;
+   vedio1=ui->tableView2_2->item(row,0)->text();
+   biaozhun=ui->tableView2_2->item(row,1)->text();
+   data=ui->tableView2_2->item(row,2)->text();
+   last=ui->tableView2_2->item(row,3)->text();
+   first=ui->tableView2_2->item(row,4)->text();
+}
+void MainWindow::getData1(int row, int column)
+{
+   angle1="right";
+   col = ui->tableView_2->rowCount();
+   vedio1=ui->tableView_2->item(row,0)->text();
+   biaozhun=ui->tableView_2->item(row,1)->text();
+   data=ui->tableView_2->item(row,2)->text();
+   last=ui->tableView_2->item(row,3)->text();
+   first=ui->tableView_2->item(row,4)->text();
+}
+
+
+
+
+//修改该行数据
+void MainWindow::on_pushButton_4_clicked()
+{
+    view3->fromB(ComboN,vedio1,biaozhun,data,last,first,angle1);
+    view3->show();
+    view3->showold();
+}
+
+
+void MainWindow::on_pushButtonImport_clicked()
+{
+    if (ui->label_29->text()!="分析完成"){
+        QMessageBox::critical(this,"Error","请先分析再导入！");
+        return;
+    }
+    QMessageBox messageBox;
+    messageBox.setWindowTitle("提示");
+    messageBox.setText("您确定要添加这些数据吗？");
+    messageBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
+    messageBox.setDefaultButton(QMessageBox::Cancel);
+    messageBox.setIcon(QMessageBox::Question);
+
+    if (messageBox.exec()==QMessageBox::Ok){
+        ui->label_29->setText("导入成功");
+    }
+}
 

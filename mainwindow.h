@@ -22,7 +22,11 @@
 #include <QSqlRecord>
 
 #include <QProcess>
+#include <QRegularExpression>
 
+#include "form.h"
+#include "xiu.h"
+#include "xiuhang.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui
@@ -47,6 +51,8 @@ public:
     void createActions();
     void createToolBar();
 
+
+    void showagender();//xiugai
     void showNameHead();
     void PlayandShow(QSqlQuery sql_result, int row);
     void showtab(QTableWidget *table, QSqlQuery &sql_table, QString angle);
@@ -65,6 +71,7 @@ public:
 
     void startDocker();
 
+
 private slots:
     void on_pauseButton_clicked();
     void on_playButton_clicked();
@@ -81,12 +88,37 @@ private slots:
 
 
 
+    void on_pushButtonAddAth_clicked();
+
+    void reshow();
+    void on_pushButtonDelAth_clicked();
+
+    void on_pushButton_clicked();
+
+    void on_pushButton_2_clicked();
+
+
+
+
+    void getData(int, int);
+    void getData1(int, int);
+    void getData2(int, int);
+
+    void on_pushButton_4_clicked();
+
+    void on_pushButtonImport_clicked();
+
 private:
     Ui::MainWindow *ui;
     QSqlDatabase db = QSqlDatabase::addDatabase("QODBC");
 
     QStringList nameList;
+    QStringList ageList;
+    QStringList genderList;
+    QStringList groupList;
     QString ComboN;
+
+
     QSqlQuery sql_table;
     QSqlQuery sql_table2;
     QSqlQuery sql_table3;
@@ -114,6 +146,18 @@ private:
     QFileInfo fileinfo;
     QString filePath;
     QString fileName;
+
+    form *view;
+    xiu *view2;
+    xiuhang *view3;
+
+    int col;
+    QString vedio1;
+    QString biaozhun;
+    QString data;
+    QString first;
+    QString last;
+    QString angle1;
 };
 
 #endif // MAINWINDOW_H

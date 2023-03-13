@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.5)
 
 project(DC_1 VERSION 0.1 LANGUAGES CXX)
 
-set(CMAKE_PREFIX_PATH "D:\\Qt\\Qt6.4.0\\6.4.0\\mingw_64\\")
+set(CMAKE_PREFIX_PATH "D:\\Qt\\6.2.4\\mingw_64\\")
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -30,6 +30,15 @@ set(PROJECT_SOURCES
         qcustomplot.h
         img.qrc
         video.qrc
+        form.h
+        form.cpp
+        form.ui
+        xiu.h
+        xiu.cpp
+        xiu.ui
+        xiuhang.h
+        xiuhang.cpp
+        xiuhang.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
