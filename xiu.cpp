@@ -7,8 +7,8 @@ xiu::xiu(QWidget *parent) :
     ui(new Ui::xiu)
 {
     ui->setupUi(this);
-    ui->spinBox->setRange(10, 40);
-    ui->spinBox_2->setRange(1, 10);
+    ui->spinBox->setRange(12, 60);
+    ui->spinBox_2->setRange(0, 10);
 }
 
 xiu::~xiu()
@@ -28,13 +28,14 @@ void xiu::fromA(QString copy)
 void xiu::showNameHead2()
 {
 
-    ui->lineEdit->clear();
+    ui->lineEdit->setText(this->nameold);
     ui->label_5->clear();
     ui->spinBox_2->clear();
     ui->spinBox->clear();
     ui->lineEdit_2->clear();
+    ui->pushButton_3->setVisible(false);
     //获取其他信息
-    QString str=QString("select *from nonstd where name = '%1'").arg( this->nameold);//表名、列名
+    QString str=QString("select *from nonstd where name = '%1'").arg(this->nameold);//表名、列名
     QSqlQuery query;
     query.exec(str);
     int group;
@@ -46,10 +47,13 @@ void xiu::showNameHead2()
         age =query.value("age").toInt();
         gender=query.value("gender").toString();
     }
+    ui->spinBox_2->setValue(group);
+    ui->spinBox->setValue(age);
+    ui->lineEdit_2->setText(gender);
 
 
-    QString filename = QString("E:/CodeRepos/DC/xiangmu/resource/p%1.png").arg(this->nameold);
-    // QString filename = QString(":/prefix1/resource/p%1.png").arg(this->nameold);
+    QString filename = QString("E:/CodeRepos/DC/xiangmu/resource/p%1.png").arg(this->indexOld=1);
+    // QString filename = QString(":/prefix1/resource/p%1.png").arg(this->indexOld);
     QImage *img = new QImage;
     if (!(img->load(filename)))
     {
@@ -59,11 +63,8 @@ void xiu::showNameHead2()
     }
     *img = img->scaled(100, 110, Qt::KeepAspectRatio);
     // 显示
-    ui->lineEdit->setText(this->nameold);
+    // ui->lineEdit->setText(this->nameold);
     ui->label_5->setPixmap(QPixmap::fromImage(*img));
-    ui->spinBox_2->setValue(group);
-    ui->spinBox->setValue(age);
-    ui->lineEdit_2->setText(gender);
 }
 
 

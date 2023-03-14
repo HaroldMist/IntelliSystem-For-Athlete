@@ -6,9 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
-    <height>400</height>
+    <width>510</width>
+    <height>344</height>
    </rect>
+  </property>
+  <property name="font">
+   <font>
+    <pointsize>10</pointsize>
+   </font>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
@@ -17,8 +22,8 @@
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>150</x>
-      <y>270</y>
+      <x>120</x>
+      <y>240</y>
       <width>93</width>
       <height>29</height>
      </rect>
@@ -30,8 +35,8 @@
    <widget class="QPushButton" name="pushButton_2">
     <property name="geometry">
      <rect>
-      <x>330</x>
-      <y>270</y>
+      <x>300</x>
+      <y>240</y>
       <width>93</width>
       <height>29</height>
      </rect>
@@ -43,8 +48,8 @@
    <widget class="QLabel" name="label_7">
     <property name="geometry">
      <rect>
-      <x>220</x>
-      <y>230</y>
+      <x>210</x>
+      <y>220</y>
       <width>121</width>
       <height>20</height>
      </rect>
@@ -56,8 +61,8 @@
    <widget class="QWidget" name="gridLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>99</x>
-      <y>39</y>
+      <x>80</x>
+      <y>60</y>
       <width>161</width>
       <height>151</height>
      </rect>
@@ -140,9 +145,9 @@
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>310</x>
-      <y>40</y>
-      <width>161</width>
+      <x>290</x>
+      <y>60</y>
+      <width>121</width>
       <height>151</height>
      </rect>
     </property>
@@ -162,6 +167,9 @@
      </item>
      <item>
       <widget class="QPushButton" name="pushButton_3">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
        <property name="text">
         <string>修改头像</string>
        </property>
@@ -175,8 +183,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>600</width>
-     <height>21</height>
+     <width>510</width>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu">

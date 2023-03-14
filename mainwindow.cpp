@@ -90,7 +90,7 @@ void MainWindow::GetnameList()
     }
 }
 
-//显示年龄组别性别xiugai
+//显示年龄组别性别修改
 void MainWindow::showagender()
 {
     int index(0);
@@ -106,7 +106,7 @@ void MainWindow::showagender()
 
     if (ui->tabWidget_2->currentIndex() != 0)
     {
-        QString str=QString("select *from nonstd where name = '%1'").arg( this->ComboN);//表名、列名
+        QString str=QString("select *from nonstd where name = '%1'").arg(this->ComboN);//表名、列名
         QSqlQuery query;
         query.exec(str);
         int group;
@@ -652,6 +652,7 @@ void MainWindow::reshow()
     GetnameList();
     ui->combo_p1->clear();
     ui->combo_p2->clear();
+    ui->comboAngle2->clear();
     showCombo();
     MainWindow::showtab(ui->tableView_2, this->sql_table);
     MainWindow::showtab(ui->tableView2_2, this->sql_table2, "left");
@@ -667,18 +668,18 @@ void MainWindow::on_pushButtonAddAth_clicked()
 
 
 //删除运动员
-
 void MainWindow::on_pushButtonDelAth_clicked()
 {
     QMessageBox message(QMessageBox::Warning,"提示","确定要删除该项吗？",QMessageBox::Yes|QMessageBox::No,NULL);
         if (message.exec()==QMessageBox::Yes)
         {
         QSqlQuery dequery;
-        QString command = QString("delete from nonstd where name = '%1' ") .arg( this->ComboN);  //只获取当前表格内容
+        QString command = QString("delete from nonstd where name = '%1' ") .arg(this->ComboN);  //只获取当前表格内容
         dequery.exec(command);
         GetnameList();
         ui->combo_p1->clear();
         ui->combo_p2->clear();
+        ui->comboAngle2->clear();
         showCombo();
         ui->label_16->setText("未选择");
         ui->label_20->clear();
@@ -695,10 +696,16 @@ void MainWindow::on_pushButtonDelAth_clicked()
 //修改个人信息
 void MainWindow::on_pushButton_clicked()
 {
-   // view2 = new xiu(this);
-    view2->fromA(ComboN);
-    view2->show();
+    int index(0);
+    index = ui->combo_p2->currentIndex();
+    this->ComboN = this->nameList[index];
+
+    // view2 = new xiu(this);
+    view2->nameold = this->ComboN;
+    view2->indexOld = index;
+    // view2->fromA(ComboN);
     view2->showNameHead2();
+    view2->show();
 
 }
 
@@ -706,7 +713,7 @@ void MainWindow::on_pushButton_clicked()
 void MainWindow::on_pushButton_2_clicked()
 {
     //进行查询组名
-    QString str=QString("select *from nonstd where name = '%1'").arg( this->ComboN);//表名、列名
+    QString str=QString("select *from nonstd where name = '%1'").arg(this->ComboN);//表名、列名
     QSqlQuery query;
     query.exec(str);
     int group;
@@ -726,8 +733,8 @@ void MainWindow::on_pushButton_2_clicked()
         {
 
             QSqlQuery query;
-            QString command = QString("DELETE FROM nonstd WHERE `name` = '%1' AND age=%2 AND `group`=%3 AND gender='%4' AND angle='%5' AND video='%6' AND `std`='%7' AND `date`='%8' AND p_back='%9' AND p_front='%10' LIMIT 1;  ")
-                                        .arg( this->ComboN).arg(age).arg(group).arg(gender).arg(angle1).arg(vedio1).arg(biaozhun).arg(data).arg(last).arg(first);  //只获取当前表格内容
+            QString command = QString("DELETE FROM nonstd WHERE name = '%1' AND age=%2 AND group=%3 AND gender='%4' AND angle='%5' AND video='%6' AND std='%7' AND date='%8' AND p_back='%9' AND p_front='%10' LIMIT 1")
+                                        .arg(this->ComboN).arg(age).arg(group).arg(gender).arg(angle1).arg(vedio1).arg(biaozhun).arg(data).arg(last).arg(first);  //只获取当前表格内容
             query.exec(command);
         }
 
@@ -739,7 +746,8 @@ void MainWindow::on_pushButton_2_clicked()
 void MainWindow::getData(int row, int column)
 {
    angle1="front";
-   col = ui->tableView3_2->rowCount();
+   col = row + 1;
+//    col = ui->tableView3_2->rowCount();
    vedio1=ui->tableView3_2->item(row,0)->text();
    biaozhun=ui->tableView3_2->item(row,1)->text();
    data=ui->tableView3_2->item(row,2)->text();
@@ -749,7 +757,8 @@ void MainWindow::getData(int row, int column)
 void MainWindow::getData2(int row, int column)
 {
    angle1="left";
-   col = ui->tableView2_2->rowCount() ;
+   col = row + 1;
+//    col = ui->tableView2_2->rowCount() ;
    vedio1=ui->tableView2_2->item(row,0)->text();
    biaozhun=ui->tableView2_2->item(row,1)->text();
    data=ui->tableView2_2->item(row,2)->text();
@@ -759,7 +768,8 @@ void MainWindow::getData2(int row, int column)
 void MainWindow::getData1(int row, int column)
 {
    angle1="right";
-   col = ui->tableView_2->rowCount();
+   col = row + 1;
+   // col = ui->tableView_2->rowCount();
    vedio1=ui->tableView_2->item(row,0)->text();
    biaozhun=ui->tableView_2->item(row,1)->text();
    data=ui->tableView_2->item(row,2)->text();

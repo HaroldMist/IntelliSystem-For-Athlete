@@ -28,6 +28,8 @@ public:
     //void GetnameList2();
     void showNameHead2();
     void fromA(QString copy);
+    QString nameold;
+    int indexOld;
 
 private slots:
     void on_pushButton_2_clicked();
@@ -41,7 +43,6 @@ private:
     Ui::xiu *ui;
 
     QString name;
-    QString nameold;
     int suc;
     QImage *img = new QImage;
 };
