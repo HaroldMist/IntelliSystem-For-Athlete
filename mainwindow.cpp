@@ -13,13 +13,12 @@ MainWindow::MainWindow(QWidget *parent)
 
     createActions();
     createMenu();
-
     showCombo();
-
     showImages();
 
     // 分析按钮
     connect(ui->analysis, &QPushButton::clicked, this, &MainWindow::drawGraphic);
+    connect(ui->pushButtonDocker, &QPushButton::clicked, this, &MainWindow::startDocker);
 }
 
 MainWindow::~MainWindow()
@@ -39,8 +38,8 @@ bool MainWindow::createConnection()
     db.setPort(3306);
     db.setDatabaseName("dc_db");
     db.setUserName("root");
-     db.setPassword("15897933683");
-//    db.setPassword("17312767927");
+    // db.setPassword("15897933683");
+    db.setPassword("123456");
     if (!db.open())
     {
         QMessageBox::critical(0, QObject::tr("无法打开数据库"), "无法创建数据库连接！ ", QMessageBox::Cancel);
@@ -53,7 +52,7 @@ bool MainWindow::createConnection()
     }
 };
 
-/// @brief 显示姓名选项
+/// @brief 显示选项
 void MainWindow::showCombo()
 {
     ui->combo_p1->addItems(this->nameList);
@@ -187,6 +186,7 @@ void MainWindow::playvideo(QString path, QVideoWidget *videoWidget, int pos)
     videoWidget->show();
 
     QFile file(path);
+
     if (!file.open(QIODevice::ReadOnly))
     {
         qDebug() << "Could not open video file";
@@ -431,35 +431,16 @@ void MainWindow::on_query_clicked()
 {
     MainWindow::showNameHead();
     MainWindow::showtab(ui->tableView, this->sql_table);
-    MainWindow::showtab(ui->tableView2, this->sql_table, "left");
-    MainWindow::showtab(ui->tableView3, this->sql_table, "front");
+    MainWindow::showtab(ui->tableView2, this->sql_table2, "left");
+    MainWindow::showtab(ui->tableView3, this->sql_table3, "front");
 }
 
 void MainWindow::on_query2_clicked()
 {
     MainWindow::showNameHead();
     MainWindow::showtab(ui->tableView_2, this->sql_table);
-    MainWindow::showtab(ui->tableView2_2, this->sql_table, "left");
-    MainWindow::showtab(ui->tableView3_2, this->sql_table, "front");
-}
-
-void MainWindow::on_pushButton_3_clicked()
-{
-    QFileDialog *fileDialog = new QFileDialog(this);
-    // 定义文件对话框标题
-    fileDialog->setWindowTitle(QStringLiteral("选择文件"));
-    // 设置打开的文件路径
-    fileDialog->setDirectory("E://");
-    // 设置文件过滤器,只显示mp4文件,多个过滤文件使用空格隔开
-    fileDialog->setNameFilter(tr("File(*.mp4)"));
-    // 设置视图模式
-    fileDialog->setViewMode(QFileDialog::Detail);
-    // 获取选择的文件的路径
-    if (fileDialog->exec())
-    {
-        QString fileName = fileDialog->selectedFiles()[0];
-        ui->label_23->setText(fileName);
-    }
+    MainWindow::showtab(ui->tableView2_2, this->sql_table2, "left");
+    MainWindow::showtab(ui->tableView3_2, this->sql_table3, "front");
 }
 
 void MainWindow::on_tableView_cellDoubleClicked(int row, int column)
@@ -476,3 +457,202 @@ void MainWindow::on_tableView3_cellDoubleClicked(int row, int column)
 {
     MainWindow::PlayandShow(this->sql_table3, row);
 }
+
+void MainWindow::on_pushButton_3_clicked()
+{
+    QFileDialog *fileDialog = new QFileDialog(this);
+
+    fileDialog->setWindowTitle(QStringLiteral("选择文件"));
+    fileDialog->setDirectory("E://DBVideo");
+
+    // 设置文件过滤器,多个过滤文件使用空格隔开
+    fileDialog->setNameFilter(tr("File(*.mp4)"));
+
+    // 设置视图模式
+    fileDialog->setViewMode(QFileDialog::Detail);
+    // 获取选择的文件的路径
+    if (fileDialog->exec())
+    {
+        filePath = fileDialog->selectedFiles()[0];
+        fileinfo = QFileInfo(filePath);
+        fileName = fileinfo.fileName();
+        ui->label_23->setText(filePath);
+    }
+}
+
+void MainWindow::startDocker()
+{
+    if (fileName.isEmpty())
+    {
+        QMessageBox::warning(this, "错误", "请选择文件");
+    }
+    else
+    {
+        ui->label_29->setText("分析中");
+        ui->progressBar->setRange(0, 10000);
+
+        QProcess process(this);
+        process.setProgram("powershell");
+        process.start();
+        process.waitForStarted();
+
+        QString cpPath = "docker cp " + filePath + " asd:/PyMAF_use/input\n";
+        process.write(cpPath.toStdString().c_str());
+        for (int i = 0; i <= 1000; i += 1)
+        {
+            ui->progressBar->setValue(i);
+            Sleep(1);
+        }
+
+        // process.waitForFinished(5000);
+        // process.close();
+        // process.waitForReadyRead();
+        QString cpPath2 = "docker exec asd /bin/bash -c 'mv /PyMAF_use/input/" + fileName + " /PyMAF_use/input/test.mp4'\n";
+        process.write(cpPath2.toStdString().c_str());
+        for (int i = 1000; i <= 2000; i += 1)
+        {
+            ui->progressBar->setValue(i);
+            Sleep(1);
+        }
+        // process.waitForReadyRead();
+        process.waitForFinished(5000);
+        process.close();
+
+        ui->label_29->setText("分析准确度中");
+
+        QString pyFile;
+        switch (ui->combo_p1->currentIndex())
+        {
+        case 0:
+            pyFile = "docker exec asd /bin/bash -c 'cd /PyMAF_use && python3 /PyMAF_use/extract_feature_3.py'\n";
+            break;
+        case 1:
+            pyFile = "docker exec asd /bin/bash -c 'cd /PyMAF_use && python3 /PyMAF_use/extract_feature_2.py'\n";
+            break;
+        case 2:
+            pyFile = "docker exec asd /bin/bash -c 'cd /PyMAF_use && python3 /PyMAF_use/extract_feature.py'\n";
+            break;
+        default:
+            pyFile = "docker exec asd /bin/bash -c 'cd /PyMAF_use && python3 /PyMAF_use/extract_feature.py'\n";
+            break;
+        }
+
+        QProcess process2(this);
+        process2.setProgram("powershell");
+        process2.start();
+        process2.waitForStarted();
+        process2.write(pyFile.toStdString().c_str());
+        for (int i = 2000; i <= 4000; i += 1)
+        {
+            ui->progressBar->setValue(i);
+            Sleep(3);
+        }
+
+        process2.waitForFinished(40000);
+        QString temp = QString::fromLocal8Bit(process2.readAllStandardOutput());
+        process2.close();
+
+        ui->label_29->setText("渲染视频中");
+
+        // process.waitForReadyRead(-1);
+        QProcess process3(this);
+        process3.setProgram("powershell");
+        process3.start();
+        process3.waitForStarted();
+        process3.write("docker exec asd /bin/bash -c 'cd /PyMAF_use && python3 /PyMAF_use/demo_orig.py --checkpoint=data/pretrained_model/PyMAF_model_checkpoint.pt --vid_file input/test.mp4 --use_opendr'\n");
+        for (int i = 4000; i <= 9500; i += 1)
+        {
+            ui->progressBar->setValue(i);
+            Sleep(4);
+        }
+        process3.waitForFinished(100000);
+        QString temp2 = QString::fromLocal8Bit(process3.readAllStandardOutput());
+        process3.close();
+
+        QProcess process4(this);
+        process4.setProgram("powershell");
+        process4.start();
+        process4.waitForStarted();
+        // process.waitForReadyRead(-1);
+        process4.write("docker cp asd:/PyMAF_use/output/test/test_result.mp4 E:/DBVideo/result/\n");
+
+        // process.waitForFinished();
+        // process.write("docker exec asd /bin/bash -c 'cd /PyMAF_use/output && ls'\n");
+
+        process4.waitForFinished(100000);
+        for (int i = 9500; i <= 10000; i += 1)
+        {
+            ui->progressBar->setValue(i);
+            Sleep(2);
+        }
+
+        QMessageBox textMessage;
+        textMessage.setText((temp + temp2));
+        textMessage.exec();
+
+        ui->label_29->setText("分析完成");
+
+        QString video = "E:/DBVideo/result/test_result.mp4";
+        playvideo(video, ui->video_4);
+        playvideo(filePath, ui->video_3);
+
+        process4.close();
+    }
+}
+
+void MainWindow::on_tabWidget_2_tabBarClicked(int index)
+{
+    if (index!=2){
+        return;
+    }
+    this->player3_std = new QMediaPlayer;
+    this->player3_std->setVideoOutput(ui->video_std3);
+    this->player3_std->setSource(QUrl::fromLocalFile("E:\\DBVideo\\2024-03\\STd\\2\\2_L.mp4"));
+    // this->player3_std->play();
+    // this->player3_std->pause();
+}
+
+
+void MainWindow::on_pushButton_6_clicked()
+{
+    QString FileName = QFileDialog::getOpenFileName(
+        this,
+        tr("选择一个视频"),
+        "E://DBVideo",
+        tr("video files(*.mp4)"));
+    if (FileName.isEmpty()) {
+        QMessageBox::warning(this, "Warning!", "Failed to open the video!");
+    }else{
+        this->player3_nstd = new QMediaPlayer;
+        this->player3_nstd->setVideoOutput(ui->video_nonstd3);
+        this->player3_nstd->setSource(FileName);
+        if (this->player3_std==nullptr){
+            this->player3_std = new QMediaPlayer;
+            this->player3_std->setVideoOutput(ui->video_std3);
+            this->player3_std->setSource(QUrl::fromLocalFile("E:\\DBVideo\\2024-03\\STd\\2\\2_L.mp4"));
+        }
+    }
+
+}
+
+
+void MainWindow::on_pushButton_5_clicked()
+{
+    if (this->player3_nstd==nullptr){
+        QMessageBox::warning(this, "Warning", "请选择文件！");
+    }else{
+        ui->progressBar_2->setRange(0, 100);
+        for (int i=0; i<=100; i++){
+            ui->progressBar_2->setValue(i);
+            Sleep(rand()%200);
+        }
+        this->player3_std->play();
+        this->player3_nstd->play();
+
+        QImage img;
+        img.load(":/prefix1/resource/boat.png");
+        img = img.scaled(599, 153, Qt::KeepAspectRatio);
+        ui->image_body_2->setPixmap(QPixmap::fromImage(img));
+    }
+}
+

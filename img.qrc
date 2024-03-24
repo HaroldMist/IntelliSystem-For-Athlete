@@ -25,5 +25,11 @@
         <file>resource/curve (Custom).png</file>
         <file>resource/light (Custom).png</file>
         <file>resource/note (Custom).png</file>
+        <file>resource/3nstd.png</file>
+        <file>resource/3std.png</file>
+        <file>resource/boat33.jpg</file>
+        <file>resource/keyaction.png</file>
+        <file>resource/score.png</file>
     </qresource>
+    <qresource prefix="/"/>
 </RCC>

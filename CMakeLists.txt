@@ -2,8 +2,6 @@ cmake_minimum_required(VERSION 3.5)
 
 project(DC_1 VERSION 0.1 LANGUAGES CXX)
 
-set(CMAKE_PREFIX_PATH "D:\\QT6\\6.4.2\\mingw_64\\")
-
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 set(CMAKE_AUTOUIC ON)
@@ -13,9 +11,10 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(QT NAMES Qt6 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
+find_package(Qt6 REQUIRED COMPONENTS Core)
 find_package(Qt6 REQUIRED COMPONENTS Sql)
 find_package(Qt6 COMPONENTS MultimediaWidgets REQUIRED)
 find_package(Qt6 REQUIRED COMPONENTS PrintSupport)
@@ -55,6 +54,7 @@ else()
 endif()
 
 target_link_libraries(DC_1 PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(DC_1 PRIVATE Qt6::Core)
 target_link_libraries(DC_1 PRIVATE Qt6::Sql)
 target_link_libraries(DC_1 PRIVATE Qt6::MultimediaWidgets)
 target_link_libraries(DC_1 PRIVATE Qt6::PrintSupport)
@@ -67,9 +67,12 @@ set_target_properties(DC_1 PROPERTIES
     WIN32_EXECUTABLE TRUE
 )
 
+include(GNUInstallDirs)
 install(TARGETS DC_1
     BUNDLE DESTINATION .
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+)
 
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(DC_1)
