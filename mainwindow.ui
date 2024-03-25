@@ -1627,12 +1627,12 @@
                  </property>
                  <property name="dateTime">
                   <datetime>
-                   <hour>0</hour>
+                   <hour>16</hour>
                    <minute>0</minute>
                    <second>0</second>
                    <year>2021</year>
                    <month>12</month>
-                   <day>29</day>
+                   <day>28</day>
                   </datetime>
                  </property>
                 </widget>
@@ -1997,6 +1997,13 @@
           <height>21</height>
          </rect>
         </property>
+        <property name="font">
+         <font>
+          <family>Microsoft YaHei UI</family>
+          <pointsize>14</pointsize>
+          <bold>false</bold>
+         </font>
+        </property>
         <property name="text">
          <string>优秀运动员</string>
         </property>
@@ -2010,6 +2017,13 @@
           <height>21</height>
          </rect>
         </property>
+        <property name="font">
+         <font>
+          <family>Microsoft YaHei UI</family>
+          <pointsize>14</pointsize>
+          <bold>false</bold>
+         </font>
+        </property>
         <property name="text">
          <string>对比运动员</string>
         </property>
@@ -2022,6 +2036,13 @@
           <width>98</width>
           <height>41</height>
          </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Microsoft YaHei UI</family>
+          <pointsize>14</pointsize>
+          <bold>false</bold>
+         </font>
         </property>
         <property name="text">
          <string>开始分析</string>
@@ -2068,6 +2089,13 @@
           <height>30</height>
          </rect>
         </property>
+        <property name="font">
+         <font>
+          <family>Microsoft YaHei UI</family>
+          <pointsize>14</pointsize>
+          <bold>false</bold>
+         </font>
+        </property>
         <property name="text">
          <string>选择</string>
         </property>
@@ -2099,7 +2127,7 @@
         <property name="geometry">
          <rect>
           <x>870</x>
-          <y>100</y>
+          <y>110</y>
           <width>111</width>
           <height>31</height>
          </rect>
@@ -2158,8 +2186,8 @@
        <widget class="QLabel" name="label_39">
         <property name="geometry">
          <rect>
-          <x>782</x>
-          <y>605</y>
+          <x>815</x>
+          <y>620</y>
           <width>58</width>
           <height>41</height>
          </rect>
@@ -2187,8 +2215,8 @@
        <widget class="QLabel" name="label_44">
         <property name="geometry">
          <rect>
-          <x>782</x>
-          <y>470</y>
+          <x>815</x>
+          <y>485</y>
           <width>58</width>
           <height>41</height>
          </rect>
@@ -2237,8 +2265,8 @@
        <widget class="QLabel" name="label_chu_2">
         <property name="geometry">
          <rect>
-          <x>842</x>
-          <y>433</y>
+          <x>875</x>
+          <y>448</y>
           <width>140</width>
           <height>100</height>
          </rect>
@@ -2256,8 +2284,8 @@
        <widget class="QLabel" name="label_high_2">
         <property name="geometry">
          <rect>
-          <x>1255</x>
-          <y>565</y>
+          <x>1288</x>
+          <y>580</y>
           <width>140</width>
           <height>100</height>
          </rect>
@@ -2275,8 +2303,8 @@
        <widget class="QLabel" name="label_46">
         <property name="geometry">
          <rect>
-          <x>1197</x>
-          <y>605</y>
+          <x>1230</x>
+          <y>620</y>
           <width>58</width>
           <height>41</height>
          </rect>
@@ -2304,8 +2332,8 @@
        <widget class="QLabel" name="label_ru_2">
         <property name="geometry">
          <rect>
-          <x>842</x>
-          <y>565</y>
+          <x>875</x>
+          <y>580</y>
           <width>140</width>
           <height>100</height>
          </rect>
@@ -2339,8 +2367,8 @@
        <widget class="QLabel" name="image_body_2">
         <property name="geometry">
          <rect>
-          <x>777</x>
-          <y>535</y>
+          <x>810</x>
+          <y>550</y>
           <width>600</width>
           <height>154</height>
          </rect>
@@ -2423,6 +2451,29 @@
          <pixmap resource="img.qrc">:/prefix1/resource/score.png</pixmap>
         </property>
        </widget>
+       <widget class="QLabel" name="label_51">
+        <property name="geometry">
+         <rect>
+          <x>560</x>
+          <y>770</y>
+          <width>91</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Microsoft YaHei UI</family>
+          <pointsize>14</pointsize>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="textFormat">
+         <enum>Qt::RichText</enum>
+        </property>
+       </widget>
        <zorder>image_body_2</zorder>
        <zorder>video_std3</zorder>
        <zorder>video_nonstd3</zorder>
@@ -2449,6 +2500,7 @@
        <zorder>progressBar_2</zorder>
        <zorder>label_49</zorder>
        <zorder>label_50</zorder>
+       <zorder>label_51</zorder>
       </widget>
      </widget>
     </item>

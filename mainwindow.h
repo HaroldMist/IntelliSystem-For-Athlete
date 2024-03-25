@@ -22,6 +22,7 @@
 #include <QSqlRecord>
 
 #include <QProcess>
+#include<QRandomGenerator>
 
 QT_BEGIN_NAMESPACE
 namespace Ui

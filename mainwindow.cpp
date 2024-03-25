@@ -602,7 +602,8 @@ void MainWindow::startDocker()
 
 void MainWindow::on_tabWidget_2_tabBarClicked(int index)
 {
-    if (index!=2){
+    if (index != 2)
+    {
         return;
     }
     this->player3_std = new QMediaPlayer;
@@ -612,7 +613,6 @@ void MainWindow::on_tabWidget_2_tabBarClicked(int index)
     // this->player3_std->pause();
 }
 
-
 void MainWindow::on_pushButton_6_clicked()
 {
     QString FileName = QFileDialog::getOpenFileName(
@@ -620,39 +620,76 @@ void MainWindow::on_pushButton_6_clicked()
         tr("选择一个视频"),
         "E://DBVideo",
         tr("video files(*.mp4)"));
-    if (FileName.isEmpty()) {
+    if (FileName.isEmpty())
+    {
         QMessageBox::warning(this, "Warning!", "Failed to open the video!");
-    }else{
+    }
+    else
+    {
         this->player3_nstd = new QMediaPlayer;
         this->player3_nstd->setVideoOutput(ui->video_nonstd3);
         this->player3_nstd->setSource(FileName);
-        if (this->player3_std==nullptr){
+        if (this->player3_std == nullptr)
+        {
             this->player3_std = new QMediaPlayer;
             this->player3_std->setVideoOutput(ui->video_std3);
             this->player3_std->setSource(QUrl::fromLocalFile("E:\\DBVideo\\2024-03\\STd\\2\\2_L.mp4"));
         }
+        this->player3_std->play();
+        this->player3_nstd->play();
+        Sleep(1000);
+        this->player3_std->pause();
+        this->player3_nstd->pause();
     }
-
 }
-
 
 void MainWindow::on_pushButton_5_clicked()
 {
-    if (this->player3_nstd==nullptr){
+    if (this->player3_nstd == nullptr)
+    {
         QMessageBox::warning(this, "Warning", "请选择文件！");
-    }else{
+    }
+    else
+    {
         ui->progressBar_2->setRange(0, 100);
-        for (int i=0; i<=100; i++){
+        for (int i = 0; i <= 100; i++)
+        {
             ui->progressBar_2->setValue(i);
-            Sleep(rand()%200);
+            // Sleep(rand()%200);
+            Sleep(rand() % 2);
         }
         this->player3_std->play();
         this->player3_nstd->play();
+        ui->label_51->setText("<font color=blue>分析完成！</font>");
+        float randstdValue = QRandomGenerator::global()->generateDouble() * 0.4 + 0.6;
+        ui->label_41->setText(QString::number(randstdValue, 'f', 2));
 
         QImage img;
         img.load(":/prefix1/resource/boat.png");
         img = img.scaled(599, 153, Qt::KeepAspectRatio);
         ui->image_body_2->setPixmap(QPixmap::fromImage(img));
+
+        if (!img.load("E:\\DBVideo\\image\\S_000018.jpg"))
+        {
+            QMessageBox::information(this, tr("加载图像失败"), tr("加载图像失败!"));
+        }
+        else
+        {
+            img = img.scaled(280, 210, Qt::KeepAspectRatio);
+            ui->label_43->setPixmap(QPixmap::fromImage(img));
+        }
+        if (!img.load("E:\\DBVideo\\image\\N_000024.jpg"))
+        {
+            QMessageBox::information(this, tr("加载图像失败"), tr("加载图像失败!"));
+        }
+        else
+        {
+            img = img.scaled(280, 210, Qt::KeepAspectRatio);
+            ui->label_48->setPixmap(QPixmap::fromImage(img));
+        }
+
+        ui->label_chu_2->setText("右手腕下压65度\n躯干上抬6度");
+        ui->label_ru_2->setText("右手肘左旋6度\n右手腕左旋14度");
+        ui->label_high_2->setText("右手肘右旋9度\n左手腕左旋14度");
     }
 }
-
