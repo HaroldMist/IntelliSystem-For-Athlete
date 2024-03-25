@@ -655,12 +655,14 @@ void MainWindow::on_pushButton_5_clicked()
         for (int i = 0; i <= 100; i++)
         {
             ui->progressBar_2->setValue(i);
-            // Sleep(rand()%200);
-            Sleep(rand() % 2);
+            Sleep(rand()%200);
+            // Sleep(rand() % 2);
         }
+        Sleep(666);
+        ui->label_51->setText("<font color=blue>分析完成！</font>");
         this->player3_std->play();
         this->player3_nstd->play();
-        ui->label_51->setText("<font color=blue>分析完成！</font>");
+
         float randstdValue = QRandomGenerator::global()->generateDouble() * 0.4 + 0.6;
         ui->label_41->setText(QString::number(randstdValue, 'f', 2));
 
